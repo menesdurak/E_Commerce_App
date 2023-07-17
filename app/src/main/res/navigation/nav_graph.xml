@@ -20,4 +20,14 @@
         android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.cart.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
+    <fragment
+        android:id="@+id/categoriesFragment"
+        android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.categories.CategoriesFragment"
+        android:label="fragment_categories"
+        tools:layout="@layout/fragment_categories" />
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.user.UserFragment"
+        android:label="fragment_user"
+        tools:layout="@layout/fragment_user" />
 </navigation>

@@ -24,8 +24,10 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavMenu.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.home -> navController.navigate(R.id.homeFragment)
+                R.id.categories -> navController.navigate(R.id.categoriesFragment)
                 R.id.favorites -> navController.navigate(R.id.favoritesFragment)
                 R.id.cart -> navController.navigate(R.id.cartFragment)
+                R.id.user -> navController.navigate(R.id.userFragment)
             }
             true
         }
