@@ -8,7 +8,10 @@ import com.menesdurak.e_ticaret_uygulamasi.R
 import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.Product
 import com.menesdurak.e_ticaret_uygulamasi.databinding.ItemCategoryProductBinding
 
-class CategoryProductAdapter(private val onProductClick: (Product) -> Unit) :
+class CategoryProductAdapter(
+    private val onProductClick: (Product) -> Unit,
+    private val onFavoriteClick: (Product) -> Unit
+    ) :
     RecyclerView.Adapter<CategoryProductAdapter.CategoryProductHolder>() {
 
     private val itemList = mutableListOf<Product>()
@@ -28,6 +31,10 @@ class CategoryProductAdapter(private val onProductClick: (Product) -> Unit) :
 
             binding.root.setOnClickListener {
                 onProductClick.invoke(product)
+            }
+
+            binding.ivFavorite.setOnClickListener {
+                onFavoriteClick.invoke(product)
             }
         }
     }

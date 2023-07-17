@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.menesdurak.e_ticaret_uygulamasi.R
 import com.menesdurak.e_ticaret_uygulamasi.common.Resource
+import com.menesdurak.e_ticaret_uygulamasi.data.mapper.ProductToFavoriteProduct
 import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.Product
 import com.menesdurak.e_ticaret_uygulamasi.databinding.FragmentCategoriesBinding
 import com.menesdurak.e_ticaret_uygulamasi.databinding.FragmentFavoritesBinding
@@ -24,7 +25,7 @@ class CategoriesFragment : Fragment() {
 
     private val categoriesViewModel: CategoriesViewModel by viewModels()
     private val categoryAdapter: CategoryAdapter by lazy { CategoryAdapter(::onCategoryClick) }
-    private val categoryProductAdapter: CategoryProductAdapter by lazy { CategoryProductAdapter(::onProductClick) }
+    private val categoryProductAdapter: CategoryProductAdapter by lazy { CategoryProductAdapter(::onProductClick, ::onFavoriteClick) }
     private var categoryName = "electronics"
 
     override fun onCreateView(
@@ -96,5 +97,9 @@ class CategoriesFragment : Fragment() {
 
     private fun onProductClick(product: Product) {
         Toast.makeText(requireContext(), product.title, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun onFavoriteClick(product: Product) {
+        categoriesViewModel.addFavorite(ProductToFavoriteProduct().map(product))
     }
 }
