@@ -1,4 +1,4 @@
-package com.menesdurak.e_ticaret_uygulamasi
+package com.menesdurak.e_ticaret_uygulamasi.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
