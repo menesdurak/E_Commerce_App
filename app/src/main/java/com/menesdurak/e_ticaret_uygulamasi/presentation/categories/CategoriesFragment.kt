@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.menesdurak.e_ticaret_uygulamasi.R
 import com.menesdurak.e_ticaret_uygulamasi.common.Resource
+import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.Product
 import com.menesdurak.e_ticaret_uygulamasi.databinding.FragmentCategoriesBinding
 import com.menesdurak.e_ticaret_uygulamasi.databinding.FragmentFavoritesBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,6 +24,8 @@ class CategoriesFragment : Fragment() {
 
     private val categoriesViewModel: CategoriesViewModel by viewModels()
     private val categoryAdapter: CategoryAdapter by lazy { CategoryAdapter(::onCategoryClick) }
+    private val categoryProductAdapter: CategoryProductAdapter by lazy { CategoryProductAdapter(::onProductClick) }
+    private var categoryName = "electronics"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +41,7 @@ class CategoriesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         categoriesViewModel.getAllCategories()
+        categoriesViewModel.getProductsFromCategory(categoryName)
 
         binding.rvCategories.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -58,6 +63,24 @@ class CategoriesFragment : Fragment() {
             }
         }
 
+        binding.rvProducts.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.rvProducts.adapter = categoryProductAdapter
+
+        categoriesViewModel.productsList.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Success -> {
+                    categoryProductAdapter.updateList(it.data)
+                }
+
+                is Resource.Error -> {
+
+                }
+
+                Resource.Loading -> {
+
+                }
+            }
+        }
 
     }
 
@@ -67,6 +90,11 @@ class CategoriesFragment : Fragment() {
     }
 
     private fun onCategoryClick(categoryName: String) {
-        Toast.makeText(requireContext(), categoryName, Toast.LENGTH_SHORT).show()
+        categoriesViewModel.getProductsFromCategory(categoryName)
+
+    }
+
+    private fun onProductClick(product: Product) {
+        Toast.makeText(requireContext(), product.title, Toast.LENGTH_SHORT).show()
     }
 }

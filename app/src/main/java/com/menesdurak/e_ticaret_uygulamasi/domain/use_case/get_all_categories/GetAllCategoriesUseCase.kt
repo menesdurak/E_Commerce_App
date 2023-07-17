@@ -1,4 +1,4 @@
-package com.menesdurak.e_ticaret_uygulamasi.domain.use_case
+package com.menesdurak.e_ticaret_uygulamasi.domain.use_case.get_all_categories
 
 import com.menesdurak.e_ticaret_uygulamasi.common.Resource
 import com.menesdurak.e_ticaret_uygulamasi.domain.repository.RemoteRepository
