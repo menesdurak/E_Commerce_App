@@ -8,7 +8,8 @@ import com.menesdurak.e_ticaret_uygulamasi.common.Resource
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.FavoriteProduct
 import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.add_favorite.AddFavoriteProductUseCase
 import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.delete_favorite.DeleteFavoriteProductUseCase
-import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.get_all_favorites.GetAllFavoriteProductsUseCase
+import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.get_all_favorite_products.GetAllFavoriteProductsUseCase
+import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.get_all_favorite_products_id.GetAllFavoriteProductsIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,7 +17,6 @@ import javax.inject.Inject
 @HiltViewModel
 class FavoritesViewModel @Inject constructor(
     private val getAllFavoriteProductsUseCase: GetAllFavoriteProductsUseCase,
-    private val addFavoriteProductUseCase: AddFavoriteProductUseCase,
     private val deleteFavoriteProductUseCase: DeleteFavoriteProductUseCase
 ) : ViewModel() {
 
@@ -31,15 +31,10 @@ class FavoritesViewModel @Inject constructor(
         }
     }
 
-    fun addFavoriteProduct(favoriteProduct: FavoriteProduct) {
-        viewModelScope.launch {
-            addFavoriteProductUseCase(favoriteProduct)
-        }
-    }
-
     fun deleteFavoriteProduct(favoriteProductId: Int) {
         viewModelScope.launch {
             deleteFavoriteProductUseCase(favoriteProductId)
         }
     }
+
 }

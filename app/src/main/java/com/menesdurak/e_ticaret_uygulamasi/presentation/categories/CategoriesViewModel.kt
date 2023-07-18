@@ -10,7 +10,7 @@ import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.Product
 import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.add_favorite.AddFavoriteProductUseCase
 import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.delete_favorite.DeleteFavoriteProductUseCase
 import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.get_all_categories.GetAllCategoriesUseCase
-import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.get_all_favorites.GetAllFavoriteProductsUseCase
+import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.get_all_favorite_products_id.GetAllFavoriteProductsIdUseCase
 import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.get_products_from_category.GetProductsFromCategoryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -21,7 +21,8 @@ class CategoriesViewModel @Inject constructor(
     private val getAllCategoriesUseCase: GetAllCategoriesUseCase,
     private val getProductsFromCategoryUseCase: GetProductsFromCategoryUseCase,
     private val addFavoriteProductUseCase: AddFavoriteProductUseCase,
-    private val deleteFavoriteProductUseCase: DeleteFavoriteProductUseCase
+    private val deleteFavoriteProductUseCase: DeleteFavoriteProductUseCase,
+    private val getAllFavoriteProductsIdUseCase: GetAllFavoriteProductsIdUseCase,
 ) : ViewModel() {
 
     private val _categoriesList = MutableLiveData<Resource<List<String>>>(Resource.Loading)
@@ -29,6 +30,10 @@ class CategoriesViewModel @Inject constructor(
 
     private val _productsList = MutableLiveData<Resource<List<Product>>>(Resource.Loading)
     val productsList: LiveData<Resource<List<Product>>> = _productsList
+
+    private val _favoriteProductsIdList =
+        MutableLiveData<Resource<List<Int>>>(Resource.Loading)
+    val favoriteProductsIdList: LiveData<Resource<List<Int>>> = _favoriteProductsIdList
 
     fun getAllCategories() {
         viewModelScope.launch {
@@ -53,6 +58,13 @@ class CategoriesViewModel @Inject constructor(
     fun deleteFavoriteProduct(favoriteProductId: Int) {
         viewModelScope.launch {
             deleteFavoriteProductUseCase(favoriteProductId)
+        }
+    }
+
+    fun getAllFavoriteProductsId() {
+        viewModelScope.launch {
+            _favoriteProductsIdList.value = Resource.Loading
+            _favoriteProductsIdList.value = getAllFavoriteProductsIdUseCase()!!
         }
     }
 

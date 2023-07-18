@@ -10,10 +10,12 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.menesdurak.e_ticaret_uygulamasi.R
 import com.menesdurak.e_ticaret_uygulamasi.common.Resource
-import com.menesdurak.e_ticaret_uygulamasi.data.mapper.ProductToFavoriteProduct
+import com.menesdurak.e_ticaret_uygulamasi.data.mapper.ProductToFavoriteProductMapper
+import com.menesdurak.e_ticaret_uygulamasi.data.mapper.ProductToProductUiMapper
+import com.menesdurak.e_ticaret_uygulamasi.data.mapper.ProductUiToFavoriteProductMapper
 import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.Product
+import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.ProductUi
 import com.menesdurak.e_ticaret_uygulamasi.databinding.FragmentCategoriesBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -46,6 +48,7 @@ class CategoriesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         categoriesViewModel.getAllCategories()
+        categoriesViewModel.getAllFavoriteProductsId()
         categoriesViewModel.getProductsFromCategory(categoryName)
 
         binding.rvCategories.layoutManager =
@@ -75,7 +78,23 @@ class CategoriesFragment : Fragment() {
         categoriesViewModel.productsList.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Success -> {
-                    categoryProductAdapter.updateList(it.data)
+                    categoryProductAdapter.updateList(ProductToProductUiMapper().map(it.data))
+                }
+
+                is Resource.Error -> {
+                    Log.e("error", "Error in Categories Fragment")
+                }
+
+                Resource.Loading -> {
+
+                }
+            }
+        }
+
+        categoriesViewModel.favoriteProductsIdList.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Success -> {
+                    categoryProductAdapter.updateFavoriteProductsIdList(it.data)
                 }
 
                 is Resource.Error -> {
@@ -99,11 +118,18 @@ class CategoriesFragment : Fragment() {
         categoriesViewModel.getProductsFromCategory(categoryName)
     }
 
-    private fun onProductClick(product: Product) {
+    private fun onProductClick(product: ProductUi) {
         Toast.makeText(requireContext(), product.title, Toast.LENGTH_SHORT).show()
     }
 
-    private fun onFavoriteClick(product: Product) {
-        categoriesViewModel.addFavoriteProduct(ProductToFavoriteProduct().map(product))
+    private fun onFavoriteClick(position: Int, product: ProductUi) {
+        val favoriteProduct = ProductUiToFavoriteProductMapper().map(product)
+        if (product.isFavorite) {
+            categoriesViewModel.deleteFavoriteProduct(favoriteProduct.id)
+            categoryProductAdapter.updateFavoriteStatusOfProduct(position, favoriteProduct.id)
+        } else {
+            categoriesViewModel.addFavoriteProduct(favoriteProduct)
+            categoryProductAdapter.updateFavoriteStatusOfProduct(position, favoriteProduct.id)
+        }
     }
 }
