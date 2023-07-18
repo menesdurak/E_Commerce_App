@@ -1,11 +1,11 @@
 package com.menesdurak.e_ticaret_uygulamasi.presentation.categories
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -15,7 +15,6 @@ import com.menesdurak.e_ticaret_uygulamasi.common.Resource
 import com.menesdurak.e_ticaret_uygulamasi.data.mapper.ProductToFavoriteProduct
 import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.Product
 import com.menesdurak.e_ticaret_uygulamasi.databinding.FragmentCategoriesBinding
-import com.menesdurak.e_ticaret_uygulamasi.databinding.FragmentFavoritesBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,7 +24,12 @@ class CategoriesFragment : Fragment() {
 
     private val categoriesViewModel: CategoriesViewModel by viewModels()
     private val categoryAdapter: CategoryAdapter by lazy { CategoryAdapter(::onCategoryClick) }
-    private val categoryProductAdapter: CategoryProductAdapter by lazy { CategoryProductAdapter(::onProductClick, ::onFavoriteClick) }
+    private val categoryProductAdapter: CategoryProductAdapter by lazy {
+        CategoryProductAdapter(
+            ::onProductClick,
+            ::onFavoriteClick
+        )
+    }
     private var categoryName = "electronics"
 
     override fun onCreateView(
@@ -51,15 +55,16 @@ class CategoriesFragment : Fragment() {
         categoriesViewModel.categoriesList.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Success -> {
+                    binding.progressBar.visibility = View.GONE
                     categoryAdapter.updateList(it.data)
                 }
 
                 is Resource.Error -> {
-
+                    Log.e("error", "Error in Categories Fragment")
                 }
 
                 Resource.Loading -> {
-
+                    binding.progressBar.visibility = View.VISIBLE
                 }
             }
         }
@@ -74,7 +79,7 @@ class CategoriesFragment : Fragment() {
                 }
 
                 is Resource.Error -> {
-
+                    Log.e("error", "Error in Categories Fragment")
                 }
 
                 Resource.Loading -> {
@@ -92,7 +97,6 @@ class CategoriesFragment : Fragment() {
 
     private fun onCategoryClick(categoryName: String) {
         categoriesViewModel.getProductsFromCategory(categoryName)
-
     }
 
     private fun onProductClick(product: Product) {
@@ -100,6 +104,6 @@ class CategoriesFragment : Fragment() {
     }
 
     private fun onFavoriteClick(product: Product) {
-        categoriesViewModel.addFavorite(ProductToFavoriteProduct().map(product))
+        categoriesViewModel.addFavoriteProduct(ProductToFavoriteProduct().map(product))
     }
 }

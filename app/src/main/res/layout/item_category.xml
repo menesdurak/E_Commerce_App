@@ -3,8 +3,9 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginHorizontal="20dp"
-    android:layout_marginVertical="10dp">
+    android:layout_marginHorizontal="4dp"
+    android:layout_marginVertical="8dp"
+    android:background="@drawable/black_border_rounded">
 
     <TextView
         android:id="@+id/tvCategoryTitle"

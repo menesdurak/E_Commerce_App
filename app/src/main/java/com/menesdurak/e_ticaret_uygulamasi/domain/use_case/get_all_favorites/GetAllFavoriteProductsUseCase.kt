@@ -1,4 +1,4 @@
-package com.menesdurak.e_ticaret_uygulamasi.domain.use_case.add_favorite
+package com.menesdurak.e_ticaret_uygulamasi.domain.use_case.get_all_favorites
 
 import com.menesdurak.e_ticaret_uygulamasi.common.Resource
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.FavoriteProduct
@@ -6,13 +6,13 @@ import com.menesdurak.e_ticaret_uygulamasi.domain.repository.LocalRepository
 import java.io.IOException
 import javax.inject.Inject
 
-class AddFavoriteUseCase @Inject constructor(
+class GetAllFavoriteProductsUseCase @Inject constructor(
     private val localRepository: LocalRepository
 ) {
 
-    suspend operator fun invoke(favoriteProduct: FavoriteProduct) {
-        try {
-            Resource.Success(localRepository.addFavoriteProduct(favoriteProduct))
+    suspend operator fun invoke() : Resource<List<FavoriteProduct>> {
+        return try {
+            Resource.Success(localRepository.getAllFavoriteProducts())
         } catch (e: IOException) {
             Resource.Error(e)
         }
