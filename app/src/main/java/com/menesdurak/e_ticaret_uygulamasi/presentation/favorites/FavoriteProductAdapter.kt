@@ -10,7 +10,7 @@ import com.menesdurak.e_ticaret_uygulamasi.databinding.ItemFavoriteProductBindin
 
 class FavoriteProductAdapter(
     private val onProductClick: (FavoriteProduct) -> Unit,
-    private val onFavoriteClick: (Int, Int) -> Unit
+    private val onFavoriteClick: (Int, Int) -> Unit,
 ) :
     RecyclerView.Adapter<FavoriteProductAdapter.FavoriteProductHolder>() {
 
@@ -41,7 +41,8 @@ class FavoriteProductAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteProductHolder {
-        val bind = ItemFavoriteProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val bind =
+            ItemFavoriteProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return FavoriteProductHolder(bind)
     }
 

@@ -29,5 +29,42 @@
         android:id="@+id/userFragment"
         android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.user.UserFragment"
         android:label="fragment_user"
-        tools:layout="@layout/fragment_user" />
+        tools:layout="@layout/fragment_user" >
+        <action
+            android:id="@+id/action_userFragment_to_userInfoEditFragment"
+            app:destination="@id/userInfoEditFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_userLogInFragment"
+            app:destination="@id/userLogInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userLogInFragment"
+        android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.user.UserLogInFragment"
+        android:label="fragment_user_log_in"
+        tools:layout="@layout/fragment_user_log_in" >
+        <action
+            android:id="@+id/action_userLogInFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_userLogInFragment_to_userSignUpFragment"
+            app:destination="@id/userSignUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userSignUpFragment"
+        android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.user.UserSignUpFragment"
+        android:label="fragment_user_sign_up"
+        tools:layout="@layout/fragment_user_sign_up" >
+        <action
+            android:id="@+id/action_userSignUpFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userInfoEditFragment"
+        android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.user.UserInfoEditFragment"
+        android:label="fragment_user_info_edit"
+        tools:layout="@layout/fragment_user_info_edit" >
+        <action
+            android:id="@+id/action_userInfoEditFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+    </fragment>
 </navigation>

@@ -8,6 +8,7 @@ import com.menesdurak.e_ticaret_uygulamasi.R
 import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.Product
 import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.ProductUi
 import com.menesdurak.e_ticaret_uygulamasi.databinding.ItemCategoryProductBinding
+import kotlin.math.nextUp
 
 class CategoryProductAdapter(
     private val onProductClick: (ProductUi) -> Unit,
@@ -32,6 +33,8 @@ class CategoryProductAdapter(
                 binding.ivFavorite.setImageResource(R.drawable.ic_favorite)
                 product.isFavorite = true
             }
+
+            binding.ratingBar.rating = (Math.random() * 5 ).toFloat()
 
             Glide
                 .with(binding.root.context)
