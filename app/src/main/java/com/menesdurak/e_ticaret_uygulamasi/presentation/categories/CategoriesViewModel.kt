@@ -7,8 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.menesdurak.e_ticaret_uygulamasi.common.Resource
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.FavoriteProduct
 import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.Product
-import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.add_favorite.AddFavoriteProductUseCase
-import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.delete_favorite.DeleteFavoriteProductUseCase
+import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.add_favorite_product.AddFavoriteProductUseCase
+import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.delete_favorite_product.DeleteFavoriteProductUseCase
 import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.get_all_categories.GetAllCategoriesUseCase
 import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.get_all_favorite_products_id.GetAllFavoriteProductsIdUseCase
 import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.get_products_from_category.GetProductsFromCategoryUseCase

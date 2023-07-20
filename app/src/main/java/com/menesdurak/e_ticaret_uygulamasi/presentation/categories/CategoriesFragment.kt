@@ -11,12 +11,12 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.menesdurak.e_ticaret_uygulamasi.common.Resource
-import com.menesdurak.e_ticaret_uygulamasi.data.mapper.ProductToFavoriteProductMapper
 import com.menesdurak.e_ticaret_uygulamasi.data.mapper.ProductToProductUiMapper
+import com.menesdurak.e_ticaret_uygulamasi.data.mapper.ProductUiToCartProductMapper
 import com.menesdurak.e_ticaret_uygulamasi.data.mapper.ProductUiToFavoriteProductMapper
-import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.Product
 import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.ProductUi
 import com.menesdurak.e_ticaret_uygulamasi.databinding.FragmentCategoriesBinding
+import com.menesdurak.e_ticaret_uygulamasi.presentation.cart.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,11 +25,13 @@ class CategoriesFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val categoriesViewModel: CategoriesViewModel by viewModels()
+    private val cartViewModel: CartViewModel by viewModels()
     private val categoryAdapter: CategoryAdapter by lazy { CategoryAdapter(::onCategoryClick) }
     private val categoryProductAdapter: CategoryProductAdapter by lazy {
         CategoryProductAdapter(
             ::onProductClick,
-            ::onFavoriteClick
+            ::onFavoriteClick,
+            ::onAddToCartClick
         )
     }
     private var categoryName = "electronics"
@@ -120,6 +122,10 @@ class CategoriesFragment : Fragment() {
 
     private fun onProductClick(product: ProductUi) {
         Toast.makeText(requireContext(), product.title, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun onAddToCartClick(position: Int, product: ProductUi) {
+        cartViewModel.addCartProduct(ProductUiToCartProductMapper().map(product))
     }
 
     private fun onFavoriteClick(position: Int, product: ProductUi) {

@@ -3,8 +3,8 @@ package com.menesdurak.e_ticaret_uygulamasi.data.local.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "e_ticaret_table")
-data class FavoriteProduct(
+@Entity(tableName = "cart_table")
+data class CartProduct(
     val category: String,
     val description: String,
     @PrimaryKey
@@ -12,6 +12,6 @@ data class FavoriteProduct(
     val image: String,
     val price: String,
     val title: String,
-    val whenFavorite: String,
-    var isInCart: Boolean = false
+    var amount: Int,
+    var isChecked: Boolean = false
 )

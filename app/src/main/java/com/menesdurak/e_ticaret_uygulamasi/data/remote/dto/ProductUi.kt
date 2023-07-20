@@ -7,5 +7,6 @@ data class ProductUi(
     val image: String,
     val price: String,
     val title: String,
-    var isFavorite: Boolean = false
+    var isFavorite: Boolean = false,
+    var isInCart: Boolean = false
 )

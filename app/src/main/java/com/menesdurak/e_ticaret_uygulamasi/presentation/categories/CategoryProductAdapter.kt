@@ -12,12 +12,14 @@ import kotlin.math.nextUp
 
 class CategoryProductAdapter(
     private val onProductClick: (ProductUi) -> Unit,
-    private val onFavoriteClick: (Int, ProductUi) -> Unit
-    ) :
+    private val onFavoriteClick: (Int, ProductUi) -> Unit,
+    private val onAddToCartClick: (Int, ProductUi) -> Unit,
+) :
     RecyclerView.Adapter<CategoryProductAdapter.CategoryProductHolder>() {
 
     private val itemList = mutableListOf<ProductUi>()
     private val favoriteProductsIdList = mutableListOf<Int>()
+
 
     inner class CategoryProductHolder(private val binding: ItemCategoryProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -34,7 +36,7 @@ class CategoryProductAdapter(
                 product.isFavorite = true
             }
 
-            binding.ratingBar.rating = (Math.random() * 5 ).toFloat()
+            binding.ratingBar.rating = (Math.random() * 5).toFloat()
 
             Glide
                 .with(binding.root.context)
@@ -49,11 +51,16 @@ class CategoryProductAdapter(
             binding.ivFavorite.setOnClickListener {
                 onFavoriteClick.invoke(adapterPosition, product)
             }
+
+            binding.btnBuy.setOnClickListener {
+                onAddToCartClick.invoke(adapterPosition, product)
+            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryProductHolder {
-        val bind = ItemCategoryProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val bind =
+            ItemCategoryProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CategoryProductHolder(bind)
     }
 

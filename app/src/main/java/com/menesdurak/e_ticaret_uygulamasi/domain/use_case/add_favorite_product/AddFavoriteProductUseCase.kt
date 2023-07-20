@@ -1,4 +1,4 @@
-package com.menesdurak.e_ticaret_uygulamasi.domain.use_case.add_favorite
+package com.menesdurak.e_ticaret_uygulamasi.domain.use_case.add_favorite_product
 
 import com.menesdurak.e_ticaret_uygulamasi.common.Resource
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.FavoriteProduct

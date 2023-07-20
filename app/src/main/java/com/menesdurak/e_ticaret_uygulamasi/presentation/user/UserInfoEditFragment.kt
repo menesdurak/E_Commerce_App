@@ -5,12 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import com.menesdurak.e_ticaret_uygulamasi.R
 import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.UserInfo
@@ -22,7 +22,7 @@ class UserInfoEditFragment : Fragment() {
 
     private lateinit var auth: FirebaseAuth
 
-    private lateinit var database: DatabaseReference
+    private lateinit var databaseReference: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,9 +44,22 @@ class UserInfoEditFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        database = Firebase.database.reference
+        databaseReference = Firebase.database.reference
 
+        databaseReference.child(auth.currentUser?.uid!!).child("userInfo").get()
+            .addOnSuccessListener {
+                val userInfo = UserInfo("", "", "", "")
+                userInfo.name = it.getValue<UserInfo>()!!.name
+                userInfo.surName = it.getValue<UserInfo>()!!.surName
+                userInfo.address = it.getValue<UserInfo>()!!.address
+                userInfo.phone = it.getValue<UserInfo>()!!.phone
 
+                binding.etUserName.setText(userInfo.name)
+                binding.etUserSurname.setText(userInfo.surName)
+                binding.etUserAddress.setText(userInfo.address)
+                binding.etUserPhone.setText(userInfo.phone)
+
+            }
 
         binding.btnSave.setOnClickListener {
             val name = binding.etUserName.text.toString()
@@ -56,7 +69,7 @@ class UserInfoEditFragment : Fragment() {
 
             val userInfo = UserInfo(name, surName, address, phone)
 
-            database.child(auth.currentUser?.uid!!).child("userInfo").setValue(userInfo)
+            databaseReference.child(auth.currentUser?.uid!!).child("userInfo").setValue(userInfo)
             val action = UserInfoEditFragmentDirections.actionUserInfoEditFragmentToUserFragment()
             findNavController().navigate(action)
         }
