@@ -9,13 +9,13 @@
         android:icon="@drawable/ic_categories"
         android:title="@string/categories" />
     <item
-        android:id="@+id/favorites"
-        android:icon="@drawable/ic_favorite"
-        android:title="@string/favorites" />
-    <item
         android:id="@+id/cart"
         android:icon="@drawable/ic_cart"
         android:title="@string/cart" />
+    <item
+        android:id="@+id/favorites"
+        android:icon="@drawable/ic_favorite"
+        android:title="@string/favorites" />
     <item
         android:id="@+id/user"
         android:icon="@drawable/ic_user"

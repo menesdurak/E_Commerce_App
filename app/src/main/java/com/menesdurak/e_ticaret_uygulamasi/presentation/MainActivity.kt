@@ -25,8 +25,8 @@ class MainActivity : AppCompatActivity() {
             when (menuItem.itemId) {
                 R.id.home -> navController.navigate(R.id.homeFragment)
                 R.id.categories -> navController.navigate(R.id.categoriesFragment)
-                R.id.favorites -> navController.navigate(R.id.favoritesFragment)
                 R.id.cart -> navController.navigate(R.id.cartFragment)
+                R.id.favorites -> navController.navigate(R.id.favoritesFragment)
                 R.id.user -> navController.navigate(R.id.userLogInFragment)
             }
             true

@@ -22,4 +22,6 @@ interface LocalRepository {
     suspend fun updateCartProductCheckedStatus(isChecked: Boolean, cartProductId: Int)
 
     suspend fun updateCartProductAmount(newAmount: Int, cartProductId: Int)
+
+    suspend fun deleteAllCheckedCartProducts()
 }

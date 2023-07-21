@@ -9,10 +9,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import com.menesdurak.e_ticaret_uygulamasi.R
 import com.menesdurak.e_ticaret_uygulamasi.common.Resource
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.FavoriteProduct
+import com.menesdurak.e_ticaret_uygulamasi.data.mapper.FavoriteProductToCartProductMapper
 import com.menesdurak.e_ticaret_uygulamasi.databinding.FragmentFavoritesBinding
+import com.menesdurak.e_ticaret_uygulamasi.presentation.cart.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,17 +22,19 @@ class FavoritesFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val favoritesViewModel: FavoritesViewModel by viewModels()
+    private val cartViewModel: CartViewModel by viewModels()
     private val favoriteProductAdapter: FavoriteProductAdapter by lazy {
         FavoriteProductAdapter(
             ::onProductClick,
-            ::onFavoriteClick
+            ::onFavoriteClick,
+            ::onBuyClick
         )
     }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -76,5 +79,14 @@ class FavoritesFragment : Fragment() {
     private fun onFavoriteClick(position: Int, productId: Int) {
         favoriteProductAdapter.deleteItem(position, productId)
         favoritesViewModel.deleteFavoriteProduct(productId)
+    }
+
+    private fun onBuyClick(position: Int, product: FavoriteProduct) {
+        cartViewModel.addCartProduct(FavoriteProductToCartProductMapper().map(product))
+        Toast.makeText(
+            requireContext(),
+            "${product.id} is added to your cart!",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }

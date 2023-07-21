@@ -19,7 +19,14 @@
         android:id="@+id/cartFragment"
         android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.cart.CartFragment"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_to_userLogInFragment"
+            app:destination="@id/userLogInFragment" />
+        <action
+            android:id="@+id/action_cartFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+    </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
         android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.categories.CategoriesFragment"
@@ -67,4 +74,9 @@
             android:id="@+id/action_userInfoEditFragment_to_userFragment"
             app:destination="@id/userFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.cart.payment.PaymentFragment"
+        android:label="fragment_payment"
+        tools:layout="@layout/fragment_payment" />
 </navigation>

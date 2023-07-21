@@ -1,17 +1,18 @@
-package com.menesdurak.e_ticaret_uygulamasi.domain.use_case.delete_cart_product
+package com.menesdurak.e_ticaret_uygulamasi.domain.use_case.delete_all_checked_cart_products
 
 import com.menesdurak.e_ticaret_uygulamasi.common.Resource
+import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.CartProduct
 import com.menesdurak.e_ticaret_uygulamasi.domain.repository.LocalRepository
 import java.io.IOException
 import javax.inject.Inject
 
-class DeleteCartProductUseCase @Inject constructor(
+class DeleteAllCheckedCartProductsUseCase @Inject constructor(
     private val localRepository: LocalRepository
 ) {
 
-    suspend operator fun invoke(cartProductId: Int) {
+    suspend operator fun invoke() {
         try {
-            Resource.Success(localRepository.deleteCartProductWithId(cartProductId))
+            Resource.Success(localRepository.deleteAllCheckedCartProducts())
         } catch (e: IOException) {
             Resource.Error(e)
         }

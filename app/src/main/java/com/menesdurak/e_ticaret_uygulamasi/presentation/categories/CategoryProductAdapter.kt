@@ -20,7 +20,6 @@ class CategoryProductAdapter(
     private val itemList = mutableListOf<ProductUi>()
     private val favoriteProductsIdList = mutableListOf<Int>()
 
-
     inner class CategoryProductHolder(private val binding: ItemCategoryProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
 

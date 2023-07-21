@@ -8,8 +8,10 @@ import com.menesdurak.e_ticaret_uygulamasi.common.Resource
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.CartProduct
 import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.add_cart_product.AddCartProductUseCase
 import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.delete_all_cart_products.DeleteAllCartProductsUseCase
+import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.delete_all_checked_cart_products.DeleteAllCheckedCartProductsUseCase
 import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.delete_cart_product.DeleteCartProductUseCase
 import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.get_all_cart_products.GetAllCartProductsUseCase
+import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.get_all_checked_cart_products.GetAllCheckedCartProductsUseCase
 import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.update_cart_product_amount.UpdateCartProductAmountUseCase
 import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.update_cart_product_checked_status.UpdateCartProductCheckedStatusUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,15 +25,16 @@ class CartViewModel @Inject constructor(
     private val getAllCartProductsUseCase: GetAllCartProductsUseCase,
     private val deleteAllCartProductsUseCase: DeleteAllCartProductsUseCase,
     private val updateCartProductCheckedStatusUseCase: UpdateCartProductCheckedStatusUseCase,
-    private val updateCartProductAmountUseCase: UpdateCartProductAmountUseCase
+    private val updateCartProductAmountUseCase: UpdateCartProductAmountUseCase,
+    private val getAllCheckedCartProductsUseCase: GetAllCheckedCartProductsUseCase,
+    private val deleteAllCheckedCartProductsUseCase: DeleteAllCheckedCartProductsUseCase
 ) : ViewModel() {
 
     private val _cartProductsList = MutableLiveData<Resource<List<CartProduct>>>(Resource.Loading)
     val cartProductList: LiveData<Resource<List<CartProduct>>> = _cartProductsList
 
-    private val _checkedCartProductsIdList =
-        MutableLiveData<Resource<List<Int>>>(Resource.Loading)
-    val checkedCartProductsIdList: LiveData<Resource<List<Int>>> = _checkedCartProductsIdList
+    private val _checkedAllCartProductsList = MutableLiveData<Resource<List<CartProduct>>>(Resource.Loading)
+    val checkedAllCartProductsList: LiveData<Resource<List<CartProduct>>> = _checkedAllCartProductsList
 
     fun getAllCartProducts() {
         viewModelScope.launch {
@@ -67,6 +70,19 @@ class CartViewModel @Inject constructor(
     fun updateCartProductAmount(newAmount: Int, cartProductId: Int) {
         viewModelScope.launch {
             updateCartProductAmountUseCase(newAmount, cartProductId)
+        }
+    }
+
+    fun getAllCheckedCartProducts() {
+        viewModelScope.launch {
+            _checkedAllCartProductsList.value = Resource.Loading
+            _checkedAllCartProductsList.value = getAllCheckedCartProductsUseCase()!!
+        }
+    }
+
+    fun deleteAllCheckedCartProducts() {
+        viewModelScope.launch {
+            deleteAllCheckedCartProductsUseCase()
         }
     }
 }

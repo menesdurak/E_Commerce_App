@@ -55,7 +55,6 @@ class UserFragment : Fragment() {
 
         databaseReference = Firebase.database.reference
 
-
         databaseReference.child(auth.currentUser?.uid!!).child("userInfo").get()
             .addOnSuccessListener {
                 userInfo = UserInfo("", "", "", "")

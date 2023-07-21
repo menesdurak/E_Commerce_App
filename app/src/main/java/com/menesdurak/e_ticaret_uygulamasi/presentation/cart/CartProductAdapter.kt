@@ -29,6 +29,12 @@ class CartProductAdapter(
 
             binding.checkbox.isChecked = product.isChecked
 
+            if (product.amount == 1) {
+                binding.ivDecrease.setImageResource(R.drawable.ic_delete_outlined_main)
+            } else {
+                binding.ivDecrease.setImageResource(R.drawable.ic_minus)
+            }
+
             Glide
                 .with(binding.root.context)
                 .load(itemList[adapterPosition].image)
@@ -65,6 +71,16 @@ class CartProductAdapter(
     fun updateList(newList: List<CartProduct>) {
         itemList.clear()
         itemList.addAll(newList)
+        notifyDataSetChanged()
+    }
+
+    fun removeItem(item: CartProduct) {
+        itemList.remove(item)
+        notifyDataSetChanged()
+    }
+
+    fun removeGivenItems(list: List<CartProduct>) {
+        itemList.removeAll(list)
         notifyDataSetChanged()
     }
 

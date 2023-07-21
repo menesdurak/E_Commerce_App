@@ -11,6 +11,7 @@ import com.menesdurak.e_ticaret_uygulamasi.databinding.ItemFavoriteProductBindin
 class FavoriteProductAdapter(
     private val onProductClick: (FavoriteProduct) -> Unit,
     private val onFavoriteClick: (Int, Int) -> Unit,
+    private val onBuyClick: (Int, FavoriteProduct) -> Unit
 ) :
     RecyclerView.Adapter<FavoriteProductAdapter.FavoriteProductHolder>() {
 
@@ -36,6 +37,10 @@ class FavoriteProductAdapter(
 
             binding.ivFavorite.setOnClickListener {
                 onFavoriteClick.invoke(adapterPosition, product.id)
+            }
+
+            binding.btnBuy.setOnClickListener {
+                onBuyClick.invoke(adapterPosition, product)
             }
         }
     }

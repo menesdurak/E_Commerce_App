@@ -19,6 +19,9 @@ interface CartDao {
     @Query("DELETE FROM cart_table")
     suspend fun deleteAllCartProducts()
 
+    @Query("DELETE FROM cart_table WHERE isChecked = 1")
+    suspend fun deleteAllCheckedCartProducts()
+
     @Query("SELECT * FROM cart_table ORDER BY id ASC")
     suspend fun getAllCartProducts(): List<CartProduct>
 

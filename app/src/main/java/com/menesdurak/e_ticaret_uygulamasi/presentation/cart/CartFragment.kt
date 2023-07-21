@@ -9,9 +9,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import com.menesdurak.e_ticaret_uygulamasi.R
 import com.menesdurak.e_ticaret_uygulamasi.common.Resource
+import com.menesdurak.e_ticaret_uygulamasi.common.round
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.CartProduct
+import com.menesdurak.e_ticaret_uygulamasi.data.mapper.CartProductListToBoughtProductListMapper
 import com.menesdurak.e_ticaret_uygulamasi.databinding.FragmentCartBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,6 +31,10 @@ import dagger.hilt.android.AndroidEntryPoint
 class CartFragment : Fragment() {
     private var _binding: FragmentCartBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var auth: FirebaseAuth
+
+    private lateinit var databaseReference: DatabaseReference
 
     private val cartViewModel: CartViewModel by viewModels()
 
@@ -30,7 +46,14 @@ class CartFragment : Fragment() {
         )
     }
 
-    private var totalPrice = 0.0
+    private var totalPrice: Double = 0.0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // Initialize Firebase Auth
+        auth = Firebase.auth
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +62,9 @@ class CartFragment : Fragment() {
     ): View {
         _binding = FragmentCartBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        databaseReference = Firebase.database.reference
+
         return view
     }
 
@@ -46,6 +72,8 @@ class CartFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         cartViewModel.getAllCartProducts()
+
+        totalPrice = 0.0
 
         binding.rvCart.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -57,6 +85,14 @@ class CartFragment : Fragment() {
                 is Resource.Success -> {
                     binding.progressBar.visibility = View.GONE
                     cartProductAdapter.updateList(it.data)
+
+                    it.data.forEach {
+                        if (it.isChecked) {
+                            totalPrice += it.price.toDouble() * it.amount
+                            binding.tvTotalPrice.text = (totalPrice round 2).toString()
+                            binding.linlayPriceContainer.visibility = View.VISIBLE
+                        }
+                    }
                 }
 
                 is Resource.Error -> {
@@ -82,6 +118,10 @@ class CartFragment : Fragment() {
             builder.show()
         }
 
+        binding.btnBuy.setOnClickListener {
+            onCheckoutClicked()
+        }
+
     }
 
     override fun onDestroyView() {
@@ -105,16 +145,91 @@ class CartFragment : Fragment() {
             binding.linlayPriceContainer.visibility = View.GONE
         }
 
-        binding.tvTotalPrice.text = totalPrice.toString()
+        binding.tvTotalPrice.text = (totalPrice round 2).toString()
     }
 
     private fun onDecreaseClicked(position: Int, cartProduct: CartProduct) {
-        cartViewModel.updateCartProductAmount((cartProduct.amount - 1), cartProduct.id)
-        cartProductAdapter.decreaseAmount(position, cartProduct)
+
+        if (cartProduct.amount != 1) {
+            cartViewModel.updateCartProductAmount((cartProduct.amount - 1), cartProduct.id)
+            cartProductAdapter.decreaseAmount(position, cartProduct)
+            if (totalPrice > 0.0 && cartProduct.isChecked) {
+                totalPrice -= cartProduct.price.toDouble()
+                binding.tvTotalPrice.text = (totalPrice round 2).toString()
+            }
+        } else {
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setTitle("Delete")
+            builder.setMessage("Do you want to delete this item from your cart?")
+                .setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which ->
+                    cartViewModel.deleteCartProduct(cartProduct.id)
+                    cartProductAdapter.removeItem(cartProduct)
+                    totalPrice -= cartProduct.price.toDouble()
+                    binding.tvTotalPrice.text = (totalPrice round 2).toString()
+                    if (totalPrice <= 0.0) {
+                        binding.linlayPriceContainer.visibility = View.GONE
+                    }
+                })
+                .setNegativeButton("No", DialogInterface.OnClickListener { dialog, which -> })
+            builder.create()
+            builder.show()
+        }
     }
 
     private fun onIncreaseClicked(position: Int, cartProduct: CartProduct) {
         cartViewModel.updateCartProductAmount((cartProduct.amount + 1), cartProduct.id)
         cartProductAdapter.increaseAmount(position, cartProduct)
+
+        if (cartProduct.isChecked) {
+            totalPrice += cartProduct.price.toDouble()
+            binding.tvTotalPrice.text = (totalPrice round 2).toString()
+        }
+
+    }
+
+    private fun onCheckoutClicked() {
+        if (auth.currentUser == null) {
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setTitle("You need to login")
+            builder.setMessage("You need to login to buy your products in your cart. Do you want to go to login page?")
+                .setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which ->
+                    val action = CartFragmentDirections.actionCartFragmentToUserLogInFragment()
+                    val bottomNavMenu = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavMenu)
+                    bottomNavMenu.menu.getItem(4).isChecked = true
+                    findNavController().navigate(action)
+                })
+                .setNegativeButton("No", DialogInterface.OnClickListener { dialog, which -> })
+            builder.create()
+            builder.show()
+        } else {
+            val action = CartFragmentDirections.actionCartFragmentToPaymentFragment()
+            findNavController().navigate(action)
+//            cartViewModel.getAllCheckedCartProducts()
+//            cartViewModel.checkedAllCartProductsList.observe(viewLifecycleOwner) {
+//                when (it) {
+//                    is Resource.Success -> {
+//                        val ordersReference =
+//                            databaseReference.child(auth.currentUser?.uid!!).child("orders")
+//                        val newOrderReference = ordersReference.push()
+//                        val newOrderKey = newOrderReference.key
+//                        ordersReference.child(newOrderKey!!)
+//                            .setValue(CartProductListToBoughtProductListMapper().map(it.data))
+//                        cartViewModel.deleteAllCheckedCartProducts()
+//                        cartProductAdapter.removeGivenItems(it.data)
+//                        totalPrice = 0.0
+//                        binding.tvTotalPrice.text = (totalPrice round 2).toString()
+//                        binding.linlayPriceContainer.visibility = View.GONE
+//                    }
+//
+//                    is Resource.Error -> {
+//                        Log.e("error", "Error in Cart Fragment")
+//                    }
+//
+//                    Resource.Loading -> {
+//
+//                    }
+//                }
+//            }
+        }
     }
 }

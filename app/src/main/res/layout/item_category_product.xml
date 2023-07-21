@@ -58,24 +58,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvProductPrice">
 
         <RatingBar
             android:id="@+id/ratingBar"
-            style="?android:attr/ratingBarStyleIndicator"
+            style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:max="5"
             android:numStars="5"
             android:rating="3.5"
-            android:stepSize=".5"
-            android:scaleX=".6"
-            android:scaleY=".6"
-            android:transformPivotX="0dp"
-            android:transformPivotY="0dp" />
+            android:stepSize=".5"/>
 
     </FrameLayout>
-
 
     <Button
         android:id="@+id/btnBuy"
