@@ -33,9 +33,9 @@
         android:id="@+id/tvProductName"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
+        android:ellipsize="end"
         android:gravity="center|top"
         android:maxLines="3"
-        android:ellipsize="end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ivProduct"
@@ -53,25 +53,28 @@
         app:layout_constraintTop_toBottomOf="@id/tvProductName"
         tools:text="99.99" />
 
-    <FrameLayout
-        android:id="@+id/ratingBarContainer"
+    <RatingBar
+        android:id="@+id/ratingBar"
+        style="?android:attr/ratingBarStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:max="5"
+        android:numStars="5"
+        android:stepSize=".1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvProductPrice">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvProductPrice"
+        tools:rating="3.5" />
 
-        <RatingBar
-            android:id="@+id/ratingBar"
-            style="?android:attr/ratingBarStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:max="5"
-            android:numStars="5"
-            android:rating="3.5"
-            android:stepSize=".5"/>
-
-    </FrameLayout>
+    <TextView
+        android:id="@+id/tvRatingCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@id/ratingBar"
+        app:layout_constraintTop_toTopOf="@id/ratingBar"
+        tools:text="100" />
 
     <Button
         android:id="@+id/btnBuy"
@@ -81,6 +84,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ratingBarContainer" />
+        app:layout_constraintTop_toBottomOf="@id/ratingBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

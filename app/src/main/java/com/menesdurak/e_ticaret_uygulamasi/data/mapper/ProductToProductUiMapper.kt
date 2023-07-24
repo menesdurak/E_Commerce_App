@@ -14,7 +14,8 @@ class ProductToProductUiMapper : ListMapper<Product, ProductUi> {
                 id = it.id,
                 image = it.image,
                 price = it.price,
-                title = it.title
+                title = it.title,
+                rating = it.rating
             )
         }
     }

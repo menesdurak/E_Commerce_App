@@ -13,5 +13,8 @@ data class BoughtProduct(
     val price: String,
     val title: String,
     var amount: Int,
-    var isDelivered: Boolean = false
+    var isDelivered: Boolean = false,
+    val creditCardNumber: String,
+    val address: String,
+    val orderDate: String
 )

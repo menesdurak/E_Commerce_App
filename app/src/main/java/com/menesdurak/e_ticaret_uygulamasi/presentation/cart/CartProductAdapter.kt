@@ -7,6 +7,7 @@ import android.widget.CompoundButton
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.menesdurak.e_ticaret_uygulamasi.R
+import com.menesdurak.e_ticaret_uygulamasi.common.addCurrencySign
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.CartProduct
 import com.menesdurak.e_ticaret_uygulamasi.databinding.ItemCartProductBinding
 
@@ -23,7 +24,7 @@ class CartProductAdapter(
 
         fun bind(product: CartProduct) {
             binding.tvProductName.text = product.title
-            binding.tvPrice.text = product.price
+            binding.tvPrice.text = product.price.toDouble().addCurrencySign()
             binding.tvAmount.text = product.amount.toString()
             binding.tvCargoInfo.text = "You will get you cargo in ${(1..3).random()} days"
 

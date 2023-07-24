@@ -53,29 +53,28 @@
         app:layout_constraintTop_toBottomOf="@id/tvProductName"
         tools:text="99.99" />
 
-    <FrameLayout
-        android:id="@+id/ratingBarContainer"
+    <RatingBar
+        android:id="@+id/ratingBar"
+        style="?android:attr/ratingBarStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/btnBuy"
+        android:max="5"
+        android:numStars="5"
+        android:stepSize=".1"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvProductPrice">
+        app:layout_constraintTop_toBottomOf="@id/tvProductPrice"
+        tools:rating="3.5" />
 
-        <RatingBar
-            android:id="@+id/ratingBar"
-            style="?android:attr/ratingBarStyleIndicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:max="5"
-            android:numStars="5"
-            android:rating="3.5"
-            android:stepSize=".5"
-            android:scaleX=".6"
-            android:scaleY=".6"
-            android:transformPivotX="0dp"
-            android:transformPivotY="0dp" />
-
-    </FrameLayout>
+    <TextView
+        android:id="@+id/tvRatingCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@id/ratingBar"
+        app:layout_constraintTop_toTopOf="@id/ratingBar"
+        tools:text="100" />
 
     <Button
         android:id="@+id/btnBuy"
@@ -85,7 +84,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvProductPrice" />
+        app:layout_constraintTop_toBottomOf="@id/ratingBar" />
 
     <TextView
         android:id="@+id/tvFavoriteDate"
@@ -94,6 +93,7 @@
         tools:text="2023-07-17 16:51"
         android:textSize="11sp"
         android:gravity="end"
+        app:layout_constraintTop_toBottomOf="@id/btnBuy"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>

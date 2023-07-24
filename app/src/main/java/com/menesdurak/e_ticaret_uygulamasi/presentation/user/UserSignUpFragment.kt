@@ -7,10 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.ktx.Firebase
 import com.menesdurak.e_ticaret_uygulamasi.R
+import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.UserInfo
 import com.menesdurak.e_ticaret_uygulamasi.databinding.FragmentUserSignUpBinding
 
 class UserSignUpFragment : Fragment() {
@@ -18,6 +21,8 @@ class UserSignUpFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var auth: FirebaseAuth
+
+    private lateinit var databaseReference: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +49,9 @@ class UserSignUpFragment : Fragment() {
             val password = binding.etPassword.text.toString()
 
             signUpUser(email, password)
+
+            val action = UserSignUpFragmentDirections.actionUserSignUpFragmentToUserInfoEditFragment()
+            findNavController().navigate(action)
 
         }
     }

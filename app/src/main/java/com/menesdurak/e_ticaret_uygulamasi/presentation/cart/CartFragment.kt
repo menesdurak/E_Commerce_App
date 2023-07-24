@@ -21,6 +21,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.menesdurak.e_ticaret_uygulamasi.R
 import com.menesdurak.e_ticaret_uygulamasi.common.Resource
+import com.menesdurak.e_ticaret_uygulamasi.common.addCurrencySign
 import com.menesdurak.e_ticaret_uygulamasi.common.round
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.CartProduct
 import com.menesdurak.e_ticaret_uygulamasi.data.mapper.CartProductListToBoughtProductListMapper
@@ -53,6 +54,8 @@ class CartFragment : Fragment() {
 
         // Initialize Firebase Auth
         auth = Firebase.auth
+
+        totalPrice = 0.0
     }
 
     override fun onCreateView(
@@ -86,10 +89,10 @@ class CartFragment : Fragment() {
                     binding.progressBar.visibility = View.GONE
                     cartProductAdapter.updateList(it.data)
 
-                    it.data.forEach {
-                        if (it.isChecked) {
-                            totalPrice += it.price.toDouble() * it.amount
-                            binding.tvTotalPrice.text = (totalPrice round 2).toString()
+                    it.data.forEach {cartProduct ->
+                        if (cartProduct.isChecked) {
+                            totalPrice += cartProduct.price.toDouble() * cartProduct.amount
+                            binding.tvTotalPrice.text = (totalPrice round 2).toString().toDouble().addCurrencySign()
                             binding.linlayPriceContainer.visibility = View.VISIBLE
                         }
                     }
@@ -112,6 +115,8 @@ class CartFragment : Fragment() {
                 .setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which ->
                     cartViewModel.deleteAllCartProducts()
                     cartProductAdapter.updateList(emptyList())
+                    totalPrice = 0.0
+                    binding.linlayPriceContainer.visibility = View.GONE
                 })
                 .setNegativeButton("No", DialogInterface.OnClickListener { dialog, which -> })
             builder.create()
@@ -145,7 +150,7 @@ class CartFragment : Fragment() {
             binding.linlayPriceContainer.visibility = View.GONE
         }
 
-        binding.tvTotalPrice.text = (totalPrice round 2).toString()
+        binding.tvTotalPrice.text = (totalPrice round 2).toString().toDouble().addCurrencySign()
     }
 
     private fun onDecreaseClicked(position: Int, cartProduct: CartProduct) {
@@ -155,7 +160,7 @@ class CartFragment : Fragment() {
             cartProductAdapter.decreaseAmount(position, cartProduct)
             if (totalPrice > 0.0 && cartProduct.isChecked) {
                 totalPrice -= cartProduct.price.toDouble()
-                binding.tvTotalPrice.text = (totalPrice round 2).toString()
+                binding.tvTotalPrice.text = (totalPrice round 2).toString().toDouble().addCurrencySign()
             }
         } else {
             val builder = AlertDialog.Builder(requireContext())
@@ -165,7 +170,7 @@ class CartFragment : Fragment() {
                     cartViewModel.deleteCartProduct(cartProduct.id)
                     cartProductAdapter.removeItem(cartProduct)
                     totalPrice -= cartProduct.price.toDouble()
-                    binding.tvTotalPrice.text = (totalPrice round 2).toString()
+                    binding.tvTotalPrice.text = (totalPrice round 2).toString().toDouble().addCurrencySign()
                     if (totalPrice <= 0.0) {
                         binding.linlayPriceContainer.visibility = View.GONE
                     }
@@ -182,7 +187,7 @@ class CartFragment : Fragment() {
 
         if (cartProduct.isChecked) {
             totalPrice += cartProduct.price.toDouble()
-            binding.tvTotalPrice.text = (totalPrice round 2).toString()
+            binding.tvTotalPrice.text = (totalPrice round 2).toString().toDouble().addCurrencySign()
         }
 
     }
@@ -204,32 +209,6 @@ class CartFragment : Fragment() {
         } else {
             val action = CartFragmentDirections.actionCartFragmentToPaymentFragment()
             findNavController().navigate(action)
-//            cartViewModel.getAllCheckedCartProducts()
-//            cartViewModel.checkedAllCartProductsList.observe(viewLifecycleOwner) {
-//                when (it) {
-//                    is Resource.Success -> {
-//                        val ordersReference =
-//                            databaseReference.child(auth.currentUser?.uid!!).child("orders")
-//                        val newOrderReference = ordersReference.push()
-//                        val newOrderKey = newOrderReference.key
-//                        ordersReference.child(newOrderKey!!)
-//                            .setValue(CartProductListToBoughtProductListMapper().map(it.data))
-//                        cartViewModel.deleteAllCheckedCartProducts()
-//                        cartProductAdapter.removeGivenItems(it.data)
-//                        totalPrice = 0.0
-//                        binding.tvTotalPrice.text = (totalPrice round 2).toString()
-//                        binding.linlayPriceContainer.visibility = View.GONE
-//                    }
-//
-//                    is Resource.Error -> {
-//                        Log.e("error", "Error in Cart Fragment")
-//                    }
-//
-//                    Resource.Loading -> {
-//
-//                    }
-//                }
-//            }
         }
     }
 }

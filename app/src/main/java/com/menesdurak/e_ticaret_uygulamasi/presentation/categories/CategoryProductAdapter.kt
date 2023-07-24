@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.menesdurak.e_ticaret_uygulamasi.R
+import com.menesdurak.e_ticaret_uygulamasi.common.addCurrencySign
 import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.Product
 import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.ProductUi
 import com.menesdurak.e_ticaret_uygulamasi.databinding.ItemCategoryProductBinding
@@ -25,7 +26,9 @@ class CategoryProductAdapter(
 
         fun bind(product: ProductUi) {
             binding.tvProductName.text = product.title
-            binding.tvProductPrice.text = product.price
+            binding.tvProductPrice.text = product.price.toDouble().addCurrencySign()
+            binding.ratingBar.rating = product.rating.rate.toFloat()
+            binding.tvRatingCount.text = product.rating.count.toString()
 
             if (product.id !in favoriteProductsIdList) {
                 binding.ivFavorite.setImageResource(R.drawable.ic_favorite_empty)
@@ -35,7 +38,7 @@ class CategoryProductAdapter(
                 product.isFavorite = true
             }
 
-            binding.ratingBar.rating = (Math.random() * 5).toFloat()
+
 
             Glide
                 .with(binding.root.context)

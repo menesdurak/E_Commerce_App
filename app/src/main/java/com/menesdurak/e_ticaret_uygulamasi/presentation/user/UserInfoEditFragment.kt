@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -46,32 +47,44 @@ class UserInfoEditFragment : Fragment() {
 
         databaseReference = Firebase.database.reference
 
-        databaseReference.child(auth.currentUser?.uid!!).child("userInfo").get()
-            .addOnSuccessListener {
-                val userInfo = UserInfo("", "", "", "")
-                userInfo.name = it.getValue<UserInfo>()!!.name
-                userInfo.surName = it.getValue<UserInfo>()!!.surName
-                userInfo.address = it.getValue<UserInfo>()!!.address
-                userInfo.phone = it.getValue<UserInfo>()!!.phone
+        if (auth.currentUser != null) {
+            databaseReference.child(auth.currentUser!!.uid).child("userInfo").get()
+                .addOnSuccessListener {
+                    val userInfo = UserInfo("", "", "", "")
+                    userInfo.name = it.getValue<UserInfo>()?.name ?: ""
+                    userInfo.surName = it.getValue<UserInfo>()?.surName ?: ""
+                    userInfo.address = it.getValue<UserInfo>()?.address ?: ""
+                    userInfo.phone = it.getValue<UserInfo>()?.phone ?: ""
 
-                binding.etUserName.setText(userInfo.name)
-                binding.etUserSurname.setText(userInfo.surName)
-                binding.etUserAddress.setText(userInfo.address)
-                binding.etUserPhone.setText(userInfo.phone)
+                    binding.etUserName.setText(userInfo.name)
+                    binding.etUserSurname.setText(userInfo.surName)
+                    binding.etUserAddress.setText(userInfo.address)
+                    binding.etUserPhone.setText(userInfo.phone)
 
-            }
+                }
+        }
 
         binding.btnSave.setOnClickListener {
-            val name = binding.etUserName.text.toString()
-            val surName = binding.etUserSurname.text.toString()
-            val address = binding.etUserAddress.text.toString()
-            val phone = binding.etUserPhone.text.toString()
+            if (binding.etUserName.text.isNotBlank() && binding.etUserSurname.text.isNotBlank()) {
+                val name = binding.etUserName.text.toString()
+                val surName = binding.etUserSurname.text.toString()
+                val address = binding.etUserAddress.text.toString()
+                val phone = binding.etUserPhone.text.toString()
 
-            val userInfo = UserInfo(name, surName, address, phone)
+                val userInfo = UserInfo(name, surName, address, phone)
 
-            databaseReference.child(auth.currentUser?.uid!!).child("userInfo").setValue(userInfo)
-            val action = UserInfoEditFragmentDirections.actionUserInfoEditFragmentToUserFragment()
-            findNavController().navigate(action)
+                databaseReference.child(auth.currentUser?.uid!!).child("userInfo")
+                    .setValue(userInfo)
+                val action =
+                    UserInfoEditFragmentDirections.actionUserInfoEditFragmentToUserFragment()
+                findNavController().navigate(action)
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Please enter your name and surname.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 

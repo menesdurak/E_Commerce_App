@@ -60,8 +60,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_gravity="center"
-            android:text="BUY"
-            android:textSize="30sp"/>
+            android:text="GO TO CHECKOUT"
+            android:textSize="16sp"/>
 
     </LinearLayout>
 

@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.menesdurak.e_ticaret_uygulamasi.R
+import com.menesdurak.e_ticaret_uygulamasi.common.addCurrencySign
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.FavoriteProduct
 import com.menesdurak.e_ticaret_uygulamasi.databinding.ItemFavoriteProductBinding
 
@@ -22,8 +23,10 @@ class FavoriteProductAdapter(
 
         fun bind(product: FavoriteProduct) {
             binding.tvProductName.text = product.title
-            binding.tvProductPrice.text = product.price
+            binding.tvProductPrice.text = product.price.toDouble().addCurrencySign()
             binding.tvFavoriteDate.text = product.whenFavorite
+            binding.ratingBar.rating = product.rating.toFloat()
+            binding.tvRatingCount.text = product.ratingCount.toString()
 
             Glide
                 .with(binding.root.context)

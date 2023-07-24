@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_cartFragment_to_paymentFragment"
             app:destination="@id/paymentFragment" />
+        <action
+            android:id="@+id/action_cartFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
@@ -62,8 +65,8 @@
         android:label="fragment_user_sign_up"
         tools:layout="@layout/fragment_user_sign_up" >
         <action
-            android:id="@+id/action_userSignUpFragment_to_userFragment"
-            app:destination="@id/userFragment" />
+            android:id="@+id/action_userSignUpFragment_to_userInfoEditFragment"
+            app:destination="@id/userInfoEditFragment" />
     </fragment>
     <fragment
         android:id="@+id/userInfoEditFragment"
@@ -79,4 +82,18 @@
         android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.cart.payment.PaymentFragment"
         android:label="fragment_payment"
         tools:layout="@layout/fragment_payment" />
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.ProductDetailFragment"
+        android:label="fragment_product_detail"
+        tools:layout="@layout/fragment_product_detail" >
+        <argument
+            android:name="isInCart"
+            app:argType="boolean"
+            android:defaultValue="true" />
+        <argument
+            android:name="isFavorive"
+            app:argType="boolean"
+            android:defaultValue="true" />
+    </fragment>
 </navigation>

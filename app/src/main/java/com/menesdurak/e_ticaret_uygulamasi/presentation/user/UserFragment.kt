@@ -53,15 +53,19 @@ class UserFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.progressBar.visibility = View.VISIBLE
+
         databaseReference = Firebase.database.reference
 
-        databaseReference.child(auth.currentUser?.uid!!).child("userInfo").get()
+        databaseReference.child(auth.currentUser!!.uid).child("userInfo").get()
             .addOnSuccessListener {
                 userInfo = UserInfo("", "", "", "")
-                userInfo.name = it.getValue<UserInfo>()!!.name
-                userInfo.surName = it.getValue<UserInfo>()!!.surName
-                userInfo.address = it.getValue<UserInfo>()!!.address
-                userInfo.phone = it.getValue<UserInfo>()!!.phone
+                userInfo.name = it.getValue<UserInfo>()!!.name ?: ""
+                userInfo.surName = it.getValue<UserInfo>()!!.surName ?: ""
+                userInfo.address = it.getValue<UserInfo>()!!.address ?: ""
+                userInfo.phone = it.getValue<UserInfo>()!!.phone ?: ""
+
+                binding.progressBar.visibility = View.GONE
 
                 binding.tvUserNameInfo.text = userInfo.name
                 binding.tvUserSurNameInfo.text = userInfo.surName
@@ -69,6 +73,7 @@ class UserFragment : Fragment() {
                 binding.tvUserPhoneInfo.text = userInfo.phone
 
             }
+
 
         binding.ivLogOutUser.setOnClickListener {
             val builder = AlertDialog.Builder(requireContext())

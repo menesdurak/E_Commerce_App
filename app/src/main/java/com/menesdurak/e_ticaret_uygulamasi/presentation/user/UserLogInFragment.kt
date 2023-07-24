@@ -75,11 +75,6 @@ class UserLogInFragment : Fragment() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("success", "signInWithEmail:success")
-                    Toast.makeText(
-                        requireContext(),
-                        "Authentication success.",
-                        Toast.LENGTH_SHORT,
-                    ).show()
                     goToUserPage()
                 } else {
                     // If sign in fails, display a message to the user.

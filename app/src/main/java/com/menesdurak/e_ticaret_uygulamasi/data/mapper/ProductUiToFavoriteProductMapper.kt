@@ -19,7 +19,9 @@ class ProductUiToFavoriteProductMapper: Mapper<ProductUi, FavoriteProduct> {
             image = input.image,
             price = input.price,
             title = input.title,
-            whenFavorite = current
+            whenFavorite = current,
+            rating = input.rating.rate,
+            ratingCount = input.rating.count
         )
     }
 

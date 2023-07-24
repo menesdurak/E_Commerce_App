@@ -2,6 +2,7 @@ package com.menesdurak.e_ticaret_uygulamasi.data.local.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.Rating
 
 @Entity(tableName = "e_ticaret_table")
 data class FavoriteProduct(
@@ -13,5 +14,7 @@ data class FavoriteProduct(
     val price: String,
     val title: String,
     val whenFavorite: String,
-    var isInCart: Boolean = false
+    var isInCart: Boolean = false,
+    val rating: Double,
+    val ratingCount: Int
 )

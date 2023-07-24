@@ -80,6 +80,7 @@ class CategoriesFragment : Fragment() {
         categoriesViewModel.productsList.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Success -> {
+                    binding.progressBar.visibility = View.GONE
                     categoryProductAdapter.updateList(ProductToProductUiMapper().map(it.data))
                 }
 
@@ -88,7 +89,7 @@ class CategoriesFragment : Fragment() {
                 }
 
                 Resource.Loading -> {
-
+                    binding.progressBar.visibility = View.VISIBLE
                 }
             }
         }
@@ -118,6 +119,7 @@ class CategoriesFragment : Fragment() {
 
     private fun onCategoryClick(categoryName: String) {
         categoriesViewModel.getProductsFromCategory(categoryName)
+        binding.progressBar.visibility = View.VISIBLE
     }
 
     private fun onProductClick(product: ProductUi) {
