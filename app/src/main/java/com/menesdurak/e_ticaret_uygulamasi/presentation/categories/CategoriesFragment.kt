@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.menesdurak.e_ticaret_uygulamasi.common.Resource
@@ -123,7 +124,9 @@ class CategoriesFragment : Fragment() {
     }
 
     private fun onProductClick(product: ProductUi) {
-        Toast.makeText(requireContext(), product.title, Toast.LENGTH_SHORT).show()
+        val action =
+            CategoriesFragmentDirections.actionCategoriesFragmentToProductDetailFragment(product.id)
+        findNavController().navigate(action)
     }
 
     private fun onAddToCartClick(position: Int, product: ProductUi) {

@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.cart.CartFragment">
+    tools:context=".presentation.cart.CartFragment"
+    android:background="@color/background">
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Cart"
+        android:text="@string/cart"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
@@ -60,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_gravity="center"
-            android:text="GO TO CHECKOUT"
+            android:text="@string/go_to_checkout"
             android:textSize="16sp"/>
 
     </LinearLayout>

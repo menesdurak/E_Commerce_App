@@ -65,7 +65,11 @@ class UserInfoEditFragment : Fragment() {
         }
 
         binding.btnSave.setOnClickListener {
-            if (binding.etUserName.text.isNotBlank() && binding.etUserSurname.text.isNotBlank()) {
+            if (binding.etUserName.text.isNotBlank()
+                && binding.etUserSurname.text.isNotBlank()
+                && binding.etUserAddress.text.isNotBlank()
+                && binding.etUserPhone.text.isNotBlank()
+            ) {
                 val name = binding.etUserName.text.toString()
                 val surName = binding.etUserSurname.text.toString()
                 val address = binding.etUserAddress.text.toString()
@@ -76,13 +80,11 @@ class UserInfoEditFragment : Fragment() {
                 databaseReference.child(auth.currentUser?.uid!!).child("userInfo")
                     .setValue(userInfo)
                 val action =
-                    UserInfoEditFragmentDirections.actionUserInfoEditFragmentToUserFragment()
+                    UserInfoEditFragmentDirections.actionUserInfoEditFragmentToUserInfoFragment()
                 findNavController().navigate(action)
             } else {
                 Toast.makeText(
-                    requireContext(),
-                    "Please enter your name and surname.",
-                    Toast.LENGTH_SHORT
+                    requireContext(), "Please enter your name and surname.", Toast.LENGTH_SHORT
                 ).show()
             }
         }

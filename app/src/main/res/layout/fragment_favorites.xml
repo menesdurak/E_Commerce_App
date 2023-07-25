@@ -4,14 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.favorites.FavoritesFragment">
+    tools:context=".presentation.favorites.FavoritesFragment"
+    android:background="@color/background">
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="Favorites"
+        android:text="@string/favorites"
         android:textSize="24sp"
         android:textStyle="bold"
         android:gravity="center"/>

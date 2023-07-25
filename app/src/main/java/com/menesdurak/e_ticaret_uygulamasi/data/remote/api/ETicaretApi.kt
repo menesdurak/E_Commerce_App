@@ -11,4 +11,7 @@ interface ETicaretApi {
 
     @GET("products/category/{category_name}")
     suspend fun getProductsFromCategory(@Path("category_name") categoryName: String): List<Product>
+
+    @GET("products/{product_id}")
+    suspend fun getSingleProduct(@Path("product_id") productId: Int): Product
 }

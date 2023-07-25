@@ -15,7 +15,8 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
-        android:src="@drawable/ic_truck"/>
+        android:src="@drawable/ic_truck"
+        android:contentDescription="@string/cargo_truck_icon" />
 
     <TextView
         android:id="@+id/tvCargoInfo"
@@ -42,7 +43,8 @@
         android:src="@drawable/ic_launcher_foreground"
         app:layout_constraintStart_toEndOf="@id/checkbox"
         app:layout_constraintTop_toBottomOf="@id/tvCargoInfo"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/product_image" />
 
     <LinearLayout
         android:id="@+id/linlayAmountContainer"
@@ -60,7 +62,8 @@
             android:src="@drawable/ic_delete_outlined"
             app:tint="@color/main"
             android:layout_gravity="center"
-            android:padding="4dp"/>
+            android:padding="4dp"
+            android:contentDescription="@string/decrease_product_amount_icon" />
 
         <TextView
             android:id="@+id/tvAmount"
@@ -78,7 +81,8 @@
             android:src="@drawable/ic_add"
             app:tint="@color/main"
             android:layout_gravity="center"
-            android:padding="4dp"/>
+            android:padding="4dp"
+            android:contentDescription="@string/increase_product_amount_icon" />
 
     </LinearLayout>
 

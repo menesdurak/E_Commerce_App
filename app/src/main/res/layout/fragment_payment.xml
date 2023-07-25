@@ -5,14 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".presentation.cart.payment.PaymentFragment">
+    tools:context=".presentation.cart.payment.PaymentFragment"
+    android:background="@color/background">
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Payment"
+        android:text="@string/payment"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
@@ -42,7 +43,7 @@
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="Current Address"
+                android:text="@string/current_address"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
@@ -61,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_weight="5"
-                android:text="New Address"
+                android:text="@string/new_address"
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -80,7 +81,7 @@
             android:id="@+id/btnSaveAdress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Save This Address"
+            android:text="@string/save_this_address"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -102,7 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="Credit Card Info"
+            android:text="@string/credit_card_info"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent" />
@@ -113,7 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:text="Credit Card Number"
+            android:text="@string/credit_card_number"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvCreditCard" />
 
@@ -132,7 +133,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:text="Month / Year"
+            android:text="@string/month_year"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etCreditCardNumber" />
 
@@ -156,7 +157,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:text="/" />
+                android:text="@string/slash" />
 
             <EditText
                 android:id="@+id/etCreditCardExpiryYear"
@@ -172,7 +173,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
-            android:text="CVC"
+            android:text="@string/cvc"
             app:layout_constraintStart_toEndOf="@id/tvCreditCardExpireDate"
             app:layout_constraintTop_toTopOf="@id/tvCreditCardExpireDate" />
 
@@ -193,7 +194,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
-        android:text="Cart"
+        android:text="@string/cart"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/constraintMiddle" />
@@ -231,7 +232,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginEnd="20dp"
-            android:text="BUY"
+            android:text="@string/buy"
             android:textSize="24sp" />
 
     </LinearLayout>

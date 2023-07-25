@@ -14,7 +14,8 @@
         android:layout_height="match_parent"
         android:layout_marginVertical="10dp"
         tools:src="@drawable/ic_launcher_foreground"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/product_image" />
 
     <TextView
         android:id="@+id/tvName"
@@ -40,7 +41,7 @@
             android:id="@+id/tvAmountSign"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="x"
+            android:text="@string/x"
             android:layout_marginStart="10dp"/>
 
         <TextView

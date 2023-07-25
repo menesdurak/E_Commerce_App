@@ -7,4 +7,6 @@ interface RemoteRepository {
     suspend fun getAllCategories(): List<String>
 
     suspend fun getProductsFromCategory(categoryName: String): List<Product>
+
+    suspend fun getSingleProduct(productId: Int): Product
 }

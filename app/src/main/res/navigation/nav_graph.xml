@@ -34,17 +34,21 @@
         android:id="@+id/categoriesFragment"
         android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.categories.CategoriesFragment"
         android:label="fragment_categories"
-        tools:layout="@layout/fragment_categories" />
-    <fragment
-        android:id="@+id/userFragment"
-        android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.user.UserFragment"
-        android:label="fragment_user"
-        tools:layout="@layout/fragment_user" >
+        tools:layout="@layout/fragment_categories" >
         <action
-            android:id="@+id/action_userFragment_to_userInfoEditFragment"
+            android:id="@+id/action_categoriesFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userInfoFragment"
+        android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.user.UserInfoFragment"
+        android:label="fragment_user"
+        tools:layout="@layout/fragment_user_info" >
+        <action
+            android:id="@+id/action_userInfoFragment_to_userInfoEditFragment"
             app:destination="@id/userInfoEditFragment" />
         <action
-            android:id="@+id/action_userFragment_to_userLogInFragment"
+            android:id="@+id/action_userInfoFragment_to_userLogInFragment"
             app:destination="@id/userLogInFragment" />
     </fragment>
     <fragment
@@ -53,11 +57,11 @@
         android:label="fragment_user_log_in"
         tools:layout="@layout/fragment_user_log_in" >
         <action
-            android:id="@+id/action_userLogInFragment_to_userFragment"
-            app:destination="@id/userFragment" />
-        <action
             android:id="@+id/action_userLogInFragment_to_userSignUpFragment"
             app:destination="@id/userSignUpFragment" />
+        <action
+            android:id="@+id/action_userLogInFragment_to_userFragment"
+            app:destination="@id/userFragment" />
     </fragment>
     <fragment
         android:id="@+id/userSignUpFragment"
@@ -74,8 +78,8 @@
         android:label="fragment_user_info_edit"
         tools:layout="@layout/fragment_user_info_edit" >
         <action
-            android:id="@+id/action_userInfoEditFragment_to_userFragment"
-            app:destination="@id/userFragment" />
+            android:id="@+id/action_userInfoEditFragment_to_userInfoFragment"
+            app:destination="@id/userInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/paymentFragment"
@@ -95,5 +99,17 @@
             android:name="isFavorive"
             app:argType="boolean"
             android:defaultValue="true" />
+        <argument
+            android:name="productId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.user.UserFragment"
+        android:label="fragment_user"
+        tools:layout="@layout/fragment_user" >
+        <action
+            android:id="@+id/action_userFragment_to_userInfoFragment"
+            app:destination="@id/userInfoFragment" />
     </fragment>
 </navigation>

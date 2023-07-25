@@ -1,128 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.user.UserFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.user.UserFragment"
+    android:background="@color/backgroundUser">
 
-    <TextView
-        android:id="@+id/tvTitle"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="User"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/ivLogOutUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:src="@drawable/ic_logout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/ivEditUserInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:src="@drawable/ic_edit"
-        app:layout_constraintEnd_toStartOf="@id/ivLogOutUser"
-        app:layout_constraintTop_toTopOf="@id/ivLogOutUser" />
-
-    <TextView
-        android:id="@+id/tvUserName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="10dp"
-        android:text="Name:"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
-
-    <TextView
-        android:id="@+id/tvUserNameInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvUserName"
-        tools:text="Enes" />
-
-    <TextView
-        android:id="@+id/tvUserSurName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="10dp"
-        android:text="Surname:"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvUserNameInfo" />
-
-    <TextView
-        android:id="@+id/tvUserSurNameInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvUserSurName"
-        tools:text="Durak" />
-
-    <TextView
-        android:id="@+id/tvUserAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="10dp"
-        android:text="Address:"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvUserSurNameInfo" />
-
-    <TextView
-        android:id="@+id/tvUserAddressInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvUserAddress"
-        tools:text="ADsdaadskjjadskj adsadsjadskjadksadsjkj
-        adsjkjadsdkjaskjadsads adsadshjdashdashj adshjadshjadshj" />
-
-    <TextView
-        android:id="@+id/tvUserPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="10dp"
-        android:text="Phone:"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvUserAddressInfo" />
-
-    <TextView
-        android:id="@+id/tvUserPhoneInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvUserPhone"
-        tools:text="+90555555555" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="20dp"
+        app:cardCornerRadius="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvLanguage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dil_language"
+                android:textSize="16sp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="8dp"/>
+
+            <View
+                android:id="@+id/horizontalLineLanguage"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray"
+                app:layout_constraintTop_toBottomOf="@id/tvLanguage"
+                android:layout_marginHorizontal="20dp"/>
+
+            <TextView
+                android:id="@+id/tvUserInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/user_info"
+                android:textSize="16sp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="8dp"/>
+
+            <View
+                android:id="@+id/horizontalLineUserInfo"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray"
+                app:layout_constraintTop_toBottomOf="@id/tvUserInfo"
+                android:layout_marginHorizontal="20dp"/>
+
+            <TextView
+                android:id="@+id/tvMyOrders"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/my_orders"
+                android:textSize="16sp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="8dp"/>
+
+            <View
+                android:id="@+id/horizontalLineProtPersonalData"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray"
+                app:layout_constraintTop_toBottomOf="@id/tvProtPersonalData"
+                android:layout_marginHorizontal="20dp"/>
+
+            <TextView
+                android:id="@+id/tvContactUs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/contact_us"
+                android:textSize="16sp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="8dp"/>
+
+            <View
+                android:id="@+id/horizontalLineContactUs"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray"
+                app:layout_constraintTop_toBottomOf="@id/tvContactUs"
+                android:layout_marginHorizontal="20dp"/>
+
+            <TextView
+                android:id="@+id/tvFaq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/frequently_asked_questions"
+                android:textSize="16sp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="8dp"/>
+
+            <View
+                android:id="@+id/horizontalLineFaq"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray"
+                app:layout_constraintTop_toBottomOf="@id/tvContactUs"
+                android:layout_marginHorizontal="20dp"/>
+
+            <TextView
+                android:id="@+id/tvSecWarnings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/security_warnings"
+                android:textSize="16sp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="8dp"/>
+
+            <View
+                android:id="@+id/horizontalLineSecWarnings"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray"
+                app:layout_constraintTop_toBottomOf="@id/tvSecWarnings"
+                android:layout_marginHorizontal="20dp"/>
+
+            <TextView
+                android:id="@+id/tvProtPersonalData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/protection_of_personal_data"
+                android:textSize="16sp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="8dp"/>
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

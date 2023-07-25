@@ -4,14 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.user.UserInfoEditFragment">
+    tools:context=".presentation.user.UserInfoEditFragment"
+    android:background="@color/background">
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="User"
+        android:text="@string/user"
         android:textSize="24sp"
         android:textStyle="bold"
         android:gravity="center"/>
@@ -22,7 +23,7 @@
         android:layout_height="60dp"
         app:layout_constraintTop_toBottomOf="@id/tvTitle"
         android:layout_marginHorizontal="10dp"
-        android:hint="Enter your name"
+        android:hint="@string/enter_your_name"
         android:layout_marginTop="10dp"/>
 
     <EditText
@@ -31,7 +32,7 @@
         android:layout_height="60dp"
         app:layout_constraintTop_toBottomOf="@id/etUserName"
         android:layout_marginHorizontal="10dp"
-        android:hint="Enter your surname"
+        android:hint="@string/enter_your_surname"
         android:layout_marginTop="10dp"/>
 
     <EditText
@@ -40,7 +41,7 @@
         android:layout_height="180dp"
         app:layout_constraintTop_toBottomOf="@id/etUserSurname"
         android:layout_marginHorizontal="10dp"
-        android:hint="Enter your address"
+        android:hint="@string/enter_your_address"
         android:gravity="top"
         android:layout_marginTop="10dp"/>
 
@@ -50,9 +51,9 @@
         android:layout_height="60dp"
         app:layout_constraintTop_toBottomOf="@id/etUserAddress"
         android:layout_marginHorizontal="10dp"
-        android:hint="Enter your phone"
+        android:hint="@string/enter_your_phone"
         android:layout_marginTop="10dp"
-        android:inputType="number"/>
+        android:inputType="phone"/>
 
     <Button
         android:id="@+id/btnSave"
@@ -61,7 +62,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etUserPhone"
-        android:text="Save"
+        android:text="@string/save"
         android:layout_marginTop="50dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

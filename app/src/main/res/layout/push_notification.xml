@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingVertical="5dp"
+    android:paddingHorizontal="10dp"
+    android:layout_marginVertical="5dp"
+    android:layout_marginHorizontal="10dp">
+
+    <ImageView
+        android:id="@+id/ivNotification"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/ic_launcher_foreground"/>
+
+    <TextView
+        android:id="@+id/tvNotificationTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivNotification"
+        tools:text="Title"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginStart="10dp"/>
+
+    <TextView
+        android:id="@+id/tvNotificationText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvNotificationTitle"
+        app:layout_constraintStart_toEndOf="@id/ivNotification"
+        tools:text="Text text text text"
+        android:textSize="14sp"
+        android:layout_marginStart="10dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
