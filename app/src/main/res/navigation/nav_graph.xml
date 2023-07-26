@@ -14,7 +14,11 @@
         android:id="@+id/favoritesFragment"
         android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.favorites.FavoritesFragment"
         android:label="fragment_favorites"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_favorites" >
+        <action
+            android:id="@+id/action_favoritesFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.cart.CartFragment"
@@ -88,7 +92,7 @@
         tools:layout="@layout/fragment_payment" />
     <fragment
         android:id="@+id/productDetailFragment"
-        android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.ProductDetailFragment"
+        android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.product_detail.ProductDetailFragment"
         android:label="fragment_product_detail"
         tools:layout="@layout/fragment_product_detail" >
         <argument

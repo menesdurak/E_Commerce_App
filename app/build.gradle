@@ -96,6 +96,9 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-messaging-ktx'
 
+    //Splash screen API
+    implementation "androidx.core:core-splashscreen:1.0.0"
+
 }
 // Allow references to generated code
 kapt {

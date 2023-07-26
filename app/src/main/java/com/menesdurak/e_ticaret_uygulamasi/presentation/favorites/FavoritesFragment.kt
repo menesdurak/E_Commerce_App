@@ -8,7 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.menesdurak.e_ticaret_uygulamasi.R
 import com.menesdurak.e_ticaret_uygulamasi.common.Resource
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.FavoriteProduct
 import com.menesdurak.e_ticaret_uygulamasi.data.mapper.FavoriteProductToCartProductMapper
@@ -46,6 +49,28 @@ class FavoritesFragment : Fragment() {
 
         favoritesViewModel.getAllFavoriteProducts()
 
+        cartViewModel.getAllCheckedCartProducts()
+
+        cartViewModel.checkedAllCartProductsList.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Success -> {
+                    val badge =
+                        requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavMenu)
+                            .getOrCreateBadge(R.id.cart)
+                    badge.number = it.data.size
+                    badge.isVisible = badge.number > 0
+                }
+
+                is Resource.Error -> {
+                    Log.e("error", "Error in Home Fragment")
+                }
+
+                Resource.Loading -> {
+
+                }
+            }
+        }
+
         binding.rvFavoriteProducts.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvFavoriteProducts.adapter = favoriteProductAdapter
 
@@ -73,7 +98,9 @@ class FavoritesFragment : Fragment() {
     }
 
     private fun onProductClick(product: FavoriteProduct) {
-        Toast.makeText(requireContext(), product.title, Toast.LENGTH_SHORT).show()
+        val action =
+            FavoritesFragmentDirections.actionFavoritesFragmentToProductDetailFragment(product.id)
+        findNavController().navigate(action)
     }
 
     private fun onFavoriteClick(position: Int, productId: Int) {

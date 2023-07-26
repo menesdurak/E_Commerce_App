@@ -22,8 +22,6 @@ class UserSignUpFragment : Fragment() {
 
     private lateinit var auth: FirebaseAuth
 
-    private lateinit var databaseReference: DatabaseReference
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -34,7 +32,7 @@ class UserSignUpFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentUserSignUpBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -50,7 +48,8 @@ class UserSignUpFragment : Fragment() {
 
             signUpUser(email, password)
 
-            val action = UserSignUpFragmentDirections.actionUserSignUpFragmentToUserInfoEditFragment()
+            val action =
+                UserSignUpFragmentDirections.actionUserSignUpFragmentToUserInfoEditFragment()
             findNavController().navigate(action)
 
         }

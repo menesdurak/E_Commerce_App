@@ -35,24 +35,12 @@
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:ellipsize="end"
-        android:gravity="center|top"
+        android:gravity="start|top"
         android:maxLines="3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ivProduct"
         tools:text="Product Name Will Be Here" />
-
-    <TextView
-        android:id="@+id/tvProductPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxLength="20"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvProductName"
-        tools:text="99.99" />
 
     <RatingBar
         android:id="@+id/ratingBar"
@@ -62,20 +50,32 @@
         android:max="5"
         android:numStars="5"
         android:stepSize=".1"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvProductPrice"
-        tools:rating="3.5" />
+        app:layout_constraintTop_toBottomOf="@id/tvProductName"
+        tools:rating="3.5"
+        android:progressTint="@color/sub2"
+        android:secondaryProgressTint="@color/sub2"/>
 
     <TextView
         android:id="@+id/tvRatingCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:textSize="10sp"
+        android:textSize="11sp"
         app:layout_constraintStart_toEndOf="@id/ratingBar"
         app:layout_constraintTop_toTopOf="@id/ratingBar"
         tools:text="100" />
+
+    <TextView
+        android:id="@+id/tvProductPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:maxLength="20"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ratingBar"
+        tools:text="99.99" />
 
     <Button
         android:id="@+id/btnBuy"
@@ -85,6 +85,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ratingBar" />
+        app:layout_constraintTop_toBottomOf="@id/tvProductPrice" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

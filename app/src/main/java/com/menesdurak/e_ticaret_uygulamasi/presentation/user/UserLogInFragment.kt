@@ -7,18 +7,26 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.menesdurak.e_ticaret_uygulamasi.R
+import com.menesdurak.e_ticaret_uygulamasi.common.Resource
 import com.menesdurak.e_ticaret_uygulamasi.databinding.FragmentUserLogInBinding
+import com.menesdurak.e_ticaret_uygulamasi.presentation.cart.CartViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class UserLogInFragment : Fragment() {
     private var _binding: FragmentUserLogInBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var auth: FirebaseAuth
+
+    private val cartViewModel: CartViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +57,28 @@ class UserLogInFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        cartViewModel.getAllCheckedCartProducts()
+
+        cartViewModel.checkedAllCartProductsList.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Success -> {
+                    val badge =
+                        requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavMenu)
+                            .getOrCreateBadge(R.id.cart)
+                    badge.number = it.data.size
+                    badge.isVisible = badge.number > 0
+                }
+
+                is Resource.Error -> {
+                    Log.e("error", "Error in Home Fragment")
+                }
+
+                Resource.Loading -> {
+
+                }
+            }
+        }
 
         binding.btnLogin.setOnClickListener {
             val email = binding.etEmail.text.toString()

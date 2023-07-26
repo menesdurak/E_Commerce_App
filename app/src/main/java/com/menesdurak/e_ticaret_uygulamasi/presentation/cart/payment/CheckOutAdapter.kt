@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.menesdurak.e_ticaret_uygulamasi.R
+import com.menesdurak.e_ticaret_uygulamasi.common.addCurrencySign
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.CartProduct
 import com.menesdurak.e_ticaret_uygulamasi.databinding.ItemCheckoutProductBinding
 
@@ -17,7 +18,7 @@ class CheckOutAdapter : RecyclerView.Adapter<CheckOutAdapter.CheckOutProductHold
 
         fun bind(product: CartProduct) {
             binding.tvName.text = product.title
-            binding.tvTotalPrice.text = (product.price.toDouble() * product.amount).toString()
+            binding.tvTotalPrice.text = (product.price.toDouble() * product.amount).addCurrencySign()
             binding.tvAmount.text = product.amount.toString()
 
             Glide

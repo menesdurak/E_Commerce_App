@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.CompoundButton
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.menesdurak.e_ticaret_uygulamasi.R
@@ -26,7 +27,11 @@ class CartProductAdapter(
             binding.tvProductName.text = product.title
             binding.tvPrice.text = product.price.toDouble().addCurrencySign()
             binding.tvAmount.text = product.amount.toString()
-            binding.tvCargoInfo.text = "You will get you cargo in ${(1..3).random()} days"
+            val randomNumber = (1..3).random()
+            binding.tvCargoInfo.text = String.format(
+                binding.root.resources.getString(R.string.you_will_get_you_cargo_in_days),
+                randomNumber
+            )
 
             binding.checkbox.isChecked = product.isChecked
 

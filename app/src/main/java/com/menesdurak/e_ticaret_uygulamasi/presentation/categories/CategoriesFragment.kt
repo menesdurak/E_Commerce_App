@@ -6,13 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.menesdurak.e_ticaret_uygulamasi.R
 import com.menesdurak.e_ticaret_uygulamasi.common.Resource
-import com.menesdurak.e_ticaret_uygulamasi.data.mapper.ProductToProductUiMapper
+import com.menesdurak.e_ticaret_uygulamasi.data.mapper.ProductListToProductUiListMapper
 import com.menesdurak.e_ticaret_uygulamasi.data.mapper.ProductUiToCartProductMapper
 import com.menesdurak.e_ticaret_uygulamasi.data.mapper.ProductUiToFavoriteProductMapper
 import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.ProductUi
@@ -54,6 +55,27 @@ class CategoriesFragment : Fragment() {
         categoriesViewModel.getAllFavoriteProductsId()
         categoriesViewModel.getProductsFromCategory(categoryName)
 
+        cartViewModel.getAllCheckedCartProducts()
+
+        cartViewModel.checkedAllCartProductsList.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Success -> {
+                    val badge = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavMenu)
+                        .getOrCreateBadge(R.id.cart)
+                    badge.number = it.data.size
+                    badge.isVisible = badge.number > 0
+                }
+
+                is Resource.Error -> {
+                    Log.e("error", "Error in Home Fragment")
+                }
+
+                Resource.Loading -> {
+
+                }
+            }
+        }
+
         binding.rvCategories.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvCategories.adapter = categoryAdapter
@@ -82,7 +104,7 @@ class CategoriesFragment : Fragment() {
             when (it) {
                 is Resource.Success -> {
                     binding.progressBar.visibility = View.GONE
-                    categoryProductAdapter.updateList(ProductToProductUiMapper().map(it.data))
+                    categoryProductAdapter.updateList(ProductListToProductUiListMapper().map(it.data))
                 }
 
                 is Resource.Error -> {

@@ -52,4 +52,6 @@
     <string name="english">English</string>
     <string name="okay">Okay</string>
     <string name="userMenu">User</string>
+    <string name="review">Review</string>
+    <string name="you_will_get_you_cargo_in_days">You will get you cargo in %1$d days</string>
 </resources>

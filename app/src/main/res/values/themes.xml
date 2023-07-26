@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.E_Ticaret_Uygulamasi" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-         <item name="colorPrimary">@color/main</item>
+        <item name="colorPrimary">@color/main</item>
     </style>
 
     <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
@@ -10,4 +10,14 @@
     </style>
 
     <style name="Theme.E_Ticaret_Uygulamasi" parent="Base.Theme.E_Ticaret_Uygulamasi" />
+
+    <style name="Theme.E_Ticaret_Uygulamasi.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/sub2</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/hepsiburada</item>
+        <item name="postSplashScreenTheme">@style/Theme.E_Ticaret_Uygulamasi</item>
+    </style>
+
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/main</item>
+    </style>
 </resources>

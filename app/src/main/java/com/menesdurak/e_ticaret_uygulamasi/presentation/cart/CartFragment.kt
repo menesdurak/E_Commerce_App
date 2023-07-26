@@ -83,6 +83,10 @@ class CartFragment : Fragment() {
             adapter = cartProductAdapter
         }
 
+        val badge = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavMenu)
+            .getOrCreateBadge(R.id.cart)
+        badge.isVisible = false
+
         cartViewModel.cartProductList.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Success -> {

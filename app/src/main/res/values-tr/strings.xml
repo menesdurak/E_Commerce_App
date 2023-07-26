@@ -52,4 +52,6 @@
     <string name="okay">Tamam</string>
     <string name="userMenu">Kişisel</string>
     <string name="x">x</string>
+    <string name="review">Değerlendirme</string>
+    <string name="you_will_get_you_cargo_in_days">Kargonuz %1$d gün içinde size ulaşacak.</string>
 </resources>
