@@ -71,6 +71,7 @@ class ProductDetailFragment : Fragment() {
                         it.data.rating.count.toString() + " " + getString(R.string.review)
                     binding.tvRatingRate.text = it.data.rating.rate.toString()
                     binding.tvPrice.text = it.data.price.toDouble().addCurrencySign()
+                    binding.tvProductDetails.text = it.data.description
 
                     val imageList = listOf(it.data.image, it.data.image, it.data.image)
                     val viewPagerAdapter = ImageViewPagerAdapter(imageList)

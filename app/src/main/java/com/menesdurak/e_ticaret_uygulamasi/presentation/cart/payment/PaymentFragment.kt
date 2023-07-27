@@ -177,7 +177,12 @@ class PaymentFragment : Fragment() {
                                     userAddress,
                                     creditCardNumber.toString()
                                 ).map(it.data)
-                            ordersReference.child(newOrderKey!!).setValue(orderList)
+
+                            for (index in orderList.indices) {
+                                val newOrderInsideReference = ordersReference.child(newOrderKey!!).push()
+                                val newOrderInsideKey = newOrderInsideReference.key
+                                ordersReference.child(newOrderKey).child(newOrderInsideKey!!).setValue(orderList[index])
+                            }
                             cartViewModel.deleteAllCheckedCartProducts()
                             totalPrice = 0.0
                             binding.tvTotalPrice.text =

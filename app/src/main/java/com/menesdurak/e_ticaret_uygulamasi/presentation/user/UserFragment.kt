@@ -111,6 +111,11 @@ class UserFragment : Fragment() {
             val action = UserFragmentDirections.actionUserFragmentToUserInfoFragment()
             findNavController().navigate(action)
         }
+
+        binding.tvMyOrders.setOnClickListener {
+            val action = UserFragmentDirections.actionUserFragmentToOrdersFragment()
+            findNavController().navigate(action)
+        }
     }
 
     override fun onDestroyView() {

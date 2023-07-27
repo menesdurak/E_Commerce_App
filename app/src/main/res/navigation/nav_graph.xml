@@ -115,5 +115,13 @@
         <action
             android:id="@+id/action_userFragment_to_userInfoFragment"
             app:destination="@id/userInfoFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_ordersFragment"
+            app:destination="@id/ordersFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.orders.OrdersFragment"
+        android:label="fragment_orders"
+        tools:layout="@layout/fragment_orders" />
 </navigation>

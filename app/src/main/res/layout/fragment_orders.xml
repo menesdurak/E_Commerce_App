@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".presentation.orders.OrdersFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideLineLeftVertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <ImageButton
+        android:id="@+id/ib1"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/tvTitle1"
+        app:layout_constraintEnd_toEndOf="@id/guideLineLeftVertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvOrderNumber1"
+        tools:background="@color/red" />
+
+    <TextView
+        android:id="@+id/tvOrderNumber1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+    <TextView
+        android:id="@+id/tvTitle1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
+        app:layout_constraintTop_toBottomOf="@id/tvOrderNumber1"
+        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+    <ImageButton
+        android:id="@+id/ib2"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/tvTitle2"
+        app:layout_constraintEnd_toEndOf="@id/guideLineLeftVertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvOrderNumber2"
+        tools:background="@color/red" />
+
+    <TextView
+        android:id="@+id/tvOrderNumber2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle1"
+        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+    <TextView
+        android:id="@+id/tvTitle2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
+        app:layout_constraintTop_toBottomOf="@id/tvOrderNumber2"
+        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+    <ImageButton
+        android:id="@+id/ib3"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/tvTitle3"
+        app:layout_constraintEnd_toEndOf="@id/guideLineLeftVertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvOrderNumber3"
+        tools:background="@color/red" />
+
+    <TextView
+        android:id="@+id/tvOrderNumber3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle2"
+        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+    <TextView
+        android:id="@+id/tvTitle3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
+        app:layout_constraintTop_toBottomOf="@id/tvOrderNumber3"
+        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+    <ImageButton
+        android:id="@+id/ib4"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/tvTitle4"
+        app:layout_constraintEnd_toEndOf="@id/guideLineLeftVertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvOrderNumber4"
+        tools:background="@color/red" />
+
+    <TextView
+        android:id="@+id/tvOrderNumber4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle3"
+        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+    <TextView
+        android:id="@+id/tvTitle4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
+        app:layout_constraintTop_toBottomOf="@id/tvOrderNumber4"
+        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
