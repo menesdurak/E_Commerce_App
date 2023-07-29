@@ -1,11 +1,13 @@
 package com.menesdurak.e_ticaret_uygulamasi.presentation.favorites
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -110,10 +112,20 @@ class FavoritesFragment : Fragment() {
 
     private fun onBuyClick(position: Int, product: FavoriteProduct) {
         cartViewModel.addCartProduct(FavoriteProductToCartProductMapper().map(product))
-        Toast.makeText(
-            requireContext(),
-            "${product.id} is added to your cart!",
-            Toast.LENGTH_SHORT
-        ).show()
+        val button = binding.rvFavoriteProducts.layoutManager?.findViewByPosition(position)
+            ?.findViewById<Button>(R.id.btnBuy)
+        button?.setBackgroundColor(binding.root.resources.getColor(R.color.sub2, null))
+        button?.text = getString(R.string.in_cart)
+        val timer = object : CountDownTimer(1000, 50) {
+            override fun onTick(millisUntilFinished: Long) {
+
+            }
+
+            override fun onFinish() {
+                button?.setBackgroundColor(binding.root.resources.getColor(R.color.main, null))
+                button?.text = getString(R.string.buy)
+            }
+
+        }.start()
     }
 }

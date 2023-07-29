@@ -148,7 +148,7 @@ class PaymentFragment : Fragment() {
                 isInformationsOk = false
                 Toast.makeText(
                     requireContext(),
-                    "Please fill your credit card information.",
+                    getString(R.string.please_fill_your_credit_card_information),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -159,7 +159,7 @@ class PaymentFragment : Fragment() {
                 isInformationsOk = false
                 Toast.makeText(
                     requireContext(),
-                    "Please fill your address information.",
+                    getString(R.string.please_fill_your_address_information),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -174,7 +174,7 @@ class PaymentFragment : Fragment() {
                             val newOrderKey = newOrderReference.key
                             val orderList =
                                 CartProductListToBoughtProductListMapper(
-                                    userAddress,
+                                    binding.etUserAddressInfo.text.toString(),
                                     creditCardNumber.toString()
                                 ).map(it.data)
 
@@ -233,7 +233,7 @@ class PaymentFragment : Fragment() {
             setAnimation(!isNewAddress)
             Toast.makeText(
                 requireContext(),
-                "New address saved to your user information.",
+                getString(R.string.new_address_saved_to_your_user_information),
                 Toast.LENGTH_SHORT
             ).show()
             binding.tvUserAddress.textSize = 22f

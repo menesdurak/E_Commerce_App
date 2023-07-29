@@ -54,4 +54,19 @@
     <string name="x">x</string>
     <string name="review">Değerlendirme</string>
     <string name="you_will_get_you_cargo_in_days">Kargonuz %1$d gün içinde size ulaşacak.</string>
+    <string name="for_you">Size Özel</string>
+    <string name="delivered">Teslim Edildi</string>
+    <string name="not_delivered">Teslim Edilmedi</string>
+    <string name="delete_all_products">Tüm Ürünleri Sil</string>
+    <string name="do_you_want_to_delete_all_of_your_products_from_cart">Sepetinizdeki tüm ürünleri silmek ister misiniz?</string>
+    <string name="yes">Evet</string>
+    <string name="no">Hayır</string>
+    <string name="do_you_want_to_delete_this_item_from_your_cart">Bu ürünü sepetinizden silmek ister misiniz?</string>
+    <string name="delete">Sil</string>
+    <string name="you_need_to_login">Giriş Yapmalısınız</string>
+    <string name="you_need_to_login_to_buy_your_products_in_your_cart_do_you_want_to_go_to_login_page">Sepetinizdeki ürünleri satın almak için girş yapmalısınız. Kullanıcı girişi ekranına gitmek ister misiniz?</string>
+    <string name="in_cart">SEPETTE</string>
+    <string name="please_fill_your_credit_card_information">Lütfen kredi kartı bilgilerinizi giriniz.</string>
+    <string name="please_fill_your_address_information">Lütfen adres bilginizi giriniz.</string>
+    <string name="new_address_saved_to_your_user_information">Yeni adresiniz kullanıcı bilgilerinize kaydedildi.</string>
 </resources>

@@ -36,16 +36,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onBackPressed() {
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
-        if (binding.bottomNavMenu.selectedItemId != R.id.home) {
-            binding.bottomNavMenu.selectedItemId = R.id.home
-            navController.navigate(R.id.homeFragment)
-        } else {
-            finish()
-        }
-
-    }
+//    override fun onBackPressed() {
+//        val navHostFragment =
+//            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+//        val navController = navHostFragment.navController
+//        if (binding.bottomNavMenu.selectedItemId != R.id.home) {
+//            binding.bottomNavMenu.selectedItemId = R.id.home
+//            navController.navigate(R.id.homeFragment)
+//        } else {
+//            finish()
+//        }
+//
+//    }
 }

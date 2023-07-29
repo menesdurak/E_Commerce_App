@@ -43,7 +43,8 @@ class CartFragment : Fragment() {
         CartProductAdapter(
             ::onCheckboxClicked,
             ::onDecreaseClicked,
-            ::onIncreaseClicked
+            ::onIncreaseClicked,
+            ::onProductClicked
         )
     }
 
@@ -93,10 +94,11 @@ class CartFragment : Fragment() {
                     binding.progressBar.visibility = View.GONE
                     cartProductAdapter.updateList(it.data)
 
-                    it.data.forEach {cartProduct ->
+                    it.data.forEach { cartProduct ->
                         if (cartProduct.isChecked) {
                             totalPrice += cartProduct.price.toDouble() * cartProduct.amount
-                            binding.tvTotalPrice.text = (totalPrice round 2).toString().toDouble().addCurrencySign()
+                            binding.tvTotalPrice.text =
+                                (totalPrice round 2).toString().toDouble().addCurrencySign()
                             binding.linlayPriceContainer.visibility = View.VISIBLE
                         }
                     }
@@ -114,21 +116,37 @@ class CartFragment : Fragment() {
 
         binding.ivDelete.setOnClickListener {
             val builder = AlertDialog.Builder(requireContext())
-            builder.setTitle("Delete All Products")
-            builder.setMessage("Do you want to delete all of your products from cart?")
-                .setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which ->
+            builder.setTitle(getString(R.string.delete_all_products))
+            builder.setMessage(getString(R.string.do_you_want_to_delete_all_of_your_products_from_cart))
+                .setPositiveButton(getString(R.string.yes), DialogInterface.OnClickListener { dialog, which ->
                     cartViewModel.deleteAllCartProducts()
                     cartProductAdapter.updateList(emptyList())
                     totalPrice = 0.0
                     binding.linlayPriceContainer.visibility = View.GONE
                 })
-                .setNegativeButton("No", DialogInterface.OnClickListener { dialog, which -> })
+                .setNegativeButton(getString(R.string.no), DialogInterface.OnClickListener { dialog, which -> })
             builder.create()
             builder.show()
         }
 
         binding.btnBuy.setOnClickListener {
             onCheckoutClicked()
+        }
+
+        binding.checkboxAll.setOnClickListener {
+            if (binding.checkboxAll.isChecked) {
+                cartViewModel.updateAllCartProductsToChecked()
+                cartProductAdapter.updateCheckedStatusAllChecked()
+                totalPrice = cartProductAdapter.calculateTotalPrice()
+                binding.tvTotalPrice.text = totalPrice.addCurrencySign()
+                binding.linlayPriceContainer.visibility = View.VISIBLE
+            } else {
+                cartViewModel.updateAllCartProductsToNotChecked()
+                cartProductAdapter.updateCheckedStatusAllNotChecked()
+                totalPrice = 0.0
+                binding.tvTotalPrice.text = totalPrice.addCurrencySign()
+                binding.linlayPriceContainer.visibility = View.GONE
+            }
         }
 
     }
@@ -164,22 +182,24 @@ class CartFragment : Fragment() {
             cartProductAdapter.decreaseAmount(position, cartProduct)
             if (totalPrice > 0.0 && cartProduct.isChecked) {
                 totalPrice -= cartProduct.price.toDouble()
-                binding.tvTotalPrice.text = (totalPrice round 2).toString().toDouble().addCurrencySign()
+                binding.tvTotalPrice.text =
+                    (totalPrice round 2).toString().toDouble().addCurrencySign()
             }
         } else {
             val builder = AlertDialog.Builder(requireContext())
-            builder.setTitle("Delete")
-            builder.setMessage("Do you want to delete this item from your cart?")
-                .setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which ->
+            builder.setTitle(getString(R.string.delete))
+            builder.setMessage(getString(R.string.do_you_want_to_delete_this_item_from_your_cart))
+                .setPositiveButton(getString(R.string.yes), DialogInterface.OnClickListener { dialog, which ->
                     cartViewModel.deleteCartProduct(cartProduct.id)
                     cartProductAdapter.removeItem(cartProduct)
                     totalPrice -= cartProduct.price.toDouble()
-                    binding.tvTotalPrice.text = (totalPrice round 2).toString().toDouble().addCurrencySign()
+                    binding.tvTotalPrice.text =
+                        (totalPrice round 2).toString().toDouble().addCurrencySign()
                     if (totalPrice <= 0.0) {
                         binding.linlayPriceContainer.visibility = View.GONE
                     }
                 })
-                .setNegativeButton("No", DialogInterface.OnClickListener { dialog, which -> })
+                .setNegativeButton(R.string.no, DialogInterface.OnClickListener { dialog, which -> })
             builder.create()
             builder.show()
         }
@@ -199,20 +219,27 @@ class CartFragment : Fragment() {
     private fun onCheckoutClicked() {
         if (auth.currentUser == null) {
             val builder = AlertDialog.Builder(requireContext())
-            builder.setTitle("You need to login")
-            builder.setMessage("You need to login to buy your products in your cart. Do you want to go to login page?")
-                .setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which ->
+            builder.setTitle(getString(R.string.you_need_to_login))
+            builder.setMessage(getString(R.string.you_need_to_login_to_buy_your_products_in_your_cart_do_you_want_to_go_to_login_page))
+                .setPositiveButton(R.string.yes, DialogInterface.OnClickListener { dialog, which ->
                     val action = CartFragmentDirections.actionCartFragmentToUserLogInFragment()
-                    val bottomNavMenu = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavMenu)
+                    val bottomNavMenu =
+                        requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavMenu)
                     bottomNavMenu.menu.getItem(4).isChecked = true
                     findNavController().navigate(action)
                 })
-                .setNegativeButton("No", DialogInterface.OnClickListener { dialog, which -> })
+                .setNegativeButton(R.string.no, DialogInterface.OnClickListener { dialog, which -> })
             builder.create()
             builder.show()
         } else {
             val action = CartFragmentDirections.actionCartFragmentToPaymentFragment()
             findNavController().navigate(action)
         }
+    }
+
+    private fun onProductClicked(cartProduct: CartProduct) {
+        val action =
+            CartFragmentDirections.actionCartFragmentToProductDetailFragment(cartProduct.id)
+        findNavController().navigate(action)
     }
 }

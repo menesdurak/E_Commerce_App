@@ -21,27 +21,62 @@
         app:layout_constraintBottom_toBottomOf="@id/tvTitle1"
         app:layout_constraintEnd_toEndOf="@id/guideLineLeftVertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvOrderNumber1"
+        app:layout_constraintTop_toTopOf="@id/tvOrderDate1"
         tools:background="@color/red" />
 
     <TextView
-        android:id="@+id/tvOrderNumber1"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvDeliveredStatus1"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintEnd_toStartOf="@id/guideLineLeftVertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ib1"
+        tools:text="Not Delivered" />
+
+    <TextView
+        android:id="@+id/tvOrderDate1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginTop="10dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
 
     <TextView
-        android:id="@+id/tvTitle1"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvOrderNumber1"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
+        app:layout_constraintTop_toBottomOf="@id/tvOrderDate1"
+
+        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+    <TextView
+        android:id="@+id/tvTitle1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
         app:layout_constraintTop_toBottomOf="@id/tvOrderNumber1"
         tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+
+    <View
+        android:id="@+id/horizontalLineFirst"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:background="@color/gray"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle1" />
 
     <ImageButton
         android:id="@+id/ib2"
@@ -50,27 +85,60 @@
         app:layout_constraintBottom_toBottomOf="@id/tvTitle2"
         app:layout_constraintEnd_toEndOf="@id/guideLineLeftVertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvOrderNumber2"
+        app:layout_constraintTop_toTopOf="@id/tvOrderDate2"
         tools:background="@color/red" />
 
     <TextView
-        android:id="@+id/tvOrderNumber2"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvDeliveredStatus2"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintEnd_toStartOf="@id/guideLineLeftVertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ib2"
+        tools:text="Not Delivered" />
+
+    <TextView
+        android:id="@+id/tvOrderDate2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginTop="10dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle1"
+        app:layout_constraintTop_toBottomOf="@id/horizontalLineFirst"
+        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+    <TextView
+        android:id="@+id/tvOrderNumber2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
+        app:layout_constraintTop_toBottomOf="@id/tvOrderDate2"
         tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
 
     <TextView
         android:id="@+id/tvTitle2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
         app:layout_constraintTop_toBottomOf="@id/tvOrderNumber2"
         tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+    <View
+        android:id="@+id/horizontalLineSecond"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:background="@color/gray"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle2" />
 
     <ImageButton
         android:id="@+id/ib3"
@@ -79,27 +147,60 @@
         app:layout_constraintBottom_toBottomOf="@id/tvTitle3"
         app:layout_constraintEnd_toEndOf="@id/guideLineLeftVertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvOrderNumber3"
+        app:layout_constraintTop_toTopOf="@id/tvOrderDate3"
         tools:background="@color/red" />
 
     <TextView
-        android:id="@+id/tvOrderNumber3"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvDeliveredStatus3"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintEnd_toStartOf="@id/guideLineLeftVertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ib3"
+        tools:text="Not Delivered" />
+
+    <TextView
+        android:id="@+id/tvOrderDate3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginTop="10dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle2"
+        app:layout_constraintTop_toBottomOf="@id/horizontalLineSecond"
+        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+    <TextView
+        android:id="@+id/tvOrderNumber3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
+        app:layout_constraintTop_toBottomOf="@id/tvOrderDate3"
         tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
 
     <TextView
         android:id="@+id/tvTitle3"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
         app:layout_constraintTop_toBottomOf="@id/tvOrderNumber3"
         tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+    <View
+        android:id="@+id/horizontalLineThird"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:background="@color/gray"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle3" />
 
     <ImageButton
         android:id="@+id/ib4"
@@ -108,26 +209,112 @@
         app:layout_constraintBottom_toBottomOf="@id/tvTitle4"
         app:layout_constraintEnd_toEndOf="@id/guideLineLeftVertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvOrderNumber4"
+        app:layout_constraintTop_toTopOf="@id/tvOrderDate4"
         tools:background="@color/red" />
 
     <TextView
-        android:id="@+id/tvOrderNumber4"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvDeliveredStatus4"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintEnd_toStartOf="@id/guideLineLeftVertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ib4"
+        tools:text="Not Delivered" />
+
+    <TextView
+        android:id="@+id/tvOrderDate4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginTop="10dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle3"
+        app:layout_constraintTop_toBottomOf="@id/horizontalLineThird"
+        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+    <TextView
+        android:id="@+id/tvOrderNumber4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
+        app:layout_constraintTop_toBottomOf="@id/tvOrderDate4"
         tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
 
     <TextView
         android:id="@+id/tvTitle4"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
         app:layout_constraintTop_toBottomOf="@id/tvOrderNumber4"
+        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+    <View
+        android:id="@+id/horizontalLineFourth"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:background="@color/gray"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle4" />
+
+    <ImageButton
+        android:id="@+id/ib5"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/tvTitle5"
+        app:layout_constraintEnd_toEndOf="@id/guideLineLeftVertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvOrderDate5"
+        tools:background="@color/red" />
+
+    <TextView
+        android:id="@+id/tvDeliveredStatus5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintEnd_toStartOf="@id/guideLineLeftVertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ib5"
+        tools:text="Not Delivered" />
+
+    <TextView
+        android:id="@+id/tvOrderDate5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
+        app:layout_constraintTop_toBottomOf="@id/horizontalLineFourth"
+        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+    <TextView
+        android:id="@+id/tvOrderNumber5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
+        app:layout_constraintTop_toBottomOf="@id/tvOrderDate5"
+        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+    <TextView
+        android:id="@+id/tvTitle5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
+        app:layout_constraintTop_toBottomOf="@id/tvOrderNumber5"
         tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

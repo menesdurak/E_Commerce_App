@@ -7,13 +7,24 @@
     tools:context=".presentation.user.UserFragment"
     android:background="@color/backgroundUser">
 
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivUserImage"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_person_gray"
+        app:shapeAppearanceOverlay="@style/Circular"/>
+
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivUserImage"
         android:layout_marginHorizontal="30dp"
-        android:layout_marginVertical="20dp"
+        android:layout_marginTop="50dp"
         app:cardCornerRadius="20dp">
 
         <LinearLayout

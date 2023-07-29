@@ -12,6 +12,8 @@ import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.delete_all_checked_ca
 import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.delete_cart_product.DeleteCartProductUseCase
 import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.get_all_cart_products.GetAllCartProductsUseCase
 import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.get_all_checked_cart_products.GetAllCheckedCartProductsUseCase
+import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.update_all_cart_products_checked_status.UpdateAllCartProductsToCheckedUseCase
+import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.update_all_cart_products_not_checked_status.UpdateAllCartProductsToNotCheckedUseCase
 import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.update_cart_product_amount.UpdateCartProductAmountUseCase
 import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.update_cart_product_checked_status.UpdateCartProductCheckedStatusUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,7 +29,9 @@ class CartViewModel @Inject constructor(
     private val updateCartProductCheckedStatusUseCase: UpdateCartProductCheckedStatusUseCase,
     private val updateCartProductAmountUseCase: UpdateCartProductAmountUseCase,
     private val getAllCheckedCartProductsUseCase: GetAllCheckedCartProductsUseCase,
-    private val deleteAllCheckedCartProductsUseCase: DeleteAllCheckedCartProductsUseCase
+    private val deleteAllCheckedCartProductsUseCase: DeleteAllCheckedCartProductsUseCase,
+    private val updateAllCartProductsToCheckedUseCase: UpdateAllCartProductsToCheckedUseCase,
+    private val updateAllCartProductsToNotCheckedUseCase: UpdateAllCartProductsToNotCheckedUseCase
 ) : ViewModel() {
 
     private val _cartProductsList = MutableLiveData<Resource<List<CartProduct>>>(Resource.Loading)
@@ -83,6 +87,18 @@ class CartViewModel @Inject constructor(
     fun deleteAllCheckedCartProducts() {
         viewModelScope.launch {
             deleteAllCheckedCartProductsUseCase()
+        }
+    }
+
+    fun updateAllCartProductsToChecked() {
+        viewModelScope.launch {
+            updateAllCartProductsToCheckedUseCase()
+        }
+    }
+
+    fun updateAllCartProductsToNotChecked() {
+        viewModelScope.launch {
+            updateAllCartProductsToNotCheckedUseCase()
         }
     }
 }

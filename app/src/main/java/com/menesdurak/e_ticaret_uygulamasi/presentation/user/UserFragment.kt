@@ -1,25 +1,36 @@
 package com.menesdurak.e_ticaret_uygulamasi.presentation.user
 
+import android.app.Activity
 import android.app.AlertDialog
-import android.content.DialogInterface
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 import com.menesdurak.e_ticaret_uygulamasi.R
 import com.menesdurak.e_ticaret_uygulamasi.common.AppLanguageProvider
 import com.menesdurak.e_ticaret_uygulamasi.common.Resource
 import com.menesdurak.e_ticaret_uygulamasi.databinding.FragmentUserBinding
 import com.menesdurak.e_ticaret_uygulamasi.presentation.cart.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.File
 import java.util.Locale
 
 @AndroidEntryPoint
@@ -29,6 +40,13 @@ class UserFragment : Fragment() {
 
     private val cartViewModel: CartViewModel by viewModels()
 
+    private lateinit var auth: FirebaseAuth
+
+    private lateinit var storageRef: StorageReference
+    private lateinit var storageRef2: StorageReference
+
+    private lateinit var imagesRef: StorageReference
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,6 +54,19 @@ class UserFragment : Fragment() {
     ): View {
         _binding = FragmentUserBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        // Initialize Firebase Auth
+        auth = Firebase.auth
+        // Create a storage reference from our app
+        storageRef = Firebase.storage.reference
+        storageRef2 = FirebaseStorage.getInstance().reference.child("images/${auth.currentUser!!.uid}.jpg")
+        imagesRef = storageRef.child("images/${auth.currentUser!!.uid}.jpg")
+
+        val localFile = File.createTempFile("tempImage", "jpg")
+        storageRef2.getFile(localFile).addOnSuccessListener {
+            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+            binding.ivUserImage.setImageBitmap(bitmap)
+        }
         return view
     }
 
@@ -116,10 +147,12 @@ class UserFragment : Fragment() {
             val action = UserFragmentDirections.actionUserFragmentToOrdersFragment()
             findNavController().navigate(action)
         }
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
 }

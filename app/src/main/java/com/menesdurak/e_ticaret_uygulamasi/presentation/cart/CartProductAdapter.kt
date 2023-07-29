@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.menesdurak.e_ticaret_uygulamasi.R
 import com.menesdurak.e_ticaret_uygulamasi.common.addCurrencySign
+import com.menesdurak.e_ticaret_uygulamasi.common.round
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.CartProduct
 import com.menesdurak.e_ticaret_uygulamasi.databinding.ItemCartProductBinding
 
@@ -16,6 +17,7 @@ class CartProductAdapter(
     private val onCheckboxClick: (Int, CartProduct) -> Unit,
     private val onDecreaseClick: (Int, CartProduct) -> Unit,
     private val onIncreaseClick: (Int, CartProduct) -> Unit,
+    private val onProductClick: (CartProduct) -> Unit
 ) : RecyclerView.Adapter<CartProductAdapter.CartProductHolder>() {
 
     private val itemList = mutableListOf<CartProduct>()
@@ -46,6 +48,10 @@ class CartProductAdapter(
                 .load(itemList[adapterPosition].image)
                 .placeholder(R.drawable.loading_200x200)
                 .into(binding.ivProduct)
+
+            binding.root.setOnClickListener {
+                onProductClick.invoke(product)
+            }
 
             binding.checkbox.setOnClickListener {
                 onCheckboxClick.invoke(adapterPosition, product)
@@ -105,6 +111,28 @@ class CartProductAdapter(
     fun increaseAmount(position: Int, product: CartProduct) {
         itemList[position].amount = product.amount + 1
         notifyItemChanged(position)
+    }
+
+    fun updateCheckedStatusAllChecked() {
+        for (index in 0 until itemList.size) {
+            itemList[index].isChecked = true
+        }
+        notifyDataSetChanged()
+    }
+
+    fun updateCheckedStatusAllNotChecked() {
+        for (index in 0 until itemList.size) {
+            itemList[index].isChecked = false
+        }
+        notifyDataSetChanged()
+    }
+
+    fun calculateTotalPrice() : Double {
+        var totalPrice = 0.0
+        for (index in 0 until itemList.size) {
+            totalPrice += itemList[index].amount * itemList[index].price.toDouble() round 2
+        }
+        return totalPrice
     }
 
 }

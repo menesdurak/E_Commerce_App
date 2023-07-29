@@ -1,11 +1,13 @@
 package com.menesdurak.e_ticaret_uygulamasi.presentation.product_detail
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -13,6 +15,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.menesdurak.e_ticaret_uygulamasi.R
 import com.menesdurak.e_ticaret_uygulamasi.common.Resource
 import com.menesdurak.e_ticaret_uygulamasi.common.addCurrencySign
+import com.menesdurak.e_ticaret_uygulamasi.data.mapper.ProductToFavoriteProductMapper
 import com.menesdurak.e_ticaret_uygulamasi.data.mapper.ProductToProductUiMapper
 import com.menesdurak.e_ticaret_uygulamasi.data.mapper.ProductUiToCartProductMapper
 import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.Product
@@ -37,6 +40,8 @@ class ProductDetailFragment : Fragment() {
 
     private lateinit var product: Product
 
+    private var isFavorite = false
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -56,6 +61,8 @@ class ProductDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         categoriesViewModel.getSingleProduct(productId)
+
+        categoriesViewModel.getAllFavoriteProductsId()
 
         categoriesViewModel.product.observe(viewLifecycleOwner) {
             when (it) {
@@ -109,6 +116,28 @@ class ProductDetailFragment : Fragment() {
             }
         }
 
+        categoriesViewModel.favoriteProductsIdList.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Success -> {
+                    if (productId in it.data) {
+                        isFavorite = true
+                        binding.ivFavorite.setImageResource(R.drawable.ic_favorite)
+                    } else {
+                        isFavorite = false
+                        binding.ivFavorite.setImageResource(R.drawable.ic_favorite_empty)
+                    }
+                }
+
+                is Resource.Error -> {
+                    Log.e("error", "Error in Product Detail Fragment")
+                }
+
+                Resource.Loading -> {
+
+                }
+            }
+        }
+
         binding.btnBuy.setOnClickListener {
             cartViewModel.addCartProduct(
                 ProductUiToCartProductMapper().map(
@@ -117,6 +146,31 @@ class ProductDetailFragment : Fragment() {
                     )
                 )
             )
+
+            binding.btnBuy.setBackgroundColor(binding.root.resources.getColor(R.color.sub2, null))
+            binding.btnBuy.text = getString(R.string.in_cart)
+            val timer = object : CountDownTimer(1000, 50) {
+                override fun onTick(millisUntilFinished: Long) {
+
+                }
+
+                override fun onFinish() {
+                    binding.btnBuy.setBackgroundColor(binding.root.resources.getColor(R.color.main, null))
+                    binding.btnBuy.text = getString(R.string.buy)
+                }
+
+            }.start()
+        }
+
+        binding.ivFavorite.setOnClickListener {
+            if (isFavorite) {
+                categoriesViewModel.deleteFavoriteProduct(productId)
+                binding.ivFavorite.setImageResource(R.drawable.ic_favorite_empty)
+            } else {
+                categoriesViewModel.addFavoriteProduct(ProductToFavoriteProductMapper().map(product))
+                binding.ivFavorite.setImageResource(R.drawable.ic_favorite)
+            }
+            isFavorite = !isFavorite
         }
     }
 

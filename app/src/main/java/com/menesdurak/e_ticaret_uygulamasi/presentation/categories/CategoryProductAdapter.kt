@@ -1,5 +1,6 @@
 package com.menesdurak.e_ticaret_uygulamasi.presentation.categories
 
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -90,5 +91,9 @@ class CategoryProductAdapter(
         }
         itemList[position].isFavorite = !itemList[position].isFavorite
         notifyItemChanged(position)
+    }
+
+    fun changeButtonColor(position: Int) {
+        itemList[position]
     }
 }

@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
         android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.favorites.FavoritesFragment"

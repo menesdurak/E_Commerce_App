@@ -1,11 +1,13 @@
 package com.menesdurak.e_ticaret_uygulamasi.presentation.categories
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.menesdurak.e_ticaret_uygulamasi.R
 import com.menesdurak.e_ticaret_uygulamasi.common.Resource
+import com.menesdurak.e_ticaret_uygulamasi.common.addOnScrollHiddenView
 import com.menesdurak.e_ticaret_uygulamasi.data.mapper.ProductListToProductUiListMapper
 import com.menesdurak.e_ticaret_uygulamasi.data.mapper.ProductUiToCartProductMapper
 import com.menesdurak.e_ticaret_uygulamasi.data.mapper.ProductUiToFavoriteProductMapper
@@ -60,8 +63,9 @@ class CategoriesFragment : Fragment() {
         cartViewModel.checkedAllCartProductsList.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Success -> {
-                    val badge = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavMenu)
-                        .getOrCreateBadge(R.id.cart)
+                    val badge =
+                        requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavMenu)
+                            .getOrCreateBadge(R.id.cart)
                     badge.number = it.data.size
                     badge.isVisible = badge.number > 0
                 }
@@ -133,6 +137,9 @@ class CategoriesFragment : Fragment() {
             }
         }
 
+        //Extension function for hiding categories when scrolling down
+        binding.rvProducts.addOnScrollHiddenView(binding.rvCategories)
+
     }
 
     override fun onDestroyView() {
@@ -153,6 +160,21 @@ class CategoriesFragment : Fragment() {
 
     private fun onAddToCartClick(position: Int, product: ProductUi) {
         cartViewModel.addCartProduct(ProductUiToCartProductMapper().map(product))
+        val button = binding.rvProducts.layoutManager?.findViewByPosition(position)
+            ?.findViewById<Button>(R.id.btnBuy)
+        button?.setBackgroundColor(binding.root.resources.getColor(R.color.sub2, null))
+        button?.text = getString(R.string.in_cart)
+        val timer = object : CountDownTimer(1000, 50) {
+            override fun onTick(millisUntilFinished: Long) {
+
+            }
+
+            override fun onFinish() {
+                button?.setBackgroundColor(binding.root.resources.getColor(R.color.main, null))
+                button?.text = getString(R.string.buy)
+            }
+
+        }.start()
     }
 
     private fun onFavoriteClick(position: Int, product: ProductUi) {

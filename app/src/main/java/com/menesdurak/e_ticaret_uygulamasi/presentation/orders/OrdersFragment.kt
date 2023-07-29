@@ -33,7 +33,7 @@ class OrdersFragment : Fragment() {
 
     private lateinit var boughtProduct: BoughtProductFirebase
 
-    private var counter = 4
+    private var counter = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,47 +78,137 @@ class OrdersFragment : Fragment() {
                 when (counter) {
                     1 -> {
                         binding.tvTitle1.text = boughtProduct.title
-                        binding.tvOrderNumber1.text = boughtProduct.orderDate
+                        binding.tvOrderDate1.text = boughtProduct.orderDate
+                        binding.tvOrderNumber1.text = dataSnapshot.key
                         if (boughtProduct.isDelivered!!) {
                             binding.ib1.setBackgroundColor(resources.getColor(R.color.green, null))
+                            binding.tvDeliveredStatus1.text = getString(R.string.delivered)
+                            binding.tvDeliveredStatus1.setTextColor(
+                                resources.getColor(
+                                    R.color.green,
+                                    null
+                                )
+                            )
                         } else {
                             binding.ib1.setBackgroundColor(resources.getColor(R.color.red, null))
+                            binding.tvDeliveredStatus1.text = getString(R.string.not_delivered)
+                            binding.tvDeliveredStatus1.setTextColor(
+                                resources.getColor(
+                                    R.color.red,
+                                    null
+                                )
+                            )
                         }
-                        counter--
+                        counter++
                     }
 
                     2 -> {
+                        binding.horizontalLineFirst.visibility = View.VISIBLE
                         binding.tvTitle2.text = boughtProduct.title
-                        binding.tvOrderNumber2.text = boughtProduct.orderDate
+                        binding.tvOrderDate2.text = boughtProduct.orderDate
+                        binding.tvOrderNumber2.text = dataSnapshot.key
                         if (boughtProduct.isDelivered!!) {
                             binding.ib2.setBackgroundColor(resources.getColor(R.color.green, null))
+                            binding.tvDeliveredStatus2.text = getString(R.string.delivered)
+                            binding.tvDeliveredStatus2.setTextColor(
+                                resources.getColor(
+                                    R.color.green,
+                                    null
+                                )
+                            )
                         } else {
                             binding.ib2.setBackgroundColor(resources.getColor(R.color.red, null))
+                            binding.tvDeliveredStatus2.text = getString(R.string.not_delivered)
+                            binding.tvDeliveredStatus2.setTextColor(
+                                resources.getColor(
+                                    R.color.red,
+                                    null
+                                )
+                            )
                         }
-                        counter--
+                        counter++
                     }
 
                     3 -> {
+                        binding.horizontalLineSecond.visibility = View.VISIBLE
                         binding.tvTitle3.text = boughtProduct.title
-                        binding.tvOrderNumber3.text = boughtProduct.orderDate
+                        binding.tvOrderDate3.text = boughtProduct.orderDate
+                        binding.tvOrderNumber3.text = dataSnapshot.key
                         if (boughtProduct.isDelivered!!) {
                             binding.ib3.setBackgroundColor(resources.getColor(R.color.green, null))
+                            binding.tvDeliveredStatus3.text = getString(R.string.delivered)
+                            binding.tvDeliveredStatus3.setTextColor(
+                                resources.getColor(
+                                    R.color.green,
+                                    null
+                                )
+                            )
                         } else {
                             binding.ib3.setBackgroundColor(resources.getColor(R.color.red, null))
+                            binding.tvDeliveredStatus3.text = getString(R.string.not_delivered)
+                            binding.tvDeliveredStatus3.setTextColor(
+                                resources.getColor(
+                                    R.color.red,
+                                    null
+                                )
+                            )
                         }
-                        counter--
+                        counter++
                     }
 
                     4 -> {
+                        binding.horizontalLineThird.visibility = View.VISIBLE
                         binding.tvTitle4.text = boughtProduct.title
-                        binding.tvOrderNumber4.text = boughtProduct.orderDate
+                        binding.tvOrderDate4.text = boughtProduct.orderDate
+                        binding.tvOrderNumber4.text = dataSnapshot.key
                         if (boughtProduct.isDelivered!!) {
                             binding.ib4.setBackgroundColor(resources.getColor(R.color.green, null))
+                            binding.tvDeliveredStatus4.text = getString(R.string.delivered)
+                            binding.tvDeliveredStatus4.setTextColor(
+                                resources.getColor(
+                                    R.color.green,
+                                    null
+                                )
+                            )
                         } else {
                             binding.ib4.setBackgroundColor(resources.getColor(R.color.red, null))
+                            binding.tvDeliveredStatus4.text = getString(R.string.not_delivered)
+                            binding.tvDeliveredStatus4.setTextColor(
+                                resources.getColor(
+                                    R.color.red,
+                                    null
+                                )
+                            )
                         }
-                        counter--
+                        counter++
                     }
+                    5 -> {
+                        binding.horizontalLineFourth.visibility = View.VISIBLE
+                        binding.tvTitle5.text = boughtProduct.title
+                        binding.tvOrderDate5.text = boughtProduct.orderDate
+                        binding.tvOrderNumber5.text = dataSnapshot.key
+                        if (boughtProduct.isDelivered!!) {
+                            binding.ib5.setBackgroundColor(resources.getColor(R.color.green, null))
+                            binding.tvDeliveredStatus5.text = getString(R.string.delivered)
+                            binding.tvDeliveredStatus5.setTextColor(
+                                resources.getColor(
+                                    R.color.green,
+                                    null
+                                )
+                            )
+                        } else {
+                            binding.ib5.setBackgroundColor(resources.getColor(R.color.red, null))
+                            binding.tvDeliveredStatus5.text = getString(R.string.not_delivered)
+                            binding.tvDeliveredStatus5.setTextColor(
+                                resources.getColor(
+                                    R.color.red,
+                                    null
+                                )
+                            )
+                        }
+                        counter = 1
+                    }
+
                 }
 
             }

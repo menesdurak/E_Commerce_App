@@ -30,4 +30,10 @@ interface CartDao {
 
     @Query("UPDATE cart_table SET amount = :newAmount WHERE id = :cartProductId")
     suspend fun updateCartProductAmount(newAmount: Int, cartProductId: Int)
+
+    @Query("UPDATE cart_table SET isChecked = 1 WHERE 1")
+    suspend fun updateAllCartProductsToChecked()
+
+    @Query("UPDATE cart_table SET isChecked = 0 WHERE 1")
+    suspend fun updateAllCartProductsToNotChecked()
 }
