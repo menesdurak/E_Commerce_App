@@ -2,7 +2,6 @@ package com.menesdurak.e_ticaret_uygulamasi.data.local.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.Rating
 
 @Entity(tableName = "e_ticaret_table")
 data class FavoriteProduct(

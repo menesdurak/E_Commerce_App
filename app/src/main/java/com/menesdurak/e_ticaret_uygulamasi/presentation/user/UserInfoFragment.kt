@@ -19,8 +19,10 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FileDownloadTask
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.StorageTask
 import com.google.firebase.storage.ktx.storage
 import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.UserInfo
 import com.menesdurak.e_ticaret_uygulamasi.databinding.FragmentUserInfoBinding
@@ -43,6 +45,8 @@ class UserInfoFragment : Fragment() {
 
     private lateinit var userInfo: UserInfo
 
+    private var imageStorageTask : StorageTask<FileDownloadTask.TaskSnapshot>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -64,7 +68,7 @@ class UserInfoFragment : Fragment() {
         imagesRef = storageRef.child("images/${auth.currentUser!!.uid}.jpg")
 
         val localFile = File.createTempFile("tempImage", "jpg")
-        storageRef2.getFile(localFile).addOnSuccessListener {
+        imageStorageTask = storageRef2.getFile(localFile).addOnSuccessListener {
             val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
             binding.ivUserImage.setImageBitmap(bitmap)
         }
@@ -89,8 +93,7 @@ class UserInfoFragment : Fragment() {
 
                 binding.progressBar.visibility = View.GONE
 
-                binding.tvUserNameInfo.text = userInfo.name
-                binding.tvUserSurNameInfo.text = userInfo.surName
+                binding.tvUserName.text = "${userInfo.name} ${userInfo.surName}"
                 binding.tvUserAddressInfo.text = userInfo.address
                 binding.tvUserPhoneInfo.text = userInfo.phone
 
@@ -132,12 +135,14 @@ class UserInfoFragment : Fragment() {
         }
     }
 
+    private fun signOutUser() {
+        Firebase.auth.signOut()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun signOutUser() {
-        Firebase.auth.signOut()
+        imageStorageTask?.cancel()
+        imageStorageTask = null
     }
 }

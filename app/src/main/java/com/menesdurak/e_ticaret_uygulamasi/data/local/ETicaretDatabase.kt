@@ -5,13 +5,18 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.CartProduct
+import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.CreditCardInfo
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.FavoriteProduct
 
-@Database(entities = [FavoriteProduct::class, CartProduct::class], version = 1)
+@Database(
+    entities = [FavoriteProduct::class, CartProduct::class, CreditCardInfo::class],
+    version = 1
+)
 abstract class ETicaretDatabase : RoomDatabase() {
 
     abstract fun getETicaretDao(): ETicaretDao
     abstract fun getCartDao(): CartDao
+    abstract fun getCreditCardDao(): CreditCardDao
 
     companion object {
         @Volatile

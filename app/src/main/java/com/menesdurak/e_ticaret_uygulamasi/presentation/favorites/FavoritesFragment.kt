@@ -36,6 +36,10 @@ class FavoritesFragment : Fragment() {
         )
     }
 
+    private var timer: CountDownTimer? = null
+
+    private lateinit var bottomNavView: BottomNavigationView
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,6 +47,10 @@ class FavoritesFragment : Fragment() {
     ): View {
         _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        bottomNavView = requireActivity().findViewById(R.id.bottomNavMenu)
+        bottomNavView.menu.getItem(3).isChecked = true
+
         return view
     }
 
@@ -97,6 +105,8 @@ class FavoritesFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        timer?.cancel()
+        timer = null
     }
 
     private fun onProductClick(product: FavoriteProduct) {
@@ -116,7 +126,7 @@ class FavoritesFragment : Fragment() {
             ?.findViewById<Button>(R.id.btnBuy)
         button?.setBackgroundColor(binding.root.resources.getColor(R.color.sub2, null))
         button?.text = getString(R.string.in_cart)
-        val timer = object : CountDownTimer(1000, 50) {
+        timer = object : CountDownTimer(2000, 50) {
             override fun onTick(millisUntilFinished: Long) {
 
             }

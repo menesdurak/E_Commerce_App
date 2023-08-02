@@ -1,12 +1,8 @@
 package com.menesdurak.e_ticaret_uygulamasi.presentation.user
 
-import android.app.Activity
 import android.app.AlertDialog
-import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,15 +10,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FileDownloadTask
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.StorageTask
 import com.google.firebase.storage.ktx.storage
 import com.menesdurak.e_ticaret_uygulamasi.R
 import com.menesdurak.e_ticaret_uygulamasi.common.AppLanguageProvider
@@ -47,6 +44,10 @@ class UserFragment : Fragment() {
 
     private lateinit var imagesRef: StorageReference
 
+    private lateinit var bottomNavView: BottomNavigationView
+
+    private var imageStorageTask : StorageTask<FileDownloadTask.TaskSnapshot>? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -54,6 +55,9 @@ class UserFragment : Fragment() {
     ): View {
         _binding = FragmentUserBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        bottomNavView = requireActivity().findViewById(R.id.bottomNavMenu)
+        bottomNavView.menu.getItem(4).isChecked = true
 
         // Initialize Firebase Auth
         auth = Firebase.auth
@@ -63,7 +67,7 @@ class UserFragment : Fragment() {
         imagesRef = storageRef.child("images/${auth.currentUser!!.uid}.jpg")
 
         val localFile = File.createTempFile("tempImage", "jpg")
-        storageRef2.getFile(localFile).addOnSuccessListener {
+        imageStorageTask = storageRef2.getFile(localFile).addOnSuccessListener {
             val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
             binding.ivUserImage.setImageBitmap(bitmap)
         }
@@ -148,11 +152,18 @@ class UserFragment : Fragment() {
             findNavController().navigate(action)
         }
 
+        binding.tvMyCreditCards.setOnClickListener {
+            val action = UserFragmentDirections.actionUserFragmentToUserCreditCardFragment()
+            findNavController().navigate(action)
+        }
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        imageStorageTask?.cancel()
+        imageStorageTask = null
     }
 
 }

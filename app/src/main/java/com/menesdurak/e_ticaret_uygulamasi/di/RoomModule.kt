@@ -2,6 +2,7 @@ package com.menesdurak.e_ticaret_uygulamasi.di
 
 import android.app.Application
 import com.menesdurak.e_ticaret_uygulamasi.data.local.CartDao
+import com.menesdurak.e_ticaret_uygulamasi.data.local.CreditCardDao
 import com.menesdurak.e_ticaret_uygulamasi.data.local.ETicaretDao
 import com.menesdurak.e_ticaret_uygulamasi.data.local.ETicaretDatabase
 import com.menesdurak.e_ticaret_uygulamasi.data.repository.LocalRepositoryImpl
@@ -36,7 +37,17 @@ object RoomModule {
 
     @Provides
     @Singleton
-    fun provideLocalRepository(eTicaretDao: ETicaretDao, cartDao: CartDao): LocalRepository {
-        return LocalRepositoryImpl(eTicaretDao, cartDao)
+    fun getCreditCardDao(eTicaretDatabase: ETicaretDatabase): CreditCardDao {
+        return eTicaretDatabase.getCreditCardDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideLocalRepository(
+        eTicaretDao: ETicaretDao,
+        cartDao: CartDao,
+        creditCardDao: CreditCardDao,
+    ): LocalRepository {
+        return LocalRepositoryImpl(eTicaretDao, cartDao, creditCardDao)
     }
 }

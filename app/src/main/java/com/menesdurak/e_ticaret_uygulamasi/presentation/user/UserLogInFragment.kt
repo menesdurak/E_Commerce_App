@@ -28,6 +28,8 @@ class UserLogInFragment : Fragment() {
 
     private val cartViewModel: CartViewModel by viewModels()
 
+    private lateinit var bottomNavView: BottomNavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -42,6 +44,10 @@ class UserLogInFragment : Fragment() {
     ): View {
         _binding = FragmentUserLogInBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        bottomNavView = requireActivity().findViewById(R.id.bottomNavMenu)
+        bottomNavView.menu.getItem(4).isChecked = true
+
         return view
     }
 

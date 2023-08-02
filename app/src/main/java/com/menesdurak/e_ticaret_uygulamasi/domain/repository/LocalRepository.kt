@@ -1,6 +1,7 @@
 package com.menesdurak.e_ticaret_uygulamasi.domain.repository
 
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.CartProduct
+import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.CreditCardInfo
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.FavoriteProduct
 
 interface LocalRepository {
@@ -28,4 +29,14 @@ interface LocalRepository {
     suspend fun updateAllCartProductsToChecked()
 
     suspend fun updateAllCartProductsToNotChecked()
+
+    suspend fun addCreditCard(creditCardInfo: CreditCardInfo)
+
+    suspend fun deleteCreditCardWithId(creditCardId: Short)
+
+    suspend fun deleteAllCreditCards()
+
+    suspend fun getAllCreditCards(): List<CreditCardInfo>
+
+    suspend fun updateCreditCardActiveStatus(isActive: Boolean, creditCardId: Short)
 }

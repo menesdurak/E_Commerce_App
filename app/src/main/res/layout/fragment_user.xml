@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.user.UserFragment"
-    android:background="@color/backgroundUser">
+    android:background="@color/backgroundSoft">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivUserImage"
@@ -16,7 +16,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:src="@drawable/ic_person_gray"
-        app:shapeAppearanceOverlay="@style/Circular"/>
+        app:shapeAppearanceOverlay="@style/Circular"
+        android:scaleType="fitXY"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewUser"
@@ -46,7 +47,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/gray"
-                app:layout_constraintTop_toBottomOf="@id/tvLanguage"
                 android:layout_marginHorizontal="20dp"/>
 
             <TextView
@@ -63,7 +63,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/gray"
-                app:layout_constraintTop_toBottomOf="@id/tvUserInfo"
                 android:layout_marginHorizontal="20dp"/>
 
             <TextView
@@ -80,7 +79,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/gray"
-                app:layout_constraintTop_toBottomOf="@id/tvProtPersonalData"
+                android:layout_marginHorizontal="20dp"/>
+
+            <TextView
+                android:id="@+id/tvMyCreditCards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/my_credit_cards"
+                android:textSize="16sp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="8dp"/>
+
+            <View
+                android:id="@+id/horizontalLineContactUs"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray"
                 android:layout_marginHorizontal="20dp"/>
 
             <TextView
@@ -93,11 +107,10 @@
                 android:layout_marginVertical="8dp"/>
 
             <View
-                android:id="@+id/horizontalLineContactUs"
+                android:id="@+id/horizontalLineFaq"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/gray"
-                app:layout_constraintTop_toBottomOf="@id/tvContactUs"
                 android:layout_marginHorizontal="20dp"/>
 
             <TextView
@@ -110,39 +123,20 @@
                 android:layout_marginVertical="8dp"/>
 
             <View
-                android:id="@+id/horizontalLineFaq"
+                android:id="@+id/horizontalLineSecWarnings"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/gray"
-                app:layout_constraintTop_toBottomOf="@id/tvContactUs"
                 android:layout_marginHorizontal="20dp"/>
 
             <TextView
-                android:id="@+id/tvSecWarnings"
+                android:id="@+id/tvSecurityWarnings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/security_warnings"
                 android:textSize="16sp"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="8dp"/>
-
-            <View
-                android:id="@+id/horizontalLineSecWarnings"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/gray"
-                app:layout_constraintTop_toBottomOf="@id/tvSecWarnings"
-                android:layout_marginHorizontal="20dp"/>
-
-            <TextView
-                android:id="@+id/tvProtPersonalData"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/protection_of_personal_data"
-                android:textSize="16sp"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginVertical="8dp"/>
-
 
         </LinearLayout>
 

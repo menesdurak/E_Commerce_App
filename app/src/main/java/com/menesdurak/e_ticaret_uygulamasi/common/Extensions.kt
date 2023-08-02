@@ -2,11 +2,8 @@ package com.menesdurak.e_ticaret_uygulamasi.common
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
-import android.animation.ValueAnimator
 import android.view.View
-import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
-import com.menesdurak.e_ticaret_uygulamasi.R
 
 infix fun Double.round(decimals: Int): Double {
     var multiplier = 1
@@ -26,7 +23,7 @@ fun RecyclerView.addOnScrollHiddenView(
     this.addOnScrollListener(object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             when {
-                dy > 30 && isViewShown -> {
+                dy > 0 && isViewShown -> {
                     isViewShown = false
                     hiddenView.animate()
                         .alpha(0.0F)
@@ -57,4 +54,16 @@ fun RecyclerView.addOnScrollHiddenView(
         }
 
     })
+}
+
+fun String.getFirstTwoChar(): String {
+    return "${this[0]}${this[1]}"
+}
+
+fun String.getLastTwoChar(): String{
+    return "${this.substring(this.length - 2)}"
+}
+
+fun String.hideCreditCardNumber(): String {
+    return "${this.substring(0,4)} **** **** ${this.substring(this.length - 4)}"
 }

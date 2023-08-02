@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.CartProduct
-import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.FavoriteProduct
 
 @Dao
 interface CartDao {

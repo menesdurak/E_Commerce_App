@@ -34,13 +34,13 @@ class ProductDetailFragment : Fragment() {
 
     private val cartViewModel: CartViewModel by viewModels()
 
-    private val favoritesViewModel: FavoritesViewModel by viewModels()
-
     private var productId = -1
 
     private lateinit var product: Product
 
     private var isFavorite = false
+
+    private var timer: CountDownTimer? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -149,7 +149,7 @@ class ProductDetailFragment : Fragment() {
 
             binding.btnBuy.setBackgroundColor(binding.root.resources.getColor(R.color.sub2, null))
             binding.btnBuy.text = getString(R.string.in_cart)
-            val timer = object : CountDownTimer(1000, 50) {
+            timer = object : CountDownTimer(2000, 50) {
                 override fun onTick(millisUntilFinished: Long) {
 
                 }
@@ -177,6 +177,8 @@ class ProductDetailFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        timer?.cancel()
+        timer = null
     }
 
     private fun changeIndicatorColor() {

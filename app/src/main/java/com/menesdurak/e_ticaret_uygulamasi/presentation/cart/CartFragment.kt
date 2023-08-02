@@ -48,6 +48,8 @@ class CartFragment : Fragment() {
         )
     }
 
+    private lateinit var bottomNavView: BottomNavigationView
+
     private var totalPrice: Double = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,6 +68,9 @@ class CartFragment : Fragment() {
     ): View {
         _binding = FragmentCartBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        bottomNavView = requireActivity().findViewById(R.id.bottomNavMenu)
+        bottomNavView.menu.getItem(2).isChecked = true
 
         databaseReference = Firebase.database.reference
 

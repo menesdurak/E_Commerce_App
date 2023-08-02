@@ -122,10 +122,18 @@
         <action
             android:id="@+id/action_userFragment_to_ordersFragment"
             app:destination="@id/ordersFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_userCreditCardFragment"
+            app:destination="@id/userCreditCardFragment" />
     </fragment>
     <fragment
         android:id="@+id/ordersFragment"
         android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.orders.OrdersFragment"
         android:label="fragment_orders"
         tools:layout="@layout/fragment_orders" />
+    <fragment
+        android:id="@+id/userCreditCardFragment"
+        android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.user.my_credit_cards.UserCreditCardFragment"
+        android:label="fragment_user_credit_card"
+        tools:layout="@layout/fragment_user_credit_card" />
 </navigation>

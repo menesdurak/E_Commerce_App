@@ -69,4 +69,18 @@
     <string name="please_fill_your_credit_card_information">Lütfen kredi kartı bilgilerinizi giriniz.</string>
     <string name="please_fill_your_address_information">Lütfen adres bilginizi giriniz.</string>
     <string name="new_address_saved_to_your_user_information">Yeni adresiniz kullanıcı bilgilerinize kaydedildi.</string>
+    <string name="credit_card_s_holder_name">Kart Sahibinin Adı</string>
+    <string name="expire_date">Son Kullanma Tarihi</string>
+    <string name="security_code">Güvenlik Kodu</string>
+    <string name="cvc_cvv">CVC / CVV</string>
+    <string name="save_credit_card">Kredi Kartını Kaydet</string>
+    <string name="credit_card">Kredi Kartı</string>
+    <string name="credit_card_s_holder_name_and_surname">Kart Sahibinin Adı Soyadı</string>
+    <string name="add_new_card">Yeni Kart Ekle</string>
+    <string name="do_you_want_to_delete_this_credit_card">Bu kredi kartını silmek istiyor musun?</string>
+    <string name="delete_card">Kartı Sil</string>
+    <string name="my_credit_cards">Kredi Kartlarım</string>
+    <string name="credit_cards">Kredi Kartlarım</string>
+    <string name="user_information">Kullanıcı Bilgileri</string>
+    <string name="credit_card_number_hint">**** **** **** ****</string>
 </resources>

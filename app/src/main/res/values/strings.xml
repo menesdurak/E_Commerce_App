@@ -19,7 +19,7 @@
     <string name="new_address">New Address</string>
     <string name="save_this_address">Save This Address</string>
     <string name="credit_card_info">Credit Card Info</string>
-    <string name="credit_card_number">Credit Card Number</string>
+    <string name="credit_card_number">Credit card number</string>
     <string name="month_year">Month / Year</string>
     <string name="slash">/</string>
     <string name="cvc">CVC</string>
@@ -69,4 +69,18 @@
     <string name="please_fill_your_credit_card_information">Please fill your credit card information.</string>
     <string name="please_fill_your_address_information">Please fill your address information.</string>
     <string name="new_address_saved_to_your_user_information">New address saved to your user information.</string>
+    <string name="credit_card_s_holder_name">Credit card\'s holder name</string>
+    <string name="expire_date">Expire Date</string>
+    <string name="security_code">Security Code</string>
+    <string name="cvc_cvv">CVC / CVV</string>
+    <string name="save_credit_card">Save Credit Card</string>
+    <string name="credit_card">Credit Card</string>
+    <string name="credit_card_s_holder_name_and_surname">Credit card\'s holder name and surname</string>
+    <string name="add_new_card">Add New Card</string>
+    <string name="do_you_want_to_delete_this_credit_card">Do you want to delete this credit card?</string>
+    <string name="delete_card">Delete Card</string>
+    <string name="my_credit_cards">My Credit Cards</string>
+    <string name="credit_cards">Credit Cards</string>
+    <string name="user_information">User Information</string>
+    <string name="credit_card_number_hint">**** **** **** ****</string>
 </resources>

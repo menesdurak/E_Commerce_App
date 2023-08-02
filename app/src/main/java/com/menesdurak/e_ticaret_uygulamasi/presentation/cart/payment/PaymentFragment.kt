@@ -1,18 +1,20 @@
 package com.menesdurak.e_ticaret_uygulamasi.presentation.cart.payment
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputFilter
 import android.text.TextWatcher
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,7 +27,10 @@ import com.google.firebase.ktx.Firebase
 import com.menesdurak.e_ticaret_uygulamasi.R
 import com.menesdurak.e_ticaret_uygulamasi.common.Resource
 import com.menesdurak.e_ticaret_uygulamasi.common.addCurrencySign
+import com.menesdurak.e_ticaret_uygulamasi.common.getFirstTwoChar
+import com.menesdurak.e_ticaret_uygulamasi.common.getLastTwoChar
 import com.menesdurak.e_ticaret_uygulamasi.common.round
+import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.CreditCardInfo
 import com.menesdurak.e_ticaret_uygulamasi.data.mapper.CartProductListToBoughtProductListMapper
 import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.UserInfo
 import com.menesdurak.e_ticaret_uygulamasi.databinding.FragmentPaymentBinding
@@ -45,7 +50,17 @@ class PaymentFragment : Fragment() {
 
     private val checkOutAdapter: CheckOutAdapter by lazy { CheckOutAdapter() }
 
+    private val creditCardAdapter: CreditCardAdapter by lazy {
+        CreditCardAdapter(
+            ::onCardClicked,
+            ::onCardLongClicked,
+            ::onCheckboxClicked
+        )
+    }
+
     private val cartViewModel: CartViewModel by viewModels()
+
+    private val creditCardViewModel: CreditCardViewModel by viewModels()
 
     private var totalPrice: Double = 0.0
 
@@ -54,6 +69,10 @@ class PaymentFragment : Fragment() {
     private var userAddress = ""
 
     private var isInformationsOk = false
+
+    private var bool = false
+
+    private var activeCreditCardNumber = ""
 
     private val rotateLeft: Animation by lazy {
         AnimationUtils.loadAnimation(
@@ -136,23 +155,63 @@ class PaymentFragment : Fragment() {
             }
         }
 
-        binding.btnBuy.setOnClickListener {
-            val creditCardNumber = binding.etCreditCardNumber.text
-            if (creditCardNumber.isNotBlank() &&
-                binding.etCreditCardCvc.text.isNotBlank() &&
-                binding.etCreditCardExpiryMonth.text.isNotBlank() &&
-                binding.etCreditCardExpiryYear.text.isNotBlank()
-            ) {
-                isInformationsOk = true
+        creditCardViewModel.getAllCreditCards()
+        binding.rvCreditCards.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = creditCardAdapter
+        }
+        creditCardViewModel.creditCardList.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Success -> {
+                    creditCardAdapter.updateList(it.data)
+                }
+
+                is Resource.Error -> {
+                    Log.e("error", "Error in Payment Fragment")
+                }
+
+                Resource.Loading -> {
+
+                }
+            }
+        }
+
+        binding.btnAddNewCreditCard.setOnClickListener {
+            bool = !bool
+            if (bool) {
+                binding.constraintAddNewCard.visibility = View.VISIBLE
             } else {
-                isInformationsOk = false
+                binding.constraintAddNewCard.visibility = View.GONE
+            }
+        }
+
+        binding.btnSaveCard.setOnClickListener {
+            if (binding.etCardHolder.text.isNotBlank() &&
+                binding.etCardNumber.text.isNotBlank() &&
+                binding.etSecurityCode.text.isNotBlank() &&
+                binding.etExpireDate.text.isNotBlank()
+            ) {
+                val creditCard = CreditCardInfo(
+                    number = binding.etCardNumber.text.toString(),
+                    holderName = binding.etCardHolder.text.toString(),
+                    cvc = binding.etSecurityCode.text.toString(),
+                    expireMonth = binding.etExpireDate.text.toString().getFirstTwoChar(),
+                    expireYear = binding.etExpireDate.text.toString().getLastTwoChar()
+                )
+                creditCardViewModel.addCreditCard(creditCard)
+                creditCardAdapter.addNewCard(creditCard)
+                bool = false
+                binding.constraintAddNewCard.visibility = View.GONE
+            } else {
                 Toast.makeText(
                     requireContext(),
                     getString(R.string.please_fill_your_credit_card_information),
                     Toast.LENGTH_SHORT
                 ).show()
             }
+        }
 
+        binding.btnBuy.setOnClickListener {
             if (binding.etUserAddressInfo.text.isNotBlank()) {
                 isInformationsOk = true
             } else {
@@ -175,13 +234,15 @@ class PaymentFragment : Fragment() {
                             val orderList =
                                 CartProductListToBoughtProductListMapper(
                                     binding.etUserAddressInfo.text.toString(),
-                                    creditCardNumber.toString()
+                                    activeCreditCardNumber
                                 ).map(it.data)
 
                             for (index in orderList.indices) {
-                                val newOrderInsideReference = ordersReference.child(newOrderKey!!).push()
+                                val newOrderInsideReference =
+                                    ordersReference.child(newOrderKey!!).push()
                                 val newOrderInsideKey = newOrderInsideReference.key
-                                ordersReference.child(newOrderKey).child(newOrderInsideKey!!).setValue(orderList[index])
+                                ordersReference.child(newOrderKey).child(newOrderInsideKey!!)
+                                    .setValue(orderList[index])
                             }
                             cartViewModel.deleteAllCheckedCartProducts()
                             totalPrice = 0.0
@@ -246,10 +307,10 @@ class PaymentFragment : Fragment() {
             binding.btnSaveAdress.visibility = View.GONE
         }
 
-        //TextWatcher for creditcard number is taken from:
+        //TextWatcher for credit card number is taken from:
         //Hannu Leinonen
         //https://gist.github.com/hleinone/5b445e5475ca9f8a3bdc6a44998f4edd
-        binding.etCreditCardNumber.addTextChangedListener(object : TextWatcher {
+        binding.etCardNumber.addTextChangedListener(object : TextWatcher {
             private var current = ""
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -270,11 +331,8 @@ class PaymentFragment : Fragment() {
             }
         })
 
-    }
+        binding.etExpireDate.addTextChangedListener(ExpiryDateTextWatcher())
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     //Set animation of address swapper image
@@ -290,4 +348,67 @@ class PaymentFragment : Fragment() {
         private val nonDigits = Regex("[^\\d]")
     }
 
+    private fun onCardClicked(position: Int, creditCardInfo: CreditCardInfo) {
+        activeCreditCardNumber = creditCardAdapter.activeItem(position)
+    }
+
+    private fun onCheckboxClicked(position: Int, creditCardInfo: CreditCardInfo) {
+        activeCreditCardNumber = creditCardAdapter.activeItem(position)
+    }
+
+    private fun onCardLongClicked(position: Int, creditCard: CreditCardInfo) {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle(getString(R.string.delete_card))
+        builder.setMessage(getString(R.string.do_you_want_to_delete_this_credit_card))
+            .setPositiveButton(
+                getString(R.string.yes),
+                DialogInterface.OnClickListener { dialog, which ->
+                    creditCardViewModel.deleteCreditCard(creditCard.id)
+                    creditCardAdapter.deleteCard(position, creditCard)
+                })
+            .setNegativeButton(
+                getString(R.string.no),
+                DialogInterface.OnClickListener { dialog, which -> })
+        builder.create()
+        builder.show()
+    }
+
+    private inner class ExpiryDateTextWatcher : TextWatcher {
+        private var lastInput = ""
+
+        override fun afterTextChanged(editable: Editable?) {
+            if (editable == null) return
+
+            val input = editable.toString()
+            if (input == lastInput || input.isEmpty()) return
+
+            val cleanInput = input.replace(Regex("[^\\d/]"), "")
+            val expiryDate = StringBuilder(cleanInput)
+
+            if (cleanInput.length >= 3 && cleanInput[2] != '/') {
+                expiryDate.insert(2, '/')
+            }
+            if (expiryDate.length > 5) {
+                // Limit the input to MM/YY format
+                expiryDate.delete(5, expiryDate.length)
+            }
+
+            lastInput = expiryDate.toString()
+            editable.replace(0, editable.length, expiryDate.toString())
+        }
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            // Do nothing
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            // Do nothing
+        }
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

@@ -1,5 +1,6 @@
 package com.menesdurak.e_ticaret_uygulamasi.presentation.home
 
+import android.location.Geocoder
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -9,11 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.menesdurak.e_ticaret_uygulamasi.R
 import com.menesdurak.e_ticaret_uygulamasi.common.Resource
@@ -23,11 +22,9 @@ import com.menesdurak.e_ticaret_uygulamasi.data.mapper.ProductUiToFavoriteProduc
 import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.ProductUi
 import com.menesdurak.e_ticaret_uygulamasi.databinding.FragmentHomeBinding
 import com.menesdurak.e_ticaret_uygulamasi.presentation.cart.CartViewModel
-import com.menesdurak.e_ticaret_uygulamasi.presentation.categories.CategoriesFragmentDirections
 import com.menesdurak.e_ticaret_uygulamasi.presentation.categories.CategoriesViewModel
-import com.menesdurak.e_ticaret_uygulamasi.presentation.categories.CategoryAdapter
-import com.menesdurak.e_ticaret_uygulamasi.presentation.product_detail.ImageViewPagerAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Locale
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -43,6 +40,9 @@ class HomeFragment : Fragment() {
             ::onAddToCartClick
         )
     }
+    private lateinit var bottomNavView: BottomNavigationView
+
+    private var timer: CountDownTimer? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,6 +51,9 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        bottomNavView = requireActivity().findViewById(R.id.bottomNavMenu)
+        bottomNavView.menu.getItem(0).isChecked = true
         return view
     }
 
@@ -181,6 +184,8 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        timer?.cancel()
+        timer = null
     }
 
     private fun onProductClick(product: ProductUi) {
@@ -195,7 +200,7 @@ class HomeFragment : Fragment() {
             ?.findViewById<Button>(R.id.btnBuy)
         button?.setBackgroundColor(binding.root.resources.getColor(R.color.sub2, null))
         button?.text = getString(R.string.in_cart)
-        val timer = object : CountDownTimer(1000, 50) {
+        timer = object : CountDownTimer(2000, 50) {
             override fun onTick(millisUntilFinished: Long) {
 
             }

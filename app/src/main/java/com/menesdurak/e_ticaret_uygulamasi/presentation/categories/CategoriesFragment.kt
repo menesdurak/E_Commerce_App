@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -39,7 +40,11 @@ class CategoriesFragment : Fragment() {
             ::onAddToCartClick
         )
     }
+    private lateinit var bottomNavView: BottomNavigationView
+
     private var categoryName = "electronics"
+
+    private var timer: CountDownTimer? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,6 +53,10 @@ class CategoriesFragment : Fragment() {
     ): View {
         _binding = FragmentCategoriesBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        bottomNavView = requireActivity().findViewById(R.id.bottomNavMenu)
+        bottomNavView.menu.getItem(1).isChecked = true
+
         return view
     }
 
@@ -109,6 +118,18 @@ class CategoriesFragment : Fragment() {
                 is Resource.Success -> {
                     binding.progressBar.visibility = View.GONE
                     categoryProductAdapter.updateList(ProductListToProductUiListMapper().map(it.data))
+
+                    binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+                        override fun onQueryTextSubmit(query: String?): Boolean {
+                            return false
+                        }
+
+                        override fun onQueryTextChange(newText: String?): Boolean {
+                            filterProducts(newText ?: "", ProductListToProductUiListMapper().map(it.data), categoryProductAdapter)
+                            return true
+                        }
+
+                    })
                 }
 
                 is Resource.Error -> {
@@ -142,11 +163,6 @@ class CategoriesFragment : Fragment() {
 
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
     private fun onCategoryClick(categoryName: String) {
         categoriesViewModel.getProductsFromCategory(categoryName)
         binding.progressBar.visibility = View.VISIBLE
@@ -164,7 +180,7 @@ class CategoriesFragment : Fragment() {
             ?.findViewById<Button>(R.id.btnBuy)
         button?.setBackgroundColor(binding.root.resources.getColor(R.color.sub2, null))
         button?.text = getString(R.string.in_cart)
-        val timer = object : CountDownTimer(1000, 50) {
+        timer = object : CountDownTimer(2000, 50) {
             override fun onTick(millisUntilFinished: Long) {
 
             }
@@ -186,5 +202,19 @@ class CategoriesFragment : Fragment() {
             categoriesViewModel.addFavoriteProduct(favoriteProduct)
             categoryProductAdapter.updateFavoriteStatusOfProduct(position, favoriteProduct.id)
         }
+    }
+
+    private fun filterProducts(query: String, productList: List<ProductUi>, adapter: CategoryProductAdapter) {
+        val filteredList = productList.filter {
+            it.title.contains(query, ignoreCase = true)
+        }
+        adapter.updateList(filteredList)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+        timer?.cancel()
+        timer = null
     }
 }

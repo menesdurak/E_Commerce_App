@@ -18,8 +18,6 @@ import com.google.firebase.ktx.Firebase
 import com.menesdurak.e_ticaret_uygulamasi.R
 import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.BoughtProductFirebase
 import com.menesdurak.e_ticaret_uygulamasi.databinding.FragmentOrdersBinding
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
 
 class OrdersFragment : Fragment() {
     private var _binding: FragmentOrdersBinding? = null
@@ -103,7 +101,6 @@ class OrdersFragment : Fragment() {
                     }
 
                     2 -> {
-                        binding.horizontalLineFirst.visibility = View.VISIBLE
                         binding.tvTitle2.text = boughtProduct.title
                         binding.tvOrderDate2.text = boughtProduct.orderDate
                         binding.tvOrderNumber2.text = dataSnapshot.key
@@ -130,7 +127,6 @@ class OrdersFragment : Fragment() {
                     }
 
                     3 -> {
-                        binding.horizontalLineSecond.visibility = View.VISIBLE
                         binding.tvTitle3.text = boughtProduct.title
                         binding.tvOrderDate3.text = boughtProduct.orderDate
                         binding.tvOrderNumber3.text = dataSnapshot.key
@@ -157,7 +153,6 @@ class OrdersFragment : Fragment() {
                     }
 
                     4 -> {
-                        binding.horizontalLineThird.visibility = View.VISIBLE
                         binding.tvTitle4.text = boughtProduct.title
                         binding.tvOrderDate4.text = boughtProduct.orderDate
                         binding.tvOrderNumber4.text = dataSnapshot.key
@@ -182,8 +177,8 @@ class OrdersFragment : Fragment() {
                         }
                         counter++
                     }
+
                     5 -> {
-                        binding.horizontalLineFourth.visibility = View.VISIBLE
                         binding.tvTitle5.text = boughtProduct.title
                         binding.tvOrderDate5.text = boughtProduct.orderDate
                         binding.tvOrderNumber5.text = dataSnapshot.key
@@ -200,6 +195,32 @@ class OrdersFragment : Fragment() {
                             binding.ib5.setBackgroundColor(resources.getColor(R.color.red, null))
                             binding.tvDeliveredStatus5.text = getString(R.string.not_delivered)
                             binding.tvDeliveredStatus5.setTextColor(
+                                resources.getColor(
+                                    R.color.red,
+                                    null
+                                )
+                            )
+                        }
+                        counter++
+                    }
+
+                    6 -> {
+                        binding.tvTitle6.text = boughtProduct.title
+                        binding.tvOrderDate6.text = boughtProduct.orderDate
+                        binding.tvOrderNumber6.text = dataSnapshot.key
+                        if (boughtProduct.isDelivered!!) {
+                            binding.ib6.setBackgroundColor(resources.getColor(R.color.green, null))
+                            binding.tvDeliveredStatus6.text = getString(R.string.delivered)
+                            binding.tvDeliveredStatus6.setTextColor(
+                                resources.getColor(
+                                    R.color.green,
+                                    null
+                                )
+                            )
+                        } else {
+                            binding.ib6.setBackgroundColor(resources.getColor(R.color.red, null))
+                            binding.tvDeliveredStatus6.text = getString(R.string.not_delivered)
+                            binding.tvDeliveredStatus6.setTextColor(
                                 resources.getColor(
                                     R.color.red,
                                     null

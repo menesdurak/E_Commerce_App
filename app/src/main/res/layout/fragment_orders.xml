@@ -1,320 +1,525 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundSoft"
+    android:gravity="center"
     android:orientation="vertical"
     tools:context=".presentation.orders.OrdersFragment">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideLineLeftVertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.25" />
-
-    <ImageButton
-        android:id="@+id/ib1"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        app:layout_constraintBottom_toBottomOf="@id/tvTitle1"
-        app:layout_constraintEnd_toEndOf="@id/guideLineLeftVertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvOrderDate1"
-        tools:background="@color/red" />
-
-    <TextView
-        android:id="@+id/tvDeliveredStatus1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintEnd_toStartOf="@id/guideLineLeftVertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ib1"
-        tools:text="Not Delivered" />
-
-    <TextView
-        android:id="@+id/tvOrderDate1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="10dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
-
-    <TextView
-        android:id="@+id/tvOrderNumber1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
-        app:layout_constraintTop_toBottomOf="@id/tvOrderDate1"
-
-        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
-
-    <TextView
-        android:id="@+id/tvTitle1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
-        app:layout_constraintTop_toBottomOf="@id/tvOrderNumber1"
-        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
-
-
-    <View
-        android:id="@+id/horizontalLineFirst"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="10dp"
-        android:background="@color/gray"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle1" />
+        android:layout_height="wrap_content">
 
-    <ImageButton
-        android:id="@+id/ib2"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        app:layout_constraintBottom_toBottomOf="@id/tvTitle2"
-        app:layout_constraintEnd_toEndOf="@id/guideLineLeftVertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvOrderDate2"
-        tools:background="@color/red" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvDeliveredStatus2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintEnd_toStartOf="@id/guideLineLeftVertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ib2"
-        tools:text="Not Delivered" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:elevation="4dp"
+                app:cardCornerRadius="20dp">
 
-    <TextView
-        android:id="@+id/tvOrderDate2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="10dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
-        app:layout_constraintTop_toBottomOf="@id/horizontalLineFirst"
-        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+                <LinearLayout
+                    android:id="@+id/linlayContainer1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tvOrderNumber2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
-        app:layout_constraintTop_toBottomOf="@id/tvOrderDate2"
-        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+                    <LinearLayout
+                        android:id="@+id/linlayContainer1Left"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvTitle2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
-        app:layout_constraintTop_toBottomOf="@id/tvOrderNumber2"
-        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+                        <ImageButton
+                            android:id="@+id/ib1"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            tools:background="@color/red" />
 
-    <View
-        android:id="@+id/horizontalLineSecond"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="10dp"
-        android:background="@color/gray"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle2" />
+                        <TextView
+                            android:id="@+id/tvDeliveredStatus1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            tools:text="Not Delivered" />
 
-    <ImageButton
-        android:id="@+id/ib3"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        app:layout_constraintBottom_toBottomOf="@id/tvTitle3"
-        app:layout_constraintEnd_toEndOf="@id/guideLineLeftVertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvOrderDate3"
-        tools:background="@color/red" />
+                    </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvDeliveredStatus3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintEnd_toStartOf="@id/guideLineLeftVertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ib3"
-        tools:text="Not Delivered" />
+                    <View
+                        android:id="@+id/verticalLineFirst"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="5dp"
+                        android:layout_marginVertical="10dp"
+                        android:background="@color/gray" />
 
-    <TextView
-        android:id="@+id/tvOrderDate3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="10dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
-        app:layout_constraintTop_toBottomOf="@id/horizontalLineSecond"
-        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+                    <LinearLayout
+                        android:id="@+id/linlayContainer1Right"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvOrderNumber3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
-        app:layout_constraintTop_toBottomOf="@id/tvOrderDate3"
-        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+                        <TextView
+                            android:id="@+id/tvOrderDate1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginTop="10dp"
+                            android:textStyle="bold"
+                            tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
 
-    <TextView
-        android:id="@+id/tvTitle3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
-        app:layout_constraintTop_toBottomOf="@id/tvOrderNumber3"
-        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+                        <TextView
+                            android:id="@+id/tvOrderNumber1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
 
-    <View
-        android:id="@+id/horizontalLineThird"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="10dp"
-        android:background="@color/gray"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle3" />
+                            tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
 
-    <ImageButton
-        android:id="@+id/ib4"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        app:layout_constraintBottom_toBottomOf="@id/tvTitle4"
-        app:layout_constraintEnd_toEndOf="@id/guideLineLeftVertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvOrderDate4"
-        tools:background="@color/red" />
+                        <TextView
+                            android:id="@+id/tvTitle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="20dp"
+                            tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
 
-    <TextView
-        android:id="@+id/tvDeliveredStatus4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintEnd_toStartOf="@id/guideLineLeftVertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ib4"
-        tools:text="Not Delivered" />
+                    </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvOrderDate4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="10dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
-        app:layout_constraintTop_toBottomOf="@id/horizontalLineThird"
-        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+                </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvOrderNumber4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
-        app:layout_constraintTop_toBottomOf="@id/tvOrderDate4"
-        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+            </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/tvTitle4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
-        app:layout_constraintTop_toBottomOf="@id/tvOrderNumber4"
-        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:elevation="4dp"
+                app:cardCornerRadius="20dp">
 
-    <View
-        android:id="@+id/horizontalLineFourth"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="10dp"
-        android:background="@color/gray"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle4" />
+                <LinearLayout
+                    android:id="@+id/linlayContainer2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-    <ImageButton
-        android:id="@+id/ib5"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        app:layout_constraintBottom_toBottomOf="@id/tvTitle5"
-        app:layout_constraintEnd_toEndOf="@id/guideLineLeftVertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvOrderDate5"
-        tools:background="@color/red" />
+                    <LinearLayout
+                        android:id="@+id/linlayContainer2Left"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvDeliveredStatus5"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintEnd_toStartOf="@id/guideLineLeftVertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ib5"
-        tools:text="Not Delivered" />
+                        <ImageButton
+                            android:id="@+id/ib2"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            tools:background="@color/red" />
 
-    <TextView
-        android:id="@+id/tvOrderDate5"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="10dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
-        app:layout_constraintTop_toBottomOf="@id/horizontalLineFourth"
-        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+                        <TextView
+                            android:id="@+id/tvDeliveredStatus2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            tools:text="Not Delivered" />
 
-    <TextView
-        android:id="@+id/tvOrderNumber5"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
-        app:layout_constraintTop_toBottomOf="@id/tvOrderDate5"
-        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+                    </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvTitle5"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/guideLineLeftVertical"
-        app:layout_constraintTop_toBottomOf="@id/tvOrderNumber5"
-        tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+                    <View
+                        android:id="@+id/verticalLineSecond"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="5dp"
+                        android:layout_marginVertical="10dp"
+                        android:background="@color/gray" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                    <LinearLayout
+                        android:id="@+id/linlayContainer2Right"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvOrderDate2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginTop="10dp"
+                            android:textStyle="bold"
+                            tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+                        <TextView
+                            android:id="@+id/tvOrderNumber2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+
+                            tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+                        <TextView
+                            android:id="@+id/tvTitle2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="20dp"
+                            tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:elevation="4dp"
+                app:cardCornerRadius="20dp">
+
+                <LinearLayout
+                    android:id="@+id/linlayContainer3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/linlayContainer3Left"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/ib3"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            tools:background="@color/red" />
+
+                        <TextView
+                            android:id="@+id/tvDeliveredStatus3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            tools:text="Not Delivered" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/verticalLineThird"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="5dp"
+                        android:layout_marginVertical="10dp"
+                        android:background="@color/gray" />
+
+                    <LinearLayout
+                        android:id="@+id/linlayContainer3Right"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvOrderDate3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginTop="10dp"
+                            android:textStyle="bold"
+                            tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+                        <TextView
+                            android:id="@+id/tvOrderNumber3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+
+                            tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+                        <TextView
+                            android:id="@+id/tvTitle3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="20dp"
+                            tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:elevation="4dp"
+                app:cardCornerRadius="20dp">
+
+                <LinearLayout
+                    android:id="@+id/linlayContainer4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/linlayContainer4Left"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/ib4"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            tools:background="@color/red" />
+
+                        <TextView
+                            android:id="@+id/tvDeliveredStatus4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            tools:text="Not Delivered" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/verticalLineFourth"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="5dp"
+                        android:layout_marginVertical="10dp"
+                        android:background="@color/gray" />
+
+                    <LinearLayout
+                        android:id="@+id/linlayContainer4Right"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvOrderDate4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginTop="10dp"
+                            android:textStyle="bold"
+                            tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+                        <TextView
+                            android:id="@+id/tvOrderNumber4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+
+                            tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+                        <TextView
+                            android:id="@+id/tvTitle4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="20dp"
+                            tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:elevation="4dp"
+                app:cardCornerRadius="20dp">
+
+                <LinearLayout
+                    android:id="@+id/linlayContainer5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/linlayContainer5Left"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/ib5"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            tools:background="@color/red" />
+
+                        <TextView
+                            android:id="@+id/tvDeliveredStatus5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            tools:text="Not Delivered" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/verticalLineFifth"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="5dp"
+                        android:layout_marginVertical="10dp"
+                        android:background="@color/gray" />
+
+                    <LinearLayout
+                        android:id="@+id/linlayContainer5Right"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvOrderDate5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginTop="10dp"
+                            android:textStyle="bold"
+                            tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+                        <TextView
+                            android:id="@+id/tvOrderNumber5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+
+                            tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+                        <TextView
+                            android:id="@+id/tvTitle5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="20dp"
+                            tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:elevation="4dp"
+                app:cardCornerRadius="20dp">
+
+                <LinearLayout
+                    android:id="@+id/linlayContainer6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/linlayContainer6Left"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/ib6"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            tools:background="@color/red" />
+
+                        <TextView
+                            android:id="@+id/tvDeliveredStatus6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            tools:text="Not Delivered" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/verticalLineSixth"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="5dp"
+                        android:layout_marginVertical="10dp"
+                        android:background="@color/gray" />
+
+                    <LinearLayout
+                        android:id="@+id/linlayContainer6Right"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvOrderDate6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginTop="10dp"
+                            android:textStyle="bold"
+                            tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+                        <TextView
+                            android:id="@+id/tvOrderNumber6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+
+                            tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+                        <TextView
+                            android:id="@+id/tvTitle6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="20dp"
+                            tools:text="ADshjadshkj adskjads asdhjkadsadskadsk" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>
