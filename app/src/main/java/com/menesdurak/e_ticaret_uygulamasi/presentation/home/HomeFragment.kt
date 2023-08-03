@@ -1,6 +1,5 @@
 package com.menesdurak.e_ticaret_uygulamasi.presentation.home
 
-import android.location.Geocoder
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -24,7 +23,6 @@ import com.menesdurak.e_ticaret_uygulamasi.databinding.FragmentHomeBinding
 import com.menesdurak.e_ticaret_uygulamasi.presentation.cart.CartViewModel
 import com.menesdurak.e_ticaret_uygulamasi.presentation.categories.CategoriesViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.Locale
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -181,13 +179,6 @@ class HomeFragment : Fragment() {
 
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-        timer?.cancel()
-        timer = null
-    }
-
     private fun onProductClick(product: ProductUi) {
         val action =
             HomeFragmentDirections.actionHomeFragmentToProductDetailFragment(product.id)
@@ -222,5 +213,12 @@ class HomeFragment : Fragment() {
             categoriesViewModel.addFavoriteProduct(favoriteProduct)
             forYouAdapter.updateFavoriteStatusOfProduct(position, favoriteProduct.id)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+        timer?.cancel()
+        timer = null
     }
 }

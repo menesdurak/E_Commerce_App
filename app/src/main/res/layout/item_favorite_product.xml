@@ -10,12 +10,12 @@
         android:id="@+id/ivProduct"
         android:layout_width="160dp"
         android:layout_height="160dp"
+        android:contentDescription="@string/product_image"
         android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/ic_launcher_foreground"
-        android:contentDescription="@string/product_image" />
+        tools:src="@drawable/ic_launcher_foreground" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivFavorite"
@@ -34,12 +34,12 @@
         android:id="@+id/tvProductName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:ellipsize="end"
         android:gravity="center"
+        android:maxLines="3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ivProduct"
-        android:maxLines="3"
-        android:ellipsize="end"
         tools:text="Product Name Will Be Here" />
 
     <RatingBar
@@ -49,12 +49,12 @@
         android:layout_height="wrap_content"
         android:max="5"
         android:numStars="5"
+        android:progressTint="@color/sub2"
+        android:secondaryProgressTint="@color/sub2"
         android:stepSize=".1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvProductName"
-        tools:rating="3.5"
-        android:progressTint="@color/sub2"
-        android:secondaryProgressTint="@color/sub2"/>
+        tools:rating="3.5" />
 
     <TextView
         android:id="@+id/tvRatingCount"
@@ -91,12 +91,12 @@
         android:id="@+id/tvFavoriteDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="2023-07-17 16:51"
-        android:textSize="11sp"
         android:gravity="end"
-        app:layout_constraintTop_toBottomOf="@id/btnBuy"
+        android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/btnBuy"
+        tools:text="2023-07-17 16:51" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

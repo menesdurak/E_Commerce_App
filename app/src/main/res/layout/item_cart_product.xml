@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginVertical="10dp"
     android:background="@drawable/gray_border_slightly_rounded">
 
@@ -11,78 +11,78 @@
         android:id="@+id/ivCargoTruck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/cargo_truck_icon"
         android:src="@drawable/ic_truck"
-        android:contentDescription="@string/cargo_truck_icon" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvCargoInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@id/ivCargoTruck"
         app:layout_constraintTop_toTopOf="@id/ivCargoTruck"
-        tools:text="You will get you cargo in 2 days"
-        android:textSize="12sp"
-        android:layout_marginStart="10dp"/>
+        tools:text="You will get you cargo in 2 days" />
 
     <CheckBox
         android:id="@+id/checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/ivProduct"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/ivProduct"
-        app:layout_constraintBottom_toBottomOf="@id/ivProduct"/>
+        app:layout_constraintTop_toTopOf="@id/ivProduct" />
 
     <ImageView
         android:id="@+id/ivProduct"
         android:layout_width="140dp"
         android:layout_height="140dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/product_image"
         android:src="@drawable/ic_launcher_foreground"
         app:layout_constraintStart_toEndOf="@id/checkbox"
-        app:layout_constraintTop_toBottomOf="@id/tvCargoInfo"
-        android:layout_marginTop="10dp"
-        android:contentDescription="@string/product_image" />
+        app:layout_constraintTop_toBottomOf="@id/tvCargoInfo" />
 
     <LinearLayout
         android:id="@+id/linlayAmountContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="@id/ivProduct"
         app:layout_constraintEnd_toEndOf="@id/ivProduct"
+        app:layout_constraintStart_toStartOf="@id/ivProduct"
         app:layout_constraintTop_toBottomOf="@id/ivProduct">
 
         <ImageView
             android:id="@+id/ivDecrease"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_delete_outlined"
-            app:tint="@color/main"
             android:layout_gravity="center"
+            android:contentDescription="@string/decrease_product_amount_icon"
             android:padding="4dp"
-            android:contentDescription="@string/decrease_product_amount_icon" />
+            android:src="@drawable/ic_delete_outlined"
+            app:tint="@color/main" />
 
         <TextView
             android:id="@+id/tvAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="1"
-            android:textSize="24sp"
             android:layout_gravity="center"
-            android:padding="4dp"/>
+            android:padding="4dp"
+            android:textSize="24sp"
+            tools:text="1" />
 
         <ImageView
             android:id="@+id/ivIncrease"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_add"
-            app:tint="@color/main"
             android:layout_gravity="center"
+            android:contentDescription="@string/increase_product_amount_icon"
             android:padding="4dp"
-            android:contentDescription="@string/increase_product_amount_icon" />
+            android:src="@drawable/ic_add"
+            app:tint="@color/main" />
 
     </LinearLayout>
 
@@ -90,24 +90,24 @@
         android:id="@+id/tvProductName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/ivProduct"
-        app:layout_constraintStart_toEndOf="@id/ivProduct"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Product name will be here Product name will be here Product name will be here"
-        android:maxLines="2"
+        android:layout_marginHorizontal="10dp"
         android:ellipsize="end"
-        android:layout_marginHorizontal="10dp"/>
+        android:maxLines="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivProduct"
+        app:layout_constraintTop_toTopOf="@id/ivProduct"
+        tools:text="Product name will be here Product name will be here Product name will be here" />
 
     <TextView
         android:id="@+id/tvPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="3000 $"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="3000 $" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

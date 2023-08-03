@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".presentation.user.my_credit_cards.UserCreditCardFragment">
 
     <ScrollView
@@ -72,6 +71,7 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="10dp"
                     android:background="@drawable/gray_background_slightly_rounded"
+                    android:hint="@string/credit_card_number_hint"
                     android:inputType="number"
                     android:nextFocusDown="@id/etCardHolder"
                     android:paddingStart="15dp"
@@ -98,9 +98,9 @@
                     android:layout_marginHorizontal="10dp"
                     android:background="@drawable/gray_background_slightly_rounded"
                     android:hint="@string/credit_card_s_holder_name_and_surname"
-                    android:paddingStart="15dp"
-                    android:nextFocusDown="@id/etExpireDate"
                     android:inputType="text"
+                    android:nextFocusDown="@id/etExpireDate"
+                    android:paddingStart="15dp"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintTop_toBottomOf="@id/tvCardHolder" />
@@ -126,8 +126,8 @@
                     android:background="@drawable/gray_background_slightly_rounded"
                     android:hint="@string/month_year"
                     android:inputType="phone"
-                    android:paddingStart="15dp"
                     android:nextFocusDown="@id/etSecurityCode"
+                    android:paddingStart="15dp"
                     app:layout_constraintEnd_toStartOf="@id/verticalGuideline"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvExpireDate" />
@@ -170,8 +170,8 @@
                     android:id="@+id/btnSaveCard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="10dp"
                     android:text="@string/save_credit_card"
                     app:layout_constraintTop_toBottomOf="@id/etSecurityCode" />
 

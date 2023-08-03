@@ -119,13 +119,18 @@ class CategoriesFragment : Fragment() {
                     binding.progressBar.visibility = View.GONE
                     categoryProductAdapter.updateList(ProductListToProductUiListMapper().map(it.data))
 
-                    binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+                    binding.searchView.setOnQueryTextListener(object :
+                        SearchView.OnQueryTextListener {
                         override fun onQueryTextSubmit(query: String?): Boolean {
                             return false
                         }
 
                         override fun onQueryTextChange(newText: String?): Boolean {
-                            filterProducts(newText ?: "", ProductListToProductUiListMapper().map(it.data), categoryProductAdapter)
+                            filterProducts(
+                                newText ?: "",
+                                ProductListToProductUiListMapper().map(it.data),
+                                categoryProductAdapter
+                            )
                             return true
                         }
 
@@ -204,7 +209,11 @@ class CategoriesFragment : Fragment() {
         }
     }
 
-    private fun filterProducts(query: String, productList: List<ProductUi>, adapter: CategoryProductAdapter) {
+    private fun filterProducts(
+        query: String,
+        productList: List<ProductUi>,
+        adapter: CategoryProductAdapter,
+    ) {
         val filteredList = productList.filter {
             it.title.contains(query, ignoreCase = true)
         }

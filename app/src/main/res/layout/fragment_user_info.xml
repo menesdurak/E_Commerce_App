@@ -11,9 +11,9 @@
         android:id="@+id/constraintTop"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/backgroundSoft"
         app:layout_constraintBottom_toTopOf="@id/guideLine"
-        android:background="@color/backgroundSoft">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tvTitle"
@@ -50,33 +50,33 @@
             android:id="@+id/ivUserImage"
             android:layout_width="160dp"
             android:layout_height="160dp"
-            android:layout_marginTop="80dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:scaleType="fitXY"
             android:src="@drawable/ic_person_gray"
-            app:shapeAppearanceOverlay="@style/Circular"
-            android:scaleType="fitXY"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:shapeAppearanceOverlay="@style/Circular" />
 
         <ImageView
             android:id="@+id/ivChangeImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/ivUserImage"
+            android:src="@drawable/ic_add_photo"
             app:layout_constraintEnd_toEndOf="@id/ivUserImage"
-            android:src="@drawable/ic_add_photo"/>
+            app:layout_constraintTop_toTopOf="@id/ivUserImage" />
 
         <TextView
             android:id="@+id/tvUserName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/ivUserImage"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:textSize="24sp"
             android:textStyle="bold"
-            tools:text="Enes Durak"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivUserImage"
+            tools:text="Enes Durak" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -85,17 +85,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4"/>
+        app:layout_constraintGuide_percent="0.4" />
 
     <ImageView
         android:id="@+id/ivAddressIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_address"
         android:layout_marginStart="40dp"
+        android:src="@drawable/ic_address"
+        app:layout_constraintBottom_toBottomOf="@id/tvUserAddressInfo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvUserAddressInfo"
-        app:layout_constraintBottom_toBottomOf="@id/tvUserAddressInfo"/>
+        app:layout_constraintTop_toTopOf="@id/tvUserAddressInfo" />
 
     <TextView
         android:id="@+id/tvUserAddressInfo"
@@ -115,23 +115,23 @@
 
     <View
         android:id="@+id/horizontalLineAddress"
-        android:layout_width="150dp"
+        android:layout_width="250dp"
         android:layout_height="2dp"
         android:layout_marginTop="20dp"
         android:background="@color/gray"
-        app:layout_constraintTop_toBottomOf="@id/tvUserAddressInfo"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/tvUserAddressInfo" />
 
     <ImageView
         android:id="@+id/ivPhoneIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvUserPhoneInfo"
+        android:src="@drawable/ic_phone"
         app:layout_constraintBottom_toBottomOf="@id/tvUserPhoneInfo"
-        android:src="@drawable/ic_phone"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvUserPhoneInfo" />
 
     <TextView
         android:id="@+id/tvUserPhoneInfo"

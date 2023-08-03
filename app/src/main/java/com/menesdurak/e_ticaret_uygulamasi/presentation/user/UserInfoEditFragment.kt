@@ -65,10 +65,10 @@ class UserInfoEditFragment : Fragment() {
         }
 
         binding.btnSave.setOnClickListener {
-            if (binding.etUserName.text.isNotBlank()
-                && binding.etUserSurname.text.isNotBlank()
-                && binding.etUserAddress.text.isNotBlank()
-                && binding.etUserPhone.text.isNotBlank()
+            if (binding.etUserName.text!!.isNotBlank()
+                && binding.etUserSurname.text!!.isNotBlank()
+                && binding.etUserAddress.text!!.isNotBlank()
+                && binding.etUserPhone.text!!.isNotBlank()
             ) {
                 val name = binding.etUserName.text.toString()
                 val surName = binding.etUserSurname.text.toString()
