@@ -3,7 +3,7 @@ package com.menesdurak.e_ticaret_uygulamasi.di
 import android.app.Application
 import com.menesdurak.e_ticaret_uygulamasi.data.local.CartDao
 import com.menesdurak.e_ticaret_uygulamasi.data.local.CreditCardDao
-import com.menesdurak.e_ticaret_uygulamasi.data.local.ETicaretDao
+import com.menesdurak.e_ticaret_uygulamasi.data.local.FavoriteDao
 import com.menesdurak.e_ticaret_uygulamasi.data.local.ETicaretDatabase
 import com.menesdurak.e_ticaret_uygulamasi.data.repository.LocalRepositoryImpl
 import com.menesdurak.e_ticaret_uygulamasi.domain.repository.LocalRepository
@@ -25,8 +25,8 @@ object RoomModule {
 
     @Provides
     @Singleton
-    fun getETicaretDao(eTicaretDatabase: ETicaretDatabase): ETicaretDao {
-        return eTicaretDatabase.getETicaretDao()
+    fun getFavoriteDao(eTicaretDatabase: ETicaretDatabase): FavoriteDao {
+        return eTicaretDatabase.getFavoriteDao()
     }
 
     @Provides
@@ -44,10 +44,10 @@ object RoomModule {
     @Provides
     @Singleton
     fun provideLocalRepository(
-        eTicaretDao: ETicaretDao,
+        favoriteDao: FavoriteDao,
         cartDao: CartDao,
         creditCardDao: CreditCardDao,
     ): LocalRepository {
-        return LocalRepositoryImpl(eTicaretDao, cartDao, creditCardDao)
+        return LocalRepositoryImpl(favoriteDao, cartDao, creditCardDao)
     }
 }

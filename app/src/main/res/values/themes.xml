@@ -12,8 +12,8 @@
     <style name="Theme.E_Ticaret_Uygulamasi" parent="Base.Theme.E_Ticaret_Uygulamasi" />
 
     <style name="Theme.E_Ticaret_Uygulamasi.Starting" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/main</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/hepsiburada</item>
+        <item name="windowSplashScreenBackground">@color/sub2</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/e_commerce_logo</item>
         <item name="postSplashScreenTheme">@style/Theme.E_Ticaret_Uygulamasi</item>
     </style>
 

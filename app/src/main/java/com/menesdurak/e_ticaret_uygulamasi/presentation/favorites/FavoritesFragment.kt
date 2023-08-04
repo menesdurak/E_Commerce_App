@@ -126,7 +126,7 @@ class FavoritesFragment : Fragment() {
             ?.findViewById<Button>(R.id.btnBuy)
         button?.setBackgroundColor(binding.root.resources.getColor(R.color.sub2, null))
         button?.text = getString(R.string.in_cart)
-        timer = object : CountDownTimer(2000, 50) {
+        timer = object : CountDownTimer(1000, 50) {
             override fun onTick(millisUntilFinished: Long) {
 
             }

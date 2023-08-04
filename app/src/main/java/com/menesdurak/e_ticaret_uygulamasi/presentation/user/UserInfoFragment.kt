@@ -1,10 +1,13 @@
 package com.menesdurak.e_ticaret_uygulamasi.presentation.user
 
+import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import androidx.fragment.app.Fragment
@@ -12,6 +15,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -28,6 +33,8 @@ import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.UserInfo
 import com.menesdurak.e_ticaret_uygulamasi.databinding.FragmentUserInfoBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
+
+const val PERMISSION_REQUEST_CODE = 1001
 
 @AndroidEntryPoint
 class UserInfoFragment : Fragment() {
@@ -59,6 +66,27 @@ class UserInfoFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
+
+        //Push Notification Permission
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            // Check if the permission has been granted
+            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED
+            ) {
+                // Request the permission
+                ActivityCompat.requestPermissions(
+                    requireActivity(),
+                    arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                    PERMISSION_REQUEST_CODE
+                )
+            } else {
+                // Permission already granted, proceed with your app logic for push notifications.
+            }
+        } else {
+            // For Android versions below 13, permissions are granted at install time.
+            // Proceed with your app logic for push notifications.
+        }
+
         _binding = FragmentUserInfoBinding.inflate(inflater, container, false)
         val view = binding.root
 
@@ -137,6 +165,21 @@ class UserInfoFragment : Fragment() {
 
     private fun signOutUser() {
         Firebase.auth.signOut()
+    }
+
+    // Handle the permission request result
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // The permission is granted, proceed with your app logic for push notifications.
+            } else {
+                // The permission is denied. Handle this situation accordingly.
+            }
+        }
     }
 
     override fun onDestroyView() {

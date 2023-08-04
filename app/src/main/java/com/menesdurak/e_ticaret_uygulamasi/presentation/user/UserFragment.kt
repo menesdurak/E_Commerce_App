@@ -157,6 +157,11 @@ class UserFragment : Fragment() {
             findNavController().navigate(action)
         }
 
+        binding.tvFaq.setOnClickListener {
+            val action = UserFragmentDirections.actionUserFragmentToMapsFragment()
+            findNavController().navigate(action)
+        }
+
     }
 
     override fun onDestroyView() {

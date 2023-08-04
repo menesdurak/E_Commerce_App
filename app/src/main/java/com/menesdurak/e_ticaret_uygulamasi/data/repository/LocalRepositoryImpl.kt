@@ -2,7 +2,7 @@ package com.menesdurak.e_ticaret_uygulamasi.data.repository
 
 import com.menesdurak.e_ticaret_uygulamasi.data.local.CartDao
 import com.menesdurak.e_ticaret_uygulamasi.data.local.CreditCardDao
-import com.menesdurak.e_ticaret_uygulamasi.data.local.ETicaretDao
+import com.menesdurak.e_ticaret_uygulamasi.data.local.FavoriteDao
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.CartProduct
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.CreditCardInfo
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.FavoriteProduct
@@ -10,20 +10,20 @@ import com.menesdurak.e_ticaret_uygulamasi.domain.repository.LocalRepository
 import javax.inject.Inject
 
 class LocalRepositoryImpl @Inject constructor(
-    private val eTicaretDao: ETicaretDao,
+    private val favoriteDao: FavoriteDao,
     private val cartDao: CartDao,
     private val creditCardDao: CreditCardDao
 ) : LocalRepository {
     override suspend fun getAllFavoriteProducts(): List<FavoriteProduct> {
-        return eTicaretDao.getAllFavoriteProducts()
+        return favoriteDao.getAllFavoriteProducts()
     }
 
     override suspend fun addFavoriteProduct(favoriteProduct: FavoriteProduct) {
-        eTicaretDao.addFavoriteProduct(favoriteProduct)
+        favoriteDao.addFavoriteProduct(favoriteProduct)
     }
 
     override suspend fun deleteFavoriteProductWithId(favoriteProductId: Int) {
-        eTicaretDao.deleteFavoriteProductWithId(favoriteProductId)
+        favoriteDao.deleteFavoriteProductWithId(favoriteProductId)
     }
 
     override suspend fun getAllCartProducts(): List<CartProduct> {

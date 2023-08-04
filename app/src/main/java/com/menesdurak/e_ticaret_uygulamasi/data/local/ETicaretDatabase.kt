@@ -14,7 +14,7 @@ import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.FavoriteProduct
 )
 abstract class ETicaretDatabase : RoomDatabase() {
 
-    abstract fun getETicaretDao(): ETicaretDao
+    abstract fun getFavoriteDao(): FavoriteDao
     abstract fun getCartDao(): CartDao
     abstract fun getCreditCardDao(): CreditCardDao
 

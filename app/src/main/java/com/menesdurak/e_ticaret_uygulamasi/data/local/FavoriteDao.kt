@@ -7,7 +7,7 @@ import androidx.room.Query
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.FavoriteProduct
 
 @Dao
-interface ETicaretDao {
+interface FavoriteDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addFavoriteProduct(favoriteProduct: FavoriteProduct)

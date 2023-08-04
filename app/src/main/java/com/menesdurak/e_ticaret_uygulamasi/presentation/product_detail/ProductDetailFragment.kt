@@ -149,7 +149,7 @@ class ProductDetailFragment : Fragment() {
 
             binding.btnBuy.setBackgroundColor(binding.root.resources.getColor(R.color.sub2, null))
             binding.btnBuy.text = getString(R.string.in_cart)
-            timer = object : CountDownTimer(2000, 50) {
+            timer = object : CountDownTimer(1000, 50) {
                 override fun onTick(millisUntilFinished: Long) {
 
                 }
