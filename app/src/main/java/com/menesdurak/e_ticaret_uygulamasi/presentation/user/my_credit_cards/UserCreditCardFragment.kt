@@ -20,7 +20,6 @@ import com.menesdurak.e_ticaret_uygulamasi.common.getFirstTwoChar
 import com.menesdurak.e_ticaret_uygulamasi.common.getLastTwoChar
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.CreditCardInfo
 import com.menesdurak.e_ticaret_uygulamasi.databinding.FragmentUserCreditCardBinding
-import com.menesdurak.e_ticaret_uygulamasi.presentation.cart.payment.CreditCardAdapter
 import com.menesdurak.e_ticaret_uygulamasi.presentation.cart.payment.CreditCardViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

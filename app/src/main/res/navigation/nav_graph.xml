@@ -141,7 +141,7 @@
         tools:layout="@layout/fragment_user_credit_card" />
     <fragment
         android:id="@+id/mapsFragment"
-        android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.user.MapsFragment"
+        android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.user.map.MapsFragment"
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps" />
 </navigation>

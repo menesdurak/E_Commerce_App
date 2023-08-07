@@ -9,7 +9,7 @@ import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.CreditCardInfo
 @Dao
 interface CreditCardDao {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addCreditCard(creditCardInfo: CreditCardInfo)
 
     @Query("DELETE FROM credit_card_table WHERE id = :creditCardId")

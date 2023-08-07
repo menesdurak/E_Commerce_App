@@ -91,6 +91,22 @@
                 android:textSize="16sp" />
 
             <View
+                android:id="@+id/horizontalLineSecWarnings"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="20dp"
+                android:background="@color/gray" />
+
+            <TextView
+                android:id="@+id/tvStoreLocations"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="8dp"
+                android:text="@string/store_locations"
+                android:textSize="16sp" />
+
+            <View
                 android:id="@+id/horizontalLineContactUs"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -120,22 +136,6 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="8dp"
                 android:text="@string/frequently_asked_questions"
-                android:textSize="16sp" />
-
-            <View
-                android:id="@+id/horizontalLineSecWarnings"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginHorizontal="20dp"
-                android:background="@color/gray" />
-
-            <TextView
-                android:id="@+id/tvSecurityWarnings"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginVertical="8dp"
-                android:text="@string/security_warnings"
                 android:textSize="16sp" />
 
         </LinearLayout>

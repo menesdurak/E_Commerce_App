@@ -5,6 +5,7 @@ import com.menesdurak.e_ticaret_uygulamasi.data.local.CartDao
 import com.menesdurak.e_ticaret_uygulamasi.data.local.CreditCardDao
 import com.menesdurak.e_ticaret_uygulamasi.data.local.FavoriteDao
 import com.menesdurak.e_ticaret_uygulamasi.data.local.ETicaretDatabase
+import com.menesdurak.e_ticaret_uygulamasi.data.local.LocationDao
 import com.menesdurak.e_ticaret_uygulamasi.data.repository.LocalRepositoryImpl
 import com.menesdurak.e_ticaret_uygulamasi.domain.repository.LocalRepository
 import dagger.Module
@@ -43,11 +44,18 @@ object RoomModule {
 
     @Provides
     @Singleton
+    fun getLocationDao(eTicaretDatabase: ETicaretDatabase): LocationDao {
+        return eTicaretDatabase.getLocationDao()
+    }
+
+    @Provides
+    @Singleton
     fun provideLocalRepository(
         favoriteDao: FavoriteDao,
         cartDao: CartDao,
         creditCardDao: CreditCardDao,
+        locationDao: LocationDao
     ): LocalRepository {
-        return LocalRepositoryImpl(favoriteDao, cartDao, creditCardDao)
+        return LocalRepositoryImpl(favoriteDao, cartDao, creditCardDao, locationDao)
     }
 }

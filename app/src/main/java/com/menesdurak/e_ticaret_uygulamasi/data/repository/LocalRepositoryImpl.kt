@@ -3,16 +3,19 @@ package com.menesdurak.e_ticaret_uygulamasi.data.repository
 import com.menesdurak.e_ticaret_uygulamasi.data.local.CartDao
 import com.menesdurak.e_ticaret_uygulamasi.data.local.CreditCardDao
 import com.menesdurak.e_ticaret_uygulamasi.data.local.FavoriteDao
+import com.menesdurak.e_ticaret_uygulamasi.data.local.LocationDao
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.CartProduct
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.CreditCardInfo
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.FavoriteProduct
+import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.Location
 import com.menesdurak.e_ticaret_uygulamasi.domain.repository.LocalRepository
 import javax.inject.Inject
 
 class LocalRepositoryImpl @Inject constructor(
     private val favoriteDao: FavoriteDao,
     private val cartDao: CartDao,
-    private val creditCardDao: CreditCardDao
+    private val creditCardDao: CreditCardDao,
+    private val locationDao: LocationDao
 ) : LocalRepository {
     override suspend fun getAllFavoriteProducts(): List<FavoriteProduct> {
         return favoriteDao.getAllFavoriteProducts()
@@ -79,6 +82,22 @@ class LocalRepositoryImpl @Inject constructor(
     }
 
     override suspend fun updateCreditCardActiveStatus(isActive: Boolean, creditCardId: Short) {
-        updateCreditCardActiveStatus(isActive, creditCardId)
+        creditCardDao.updateCreditCardActiveStatus(isActive, creditCardId)
+    }
+
+    override suspend fun addLocation(location: Location) {
+        locationDao.addLocation(location)
+    }
+
+    override suspend fun deleteLocationWithId(locationId: Int) {
+        locationDao.deleteLocationWithId(locationId)
+    }
+
+    override suspend fun deleteAllLocations() {
+        locationDao.deleteAllLocations()
+    }
+
+    override suspend fun getAllLocations(): List<Location> {
+        return locationDao.getAllLocations()
     }
 }

@@ -1,8 +1,12 @@
 package com.menesdurak.e_ticaret_uygulamasi.domain.repository
 
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.CartProduct
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.CreditCardInfo
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.FavoriteProduct
+import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.Location
 
 interface LocalRepository {
 
@@ -39,4 +43,12 @@ interface LocalRepository {
     suspend fun getAllCreditCards(): List<CreditCardInfo>
 
     suspend fun updateCreditCardActiveStatus(isActive: Boolean, creditCardId: Short)
+
+    suspend fun addLocation(location: Location)
+
+    suspend fun deleteLocationWithId(locationId: Int)
+
+    suspend fun deleteAllLocations()
+
+    suspend fun getAllLocations(): List<Location>
 }

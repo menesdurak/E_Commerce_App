@@ -1,7 +1,10 @@
 package com.menesdurak.e_ticaret_uygulamasi.presentation.user
 
+import android.Manifest
 import android.app.AlertDialog
+import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,6 +13,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -29,6 +34,8 @@ import com.menesdurak.e_ticaret_uygulamasi.presentation.cart.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.util.Locale
+
+const val PERMISSION_REQUEST_CODE = 1001
 
 @AndroidEntryPoint
 class UserFragment : Fragment() {
@@ -55,6 +62,26 @@ class UserFragment : Fragment() {
     ): View {
         _binding = FragmentUserBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        //Push Notification Permission
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            // Check if the permission has been granted
+            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED
+            ) {
+                // Request the permission
+                ActivityCompat.requestPermissions(
+                    requireActivity(),
+                    arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                    PERMISSION_REQUEST_CODE
+                )
+            } else {
+                // Permission already granted, proceed with your app logic for push notifications.
+            }
+        } else {
+            // For Android versions below 13, permissions are granted at install time.
+            // Proceed with your app logic for push notifications.
+        }
 
         bottomNavView = requireActivity().findViewById(R.id.bottomNavMenu)
         bottomNavView.menu.getItem(4).isChecked = true
@@ -157,11 +184,26 @@ class UserFragment : Fragment() {
             findNavController().navigate(action)
         }
 
-        binding.tvFaq.setOnClickListener {
+        binding.tvStoreLocations.setOnClickListener {
             val action = UserFragmentDirections.actionUserFragmentToMapsFragment()
             findNavController().navigate(action)
         }
 
+    }
+
+    // Handle the permission request result
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // The permission is granted, proceed with your app logic for push notifications.
+            } else {
+                // The permission is denied. Handle this situation accordingly.
+            }
+        }
     }
 
     override fun onDestroyView() {
