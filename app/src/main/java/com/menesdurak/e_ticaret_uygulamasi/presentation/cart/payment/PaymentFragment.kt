@@ -227,25 +227,6 @@ class PaymentFragment : Fragment() {
                 cartViewModel.checkedAllCartProductsList.observe(viewLifecycleOwner) {
                     when (it) {
                         is Resource.Success -> {
-//                            val ordersReference =
-//                                databaseReference.child(auth.currentUser?.uid!!).child("orders")
-//                            val newOrderReference = ordersReference.push()
-//                            val newOrderKey = newOrderReference.key
-//                            val orderList =
-//                                CartProductListToBoughtProductListMapper(
-//                                    binding.etUserAddressInfo.text.toString(),
-//                                    activeCreditCardNumber
-//                                ).map(it.data)
-//
-//                            for (index in orderList.indices) {
-//                                val newOrderInsideReference =
-//                                    ordersReference.child(newOrderKey!!).push()
-//                                val newOrderInsideKey = newOrderInsideReference.key
-//                                ordersReference.child(newOrderKey).child(newOrderInsideKey!!)
-//                                    .setValue(orderList[index])
-//                            }
-
-                            //-----------------------------------------------
                             val ordersReference =
                                 databaseReference.child(auth.currentUser?.uid!!).child("orders")
                             val newOrderReference = ordersReference.push()
@@ -253,10 +234,10 @@ class PaymentFragment : Fragment() {
                             val orderList =
                                 CartProductListToBoughtProductListMapper(
                                     binding.etUserAddressInfo.text.toString(),
-                                    activeCreditCardNumber
+                                    activeCreditCardNumber,
+                                    newOrderKey!!
                                 ).map(it.data)
                             newOrderReference.setValue(orderList)
-                            //-----------------------------------------------
 
                             cartViewModel.deleteAllCheckedCartProducts()
                             totalPrice = 0.0

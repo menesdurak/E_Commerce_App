@@ -1,9 +1,7 @@
 package com.menesdurak.e_ticaret_uygulamasi.data.remote.dto
 
-import com.google.firebase.database.IgnoreExtraProperties
 
-@IgnoreExtraProperties
-data class BoughtProductFirebase(
+data class BoughtProduct(
     var category: String? = "",
     var description: String? = "",
     var id: Int? = -1,
@@ -14,5 +12,6 @@ data class BoughtProductFirebase(
     var isDelivered: Boolean? = false,
     var creditCardNumber: String? = "",
     var address: String? = "",
-    var orderDate: String? = ""
+    var orderDate: String? = "",
+    var orderNumber: String? = ""
 )

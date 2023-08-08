@@ -131,7 +131,7 @@
     </fragment>
     <fragment
         android:id="@+id/ordersFragment"
-        android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.orders.OrdersFragment"
+        android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.user.orders.OrdersFragment"
         android:label="fragment_orders"
         tools:layout="@layout/fragment_orders" />
     <fragment

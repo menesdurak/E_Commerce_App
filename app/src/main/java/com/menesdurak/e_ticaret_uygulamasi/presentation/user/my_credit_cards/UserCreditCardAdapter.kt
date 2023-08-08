@@ -19,8 +19,6 @@ class UserCreditCardAdapter(
 
     private val itemList = mutableListOf<CreditCardInfo>()
 
-    var activeItemPosition = -1
-
     private var counter = 0
 
     inner class CreditCardHolder(private val binding: ItemCreditCardUserBinding) :

@@ -17,9 +17,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.menesdurak.e_ticaret_uygulamasi.R
 import com.menesdurak.e_ticaret_uygulamasi.common.Resource
 import com.menesdurak.e_ticaret_uygulamasi.common.addOnScrollHiddenView
+import com.menesdurak.e_ticaret_uygulamasi.data.mapper.CategoryListToCategoryUiListMapper
 import com.menesdurak.e_ticaret_uygulamasi.data.mapper.ProductListToProductUiListMapper
 import com.menesdurak.e_ticaret_uygulamasi.data.mapper.ProductUiToCartProductMapper
 import com.menesdurak.e_ticaret_uygulamasi.data.mapper.ProductUiToFavoriteProductMapper
+import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.CategoryUi
 import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.ProductUi
 import com.menesdurak.e_ticaret_uygulamasi.databinding.FragmentCategoriesBinding
 import com.menesdurak.e_ticaret_uygulamasi.presentation.cart.CartViewModel
@@ -42,7 +44,7 @@ class CategoriesFragment : Fragment() {
     }
     private lateinit var bottomNavView: BottomNavigationView
 
-    private var categoryName = "electronics"
+    private var categoryName = "all"
 
     private var timer: CountDownTimer? = null
 
@@ -65,7 +67,7 @@ class CategoriesFragment : Fragment() {
 
         categoriesViewModel.getAllCategories()
         categoriesViewModel.getAllFavoriteProductsId()
-        categoriesViewModel.getProductsFromCategory(categoryName)
+        categoriesViewModel.getAllProducts()
 
         cartViewModel.getAllCheckedCartProducts()
 
@@ -96,8 +98,11 @@ class CategoriesFragment : Fragment() {
         categoriesViewModel.categoriesList.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Success -> {
+                    val categories = it.data.toMutableList()
+                    categories.add(0, "all")
+                    categoryAdapter.updateList(CategoryListToCategoryUiListMapper().map(categories))
+                    categoryAdapter.updateCheckedStatus(0)
                     binding.progressBar.visibility = View.GONE
-                    categoryAdapter.updateList(it.data)
                 }
 
                 is Resource.Error -> {
@@ -168,8 +173,13 @@ class CategoriesFragment : Fragment() {
 
     }
 
-    private fun onCategoryClick(categoryName: String) {
-        categoriesViewModel.getProductsFromCategory(categoryName)
+    private fun onCategoryClick(position: Int, category: CategoryUi) {
+        if (category.name != "all"){
+            categoriesViewModel.getProductsFromCategory(category.name)
+        } else {
+            categoriesViewModel.getAllProducts()
+        }
+        categoryAdapter.updateCheckedStatus(position)
         binding.progressBar.visibility = View.VISIBLE
     }
 

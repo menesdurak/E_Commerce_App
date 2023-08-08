@@ -14,6 +14,10 @@ class RemoteRepositoryImpl @Inject constructor(private val api: ETicaretApi) : R
         return api.getProductsFromCategory(categoryName)
     }
 
+    override suspend fun getAllProducts(): List<Product> {
+        return api.getAllProducts()
+    }
+
     override suspend fun getSingleProduct(productId: Int): Product {
         return api.getSingleProduct(productId)
     }

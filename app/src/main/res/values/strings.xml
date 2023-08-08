@@ -84,4 +84,5 @@
     <string name="user_information">User Information</string>
     <string name="credit_card_number_hint">**** **** **** ****</string>
     <string name="store_locations">Store Locations</string>
+    <string name="language">Language</string>
 </resources>

@@ -11,6 +11,7 @@ import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.add_favorite_product.
 import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.delete_favorite_product.DeleteFavoriteProductUseCase
 import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.get_all_categories.GetAllCategoriesUseCase
 import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.get_all_favorite_products_id.GetAllFavoriteProductsIdUseCase
+import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.get_all_products.GetAllProductsUseCase
 import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.get_products_from_category.GetProductsFromCategoryUseCase
 import com.menesdurak.e_ticaret_uygulamasi.domain.use_case.get_single_product.GetSingleProductUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,6 +26,7 @@ class CategoriesViewModel @Inject constructor(
     private val deleteFavoriteProductUseCase: DeleteFavoriteProductUseCase,
     private val getAllFavoriteProductsIdUseCase: GetAllFavoriteProductsIdUseCase,
     private val getSingleProductUseCase: GetSingleProductUseCase,
+    private val getAllProductsUseCase: GetAllProductsUseCase,
 ) : ViewModel() {
 
     private val _categoriesList = MutableLiveData<Resource<List<String>>>(Resource.Loading)
@@ -44,6 +46,13 @@ class CategoriesViewModel @Inject constructor(
         viewModelScope.launch {
             _categoriesList.value = Resource.Loading
             _categoriesList.value = getAllCategoriesUseCase()!!
+        }
+    }
+
+    fun getAllProducts() {
+        viewModelScope.launch {
+            _productsList.value = Resource.Loading
+            _productsList.value = getAllProductsUseCase()!!
         }
     }
 

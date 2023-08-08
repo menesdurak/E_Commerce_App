@@ -130,7 +130,7 @@ class UserFragment : Fragment() {
             val currentLanguage = Locale.getDefault().language
 
             val builder = AlertDialog.Builder(requireContext())
-            builder.setTitle("Language")
+            builder.setTitle(getString(R.string.language))
             val customAlertLayout =
                 layoutInflater.inflate(R.layout.alert_dialog_language_picker, null)
 

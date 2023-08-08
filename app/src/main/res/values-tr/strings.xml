@@ -83,4 +83,6 @@
     <string name="credit_cards">Kredi Kartlarım</string>
     <string name="user_information">Kullanıcı Bilgileri</string>
     <string name="credit_card_number_hint">**** **** **** ****</string>
+    <string name="store_locations">Mağaza Lokasyonları</string>
+    <string name="language">Dil</string>
 </resources>

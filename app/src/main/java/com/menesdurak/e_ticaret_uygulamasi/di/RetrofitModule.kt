@@ -18,7 +18,7 @@ object RetrofitModule {
 
     @Provides
     @Singleton
-    fun provideDeezerApi(): ETicaretApi {
+    fun provideETicaretApi(): ETicaretApi {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())

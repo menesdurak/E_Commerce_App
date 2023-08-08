@@ -1,8 +1,5 @@
 package com.menesdurak.e_ticaret_uygulamasi.domain.repository
 
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.CartProduct
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.CreditCardInfo
 import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.FavoriteProduct
