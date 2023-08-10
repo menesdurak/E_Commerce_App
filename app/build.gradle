@@ -9,6 +9,9 @@ plugins {
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+
 android {
     namespace 'com.menesdurak.e_ticaret_uygulamasi'
     compileSdk 33
@@ -24,6 +27,9 @@ android {
     }
 
     buildTypes {
+        debug {
+            resValue("string", "google_maps_key", localProperties['MAPS_API_KEY'])
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -44,6 +50,7 @@ android {
 dependencies {
 
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
+    implementation 'androidx.media3:media3-common:1.1.0'
     def retrofit_version = '2.9.0'
     def room_version = "2.5.1"
     def nav_version = '2.6.0'
@@ -105,8 +112,9 @@ dependencies {
     implementation "androidx.core:core-splashscreen:1.0.1"
 
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
-    implementation 'com.google.maps:google-maps-services:0.2.11'
+    implementation 'com.google.maps:google-maps-services:0.17.0'
     implementation 'com.google.maps.android:android-maps-utils:2.2.1'
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
 
 }
 // Allow references to generated code

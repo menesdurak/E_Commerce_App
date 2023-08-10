@@ -5,13 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.menesdurak.e_ticaret_uygulamasi.R
-import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.FavoriteProduct
 import com.menesdurak.e_ticaret_uygulamasi.databinding.ViewPagerItemBinding
 
-class HomeViewPagerAdapter(
-    private val onAdClick: (Int, Int) -> Unit,
-) :
-    RecyclerView.Adapter<HomeViewPagerAdapter.ImageHolder>() {
+class HomeDetailViewPagerAdapter: RecyclerView.Adapter<HomeDetailViewPagerAdapter.ImageHolder>() {
 
     private val itemList = mutableListOf<Int>()
 
@@ -24,10 +20,6 @@ class HomeViewPagerAdapter(
                 .load(itemList[adapterPosition])
                 .placeholder(R.drawable.loading_200x200)
                 .into(binding.ivViewPager)
-
-            binding.root.setOnClickListener {
-                onAdClick.invoke(adapterPosition, image)
-            }
 
         }
     }

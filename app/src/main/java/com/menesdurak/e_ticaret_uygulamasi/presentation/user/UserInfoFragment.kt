@@ -45,7 +45,7 @@ class UserInfoFragment : Fragment() {
 
     private lateinit var userInfo: UserInfo
 
-    private var imageStorageTask : StorageTask<FileDownloadTask.TaskSnapshot>? = null
+    private var imageStorageTask: StorageTask<FileDownloadTask.TaskSnapshot>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +65,8 @@ class UserInfoFragment : Fragment() {
 
         // Create a storage reference from our app
         storageRef = Firebase.storage.reference
-        storageRef2 = FirebaseStorage.getInstance().reference.child("images/${auth.currentUser!!.uid}.jpg")
+        storageRef2 =
+            FirebaseStorage.getInstance().reference.child("images/${auth.currentUser!!.uid}.jpg")
         imagesRef = storageRef.child("images/${auth.currentUser!!.uid}.jpg")
 
         val localFile = File.createTempFile("tempImage", "jpg")
@@ -96,7 +97,19 @@ class UserInfoFragment : Fragment() {
 
                 binding.tvUserName.text = "${userInfo.name} ${userInfo.surName}"
                 binding.tvUserAddressInfo.text = userInfo.address
-                binding.tvUserPhoneInfo.text = userInfo.phone
+                binding.tvUserPhoneInfo.text = userInfo.phone?.let { phoneNumber ->
+                    with(phoneNumber) {
+                        this.substring(0, this.length - 10) +
+                                " " +
+                                this.substring(this.length - 10, this.length - 7) +
+                                " " +
+                                this.substring(this.length - 7, this.length - 4) +
+                                " " +
+                                this.substring(this.length - 4, this.length - 2) +
+                                " " +
+                                this.substring(this.length - 2, this.length)
+                    }
+                }
 
             }
 
@@ -106,7 +119,8 @@ class UserInfoFragment : Fragment() {
             builder.setMessage("Do you want to sign out?")
                 .setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which ->
                     signOutUser()
-                    val action = UserInfoFragmentDirections.actionUserInfoFragmentToUserLogInFragment()
+                    val action =
+                        UserInfoFragmentDirections.actionUserInfoFragmentToUserLogInFragment()
                     findNavController().navigate(action)
                 })
                 .setNegativeButton("No", DialogInterface.OnClickListener { dialog, which -> })

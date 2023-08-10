@@ -85,4 +85,6 @@
     <string name="credit_card_number_hint">**** **** **** ****</string>
     <string name="store_locations">Store Locations</string>
     <string name="language">Language</string>
+    <string name="please_fill_all_of_the_fields">Please fill all of the fields.</string>
+    <string name="please_fill_your_phone_number_correctly">Please fill your phone number correctly.</string>
 </resources>

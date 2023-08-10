@@ -1,7 +1,9 @@
 package com.menesdurak.e_ticaret_uygulamasi.presentation
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -47,14 +49,4 @@ class MainActivity : AppCompatActivity() {
             true
         }
     }
-
-//    override fun onBackPressed() {
-//        if (binding.bottomNavMenu.selectedItemId != R.id.home) {
-//            binding.bottomNavMenu.selectedItemId = R.id.home
-//            navController.navigate(R.id.homeFragment)
-//        } else {
-//            finish()
-//        }
-//
-//    }
 }

@@ -13,6 +13,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import com.menesdurak.e_ticaret_uygulamasi.R
 import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.UserInfo
 import com.menesdurak.e_ticaret_uygulamasi.databinding.FragmentUserInfoEditBinding
 
@@ -64,27 +65,39 @@ class UserInfoEditFragment : Fragment() {
         }
 
         binding.btnSave.setOnClickListener {
-            if (binding.etUserName.text!!.isNotBlank()
-                && binding.etUserSurname.text!!.isNotBlank()
-                && binding.etUserAddress.text!!.isNotBlank()
-                && binding.etUserPhone.text!!.isNotBlank()
-            ) {
-                val name = binding.etUserName.text.toString()
-                val surName = binding.etUserSurname.text.toString()
-                val address = binding.etUserAddress.text.toString()
-                val phone = binding.etUserPhone.text.toString()
-
-                val userInfo = UserInfo(name, surName, address, phone)
-
-                databaseReference.child(auth.currentUser?.uid!!).child("userInfo")
-                    .setValue(userInfo)
-                val action =
-                    UserInfoEditFragmentDirections.actionUserInfoEditFragmentToUserInfoFragment()
-                findNavController().navigate(action)
-            } else {
+            var isPhoneOkay = true
+            if (binding.etUserPhone.text!!.length < 10) {
                 Toast.makeText(
-                    requireContext(), "Please enter your name and surname.", Toast.LENGTH_SHORT
+                    requireContext(),
+                    getString(R.string.please_fill_your_phone_number_correctly),
+                    Toast.LENGTH_SHORT
                 ).show()
+                isPhoneOkay = false
+            }
+            if (isPhoneOkay) {
+                if (binding.etUserName.text!!.isNotBlank()
+                    && binding.etUserSurname.text!!.isNotBlank()
+                    && binding.etUserAddress.text!!.isNotBlank()
+                    && binding.etUserPhone.text!!.isNotBlank()
+                ) {
+                    val name = binding.etUserName.text.toString()
+                    val surName = binding.etUserSurname.text.toString()
+                    val address = binding.etUserAddress.text.toString()
+                    val phone = binding.etUserPhone.text.toString()
+
+                    val userInfo = UserInfo(name, surName, address, phone)
+
+                    databaseReference.child(auth.currentUser?.uid!!).child("userInfo")
+                        .setValue(userInfo)
+                    val action =
+                        UserInfoEditFragmentDirections.actionUserInfoEditFragmentToUserInfoFragment()
+                    findNavController().navigate(action)
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.please_fill_all_of_the_fields), Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }
     }

@@ -156,11 +156,6 @@ class CartFragment : Fragment() {
 
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
     private fun onCheckboxClicked(position: Int, cartProduct: CartProduct) {
         cartViewModel.updateCartProductCheckedStatus(!cartProduct.isChecked, cartProduct.id)
         cartProductAdapter.updateCheckedStatusOfProduct(position, cartProduct)
@@ -246,5 +241,10 @@ class CartFragment : Fragment() {
         val action =
             CartFragmentDirections.actionCartFragmentToProductDetailFragment(cartProduct.id)
         findNavController().navigate(action)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

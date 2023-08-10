@@ -95,20 +95,31 @@
         android:src="@drawable/ic_address"
         app:layout_constraintBottom_toBottomOf="@id/tvUserAddressInfo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvUserAddressInfo" />
+        app:layout_constraintTop_toTopOf="@id/tvUserAddress" />
+
+    <TextView
+        android:id="@+id/tvUserAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/constraintTop"
+        app:layout_constraintStart_toEndOf="@id/ivAddressIcon"
+        android:text="Address"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/tvUserAddressInfo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
-        android:gravity="center"
-        android:textSize="16sp"
+        android:gravity="start"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/ivAddressIcon"
-        app:layout_constraintTop_toBottomOf="@id/constraintTop"
+        app:layout_constraintStart_toStartOf="@id/tvUserAddress"
+        app:layout_constraintTop_toBottomOf="@id/tvUserAddress"
         tools:layout_editor_absoluteY="326dp"
         tools:text="ADsdaadskjjadskj adsadsjadskjadksadsjkj
         adsjkjadsdkjaskjadsads adsadshjdashdashj adshjadshjadshj" />
@@ -131,17 +142,27 @@
         android:src="@drawable/ic_phone"
         app:layout_constraintBottom_toBottomOf="@id/tvUserPhoneInfo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvUserPhoneInfo" />
+        app:layout_constraintTop_toTopOf="@id/tvUserPhone" />
+
+    <TextView
+        android:id="@+id/tvUserPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/horizontalLineAddress"
+        app:layout_constraintStart_toEndOf="@id/ivAddressIcon"
+        android:text="Phone"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/tvUserPhoneInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/horizontalLineAddress"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/tvUserPhone"
+        app:layout_constraintTop_toBottomOf="@id/tvUserPhone"
         tools:layout_editor_absoluteY="395dp"
         tools:text="+90555555555" />
 

@@ -22,6 +22,7 @@ import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.ProductUi
 import com.menesdurak.e_ticaret_uygulamasi.databinding.FragmentHomeBinding
 import com.menesdurak.e_ticaret_uygulamasi.presentation.cart.CartViewModel
 import com.menesdurak.e_ticaret_uygulamasi.presentation.categories.CategoriesViewModel
+import com.menesdurak.e_ticaret_uygulamasi.presentation.favorites.FavoriteProductAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,6 +37,11 @@ class HomeFragment : Fragment() {
             ::onProductClick,
             ::onFavoriteClick,
             ::onAddToCartClick
+        )
+    }
+    private val viewPagerAdapter: HomeViewPagerAdapter by lazy {
+        HomeViewPagerAdapter(
+            ::onAdClick
         )
     }
     private lateinit var bottomNavView: BottomNavigationView
@@ -129,7 +135,7 @@ class HomeFragment : Fragment() {
             R.drawable.home5,
             R.drawable.home1
         )
-        val viewPagerAdapter = HomeViewPagerAdapter(imageList)
+        viewPagerAdapter.updateList(imageList)
         binding.viewPager.adapter = viewPagerAdapter
 
         binding.viewPager.setCurrentItem(1, false)
@@ -213,6 +219,11 @@ class HomeFragment : Fragment() {
             categoriesViewModel.addFavoriteProduct(favoriteProduct)
             forYouAdapter.updateFavoriteStatusOfProduct(position, favoriteProduct.id)
         }
+    }
+
+    private fun onAdClick(position: Int, image : Int) {
+        val action = HomeFragmentDirections.actionHomeFragmentToHomeDetailFragment(position)
+        findNavController().navigate(action)
     }
 
     override fun onDestroyView() {

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_productDetailFragment"
             app:destination="@id/productDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_homeDetailFragment"
+            app:destination="@id/homeDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
@@ -144,4 +147,13 @@
         android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.user.map.MapsFragment"
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps" />
+    <fragment
+        android:id="@+id/homeDetailFragment"
+        android:name="com.menesdurak.e_ticaret_uygulamasi.presentation.home.HomeDetailFragment"
+        android:label="fragment_home_detail"
+        tools:layout="@layout/fragment_home_detail" >
+        <argument
+            android:name="adNumber"
+            app:argType="integer" />
+    </fragment>
 </navigation>
