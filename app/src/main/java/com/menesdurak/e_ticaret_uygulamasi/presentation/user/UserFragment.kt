@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
@@ -98,6 +99,9 @@ class UserFragment : Fragment() {
             val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
             binding.ivUserImage.setImageBitmap(bitmap)
         }
+
+        askNotificationPermission()
+
         return view
     }
 
@@ -162,10 +166,10 @@ class UserFragment : Fragment() {
             builder.create()
             builder.show()
             customAlertLayout.findViewById<TextView>(R.id.tvTurkish).setOnClickListener {
-                AppLanguageProvider(requireContext()).setLocale("tr-TR")
+                AppLanguageProvider().setLocale("tr-TR")
             }
             customAlertLayout.findViewById<TextView>(R.id.tvEnglish).setOnClickListener {
-                AppLanguageProvider(requireContext()).setLocale("en-EN")
+                AppLanguageProvider().setLocale("en-EN")
             }
         }
 
@@ -191,17 +195,47 @@ class UserFragment : Fragment() {
 
     }
 
-    // Handle the permission request result
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // The permission is granted, proceed with your app logic for push notifications.
+//    // Handle the permission request result
+//    override fun onRequestPermissionsResult(
+//        requestCode: Int,
+//        permissions: Array<String>,
+//        grantResults: IntArray
+//    ) {
+//        if (requestCode == PERMISSION_REQUEST_CODE) {
+//            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                // The permission is granted, proceed with your app logic for push notifications.
+//            } else {
+//                // The permission is denied. Handle this situation accordingly.
+//            }
+//        }
+//    }
+
+    // Declare the launcher at the top of your Activity/Fragment:
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission(),
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            // FCM SDK (and your app) can post notifications.
+        } else {
+            // TODO: Inform user that that your app will not show notifications.
+        }
+    }
+
+    private fun askNotificationPermission() {
+        // This is only necessary for API level >= 33 (TIRAMISU)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.POST_NOTIFICATIONS) ==
+                PackageManager.PERMISSION_GRANTED
+            ) {
+                // FCM SDK (and your app) can post notifications.
+            } else if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
+                // TODO: display an educational UI explaining to the user the features that will be enabled
+                //       by them granting the POST_NOTIFICATION permission. This UI should provide the user
+                //       "OK" and "No thanks" buttons. If the user selects "OK," directly request the permission.
+                //       If the user selects "No thanks," allow the user to continue without notifications.
             } else {
-                // The permission is denied. Handle this situation accordingly.
+                // Directly ask for the permission
+                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
             }
         }
     }

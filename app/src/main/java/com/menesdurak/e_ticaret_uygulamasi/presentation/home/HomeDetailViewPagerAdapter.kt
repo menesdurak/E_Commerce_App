@@ -5,13 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.menesdurak.e_ticaret_uygulamasi.R
+import com.menesdurak.e_ticaret_uygulamasi.databinding.ViewPagerDetailItemBinding
 import com.menesdurak.e_ticaret_uygulamasi.databinding.ViewPagerItemBinding
 
 class HomeDetailViewPagerAdapter: RecyclerView.Adapter<HomeDetailViewPagerAdapter.ImageHolder>() {
 
     private val itemList = mutableListOf<Int>()
 
-    inner class ImageHolder(private val binding: ViewPagerItemBinding) :
+    inner class ImageHolder(private val binding: ViewPagerDetailItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(image: Int) {
@@ -26,7 +27,7 @@ class HomeDetailViewPagerAdapter: RecyclerView.Adapter<HomeDetailViewPagerAdapte
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageHolder {
         val bind =
-            ViewPagerItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ViewPagerDetailItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ImageHolder(bind)
     }
 

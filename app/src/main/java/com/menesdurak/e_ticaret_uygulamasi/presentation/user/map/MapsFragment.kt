@@ -191,7 +191,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMapLongClickLis
                         if (location != null) {
                             latLng = LatLng(location.latitude, location.longitude)
                         } else {
-                            println("1")
+                            println("Location is null.")
                         }
                     }
             }
