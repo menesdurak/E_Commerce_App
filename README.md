@@ -17,10 +17,11 @@
     <td><img src="https://github.com/menesdurak/E_Ticaret_Uygulamasi/assets/76568329/8fe3b215-4ea4-41b4-b64c-c20595854312" width="200px" height="300px"></td>
     <td><img src="https://github.com/menesdurak/E_Ticaret_Uygulamasi/assets/76568329/fcbc1cce-1434-4fba-b920-50800fdb854e" width="200px" height="300px"></td>
     <td><img src="https://github.com/menesdurak/E_Ticaret_Uygulamasi/assets/76568329/66ffed43-81e2-4f28-b7cd-721b5cc45c98" width="200px" height="300px"></td>
-    <td><img src="https://github.com/menesdurak/Apptern_Case_Study/assets/76568329/bd38d5fa-004c-4fff-8a02-c86e59fea1e6" width="200px" height="300px"></td>
+    <td><img src="https://github.com/menesdurak/E_Ticaret_Uygulamasi/assets/76568329/a71f6453-f740-4e45-a638-5cf6ac3e0626" width="200px" height="300px"></td>
    </tr>  
   </tr>
 </table>
+
 
 
 ## Tech stack & Open-source libraries
