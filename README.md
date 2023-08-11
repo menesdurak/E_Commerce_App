@@ -12,12 +12,12 @@
     <td>Demo</td>
    </tr> 
   <tr>
-    <td><img src="https://github.com/menesdurak/Apptern_Case_Study/assets/76568329/d60513af-4edc-4f99-bd42-f507789932c8" width="200px"></td>
-    <td><img src="https://github.com/menesdurak/Apptern_Case_Study/assets/76568329/9e8fa2c2-e58c-43dc-80c0-755bf9a1e978" width="200px"></td>
-    <td><img src="https://github.com/menesdurak/Apptern_Case_Study/assets/76568329/58b15da3-0931-4858-aa7a-2861a877619f" width="200px"></td>
-    <td><img src="https://github.com/menesdurak/Apptern_Case_Study/assets/76568329/5c8405ac-2386-4358-9201-f2506799a145" width="200px"></td>
-    <td><img src="https://github.com/menesdurak/Apptern_Case_Study/assets/76568329/9fc9a9e8-d744-4928-8374-6d170bdc76fa" width="200px"></td>
-    <td><img src="https://github.com/menesdurak/Apptern_Case_Study/assets/76568329/bd38d5fa-004c-4fff-8a02-c86e59fea1e6" width="200px"></td>
+    <td><img src="https://github.com/menesdurak/E_Ticaret_Uygulamasi/assets/76568329/6e678594-cbbe-424b-9494-66e4fabaec10" width="200px" height="300px"></td>
+    <td><img src="https://github.com/menesdurak/E_Ticaret_Uygulamasi/assets/76568329/aba4edf8-f3ff-4882-9a66-eb8e8b20bfb8" width="200px" height="300px"></td>
+    <td><img src="https://github.com/menesdurak/E_Ticaret_Uygulamasi/assets/76568329/8fe3b215-4ea4-41b4-b64c-c20595854312" width="200px" height="300px"></td>
+    <td><img src="https://github.com/menesdurak/E_Ticaret_Uygulamasi/assets/76568329/fcbc1cce-1434-4fba-b920-50800fdb854e" width="200px" height="300px"></td>
+    <td><img src="https://github.com/menesdurak/E_Ticaret_Uygulamasi/assets/76568329/66ffed43-81e2-4f28-b7cd-721b5cc45c98" width="200px" height="300px"></td>
+    <td><img src="https://github.com/menesdurak/Apptern_Case_Study/assets/76568329/bd38d5fa-004c-4fff-8a02-c86e59fea1e6" width="200px" height="300px"></td>
    </tr>  
   </tr>
 </table>
