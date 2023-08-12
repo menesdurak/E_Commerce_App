@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.menesdurak.e_ticaret_uygulamasi.R
-import com.menesdurak.e_ticaret_uygulamasi.data.local.entity.FavoriteProduct
 import com.menesdurak.e_ticaret_uygulamasi.databinding.ViewPagerItemBinding
 
 class HomeViewPagerAdapter(

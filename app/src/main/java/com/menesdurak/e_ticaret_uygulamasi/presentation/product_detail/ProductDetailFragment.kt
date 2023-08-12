@@ -1,5 +1,6 @@
 package com.menesdurak.e_ticaret_uygulamasi.presentation.product_detail
 
+import android.graphics.Paint
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -7,7 +8,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -22,7 +22,6 @@ import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.Product
 import com.menesdurak.e_ticaret_uygulamasi.databinding.FragmentProductDetailBinding
 import com.menesdurak.e_ticaret_uygulamasi.presentation.cart.CartViewModel
 import com.menesdurak.e_ticaret_uygulamasi.presentation.categories.CategoriesViewModel
-import com.menesdurak.e_ticaret_uygulamasi.presentation.favorites.FavoritesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,6 +34,10 @@ class ProductDetailFragment : Fragment() {
     private val cartViewModel: CartViewModel by viewModels()
 
     private var productId = -1
+
+    private var discountRate = 0.0f
+
+    private var isDiscounted = false
 
     private lateinit var product: Product
 
@@ -53,6 +56,8 @@ class ProductDetailFragment : Fragment() {
         //Receiving clicked character ID and location ID
         val args: ProductDetailFragmentArgs by navArgs()
         productId = args.productId
+        discountRate = args.discountRate
+        isDiscounted = args.isDiscounted
 
         return view
     }
@@ -71,13 +76,32 @@ class ProductDetailFragment : Fragment() {
                     binding.progressBar.visibility = View.GONE
                     binding.linlayIndicator.visibility = View.VISIBLE
                     binding.linlayBottomContainer.visibility = View.VISIBLE
-                    binding.ratingBar.visibility = View.VISIBLE
                     binding.tvProductName.text = it.data.title
-                    binding.ratingBar.rating = it.data.rating.rate.toFloat()
+                    with(binding.ratingBar) {
+                        visibility = View.VISIBLE
+                        rating = it.data.rating.rate.toFloat()
+                    }
                     binding.tvRatingCount.text =
                         it.data.rating.count.toString() + " " + getString(R.string.review)
                     binding.tvRatingRate.text = it.data.rating.rate.toString()
-                    binding.tvPrice.text = it.data.price.toDouble().addCurrencySign()
+                    if (isDiscounted) {
+                        with(binding.tvPrice) {
+                            text = it.data.price.toDouble().addCurrencySign()
+                            setTextColor(resources.getColor(R.color.red, null))
+                            paintFlags = this.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                        }
+                        with(binding.tvPriceDiscounted) {
+                            visibility = View.VISIBLE
+                            text = (it.data.price.toDouble() * (1 - discountRate)).addCurrencySign()
+                            setTextColor(resources.getColor(R.color.green, null))
+                        }
+                    } else {
+                        with(binding.tvPrice) {
+                            text = it.data.price.toDouble().addCurrencySign()
+                            textSize = 36f
+                        }
+                    }
+
                     binding.tvProductDetails.text = it.data.description
 
                     val imageList = listOf(it.data.image, it.data.image, it.data.image)
@@ -140,7 +164,7 @@ class ProductDetailFragment : Fragment() {
 
         binding.btnBuy.setOnClickListener {
             cartViewModel.addCartProduct(
-                ProductUiToCartProductMapper().map(
+                ProductUiToCartProductMapper(discountRate).map(
                     ProductToProductUiMapper().map(
                         product
                     )
@@ -155,7 +179,12 @@ class ProductDetailFragment : Fragment() {
                 }
 
                 override fun onFinish() {
-                    binding.btnBuy.setBackgroundColor(binding.root.resources.getColor(R.color.main, null))
+                    binding.btnBuy.setBackgroundColor(
+                        binding.root.resources.getColor(
+                            R.color.main,
+                            null
+                        )
+                    )
                     binding.btnBuy.text = getString(R.string.buy)
                 }
 

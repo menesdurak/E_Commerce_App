@@ -111,8 +111,16 @@
             app:argType="boolean"
             android:defaultValue="true" />
         <argument
+            android:name="isDiscounted"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <argument
             android:name="productId"
-            app:argType="integer" />
+            app:argType="integer"/>
+        <argument
+            android:name="discountRate"
+            app:argType="float"
+            android:defaultValue="0.0" />
     </fragment>
     <fragment
         android:id="@+id/userFragment"

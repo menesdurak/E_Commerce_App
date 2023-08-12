@@ -1,16 +1,17 @@
 package com.menesdurak.e_ticaret_uygulamasi.presentation
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import android.view.View
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.menesdurak.e_ticaret_uygulamasi.R
 import com.menesdurak.e_ticaret_uygulamasi.databinding.ActivityMainBinding
+import com.menesdurak.e_ticaret_uygulamasi.presentation.home.HomeFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -47,6 +48,39 @@ class MainActivity : AppCompatActivity() {
                 R.id.user -> navController.navigate(R.id.userLogInFragment)
             }
             true
+        }
+
+        navController.addOnDestinationChangedListener { _, nd: NavDestination, _ ->
+            if (nd.id == R.id.homeDetailFragment) {
+                binding.bottomNavMenu.visibility = View.GONE
+            } else {
+                binding.bottomNavMenu.visibility = View.VISIBLE
+            }
+        }
+
+        when (intent.getStringExtra("Fragment")) {
+            "ProductDetail" -> {
+                val productId = intent.getStringExtra("ProductId")
+                if (productId != null) {
+                    val action =
+                        HomeFragmentDirections.actionHomeFragmentToProductDetailFragment(productId.toInt())
+                    navController.navigate(action)
+                } else {
+                    navController.navigate(R.id.categoriesFragment)
+                }
+            }
+
+            "Home" -> {
+
+            }
+
+            "Categories" -> {
+                navController.navigate(R.id.categoriesFragment)
+            }
+
+            else -> {
+
+            }
         }
     }
 }

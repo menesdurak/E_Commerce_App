@@ -80,7 +80,7 @@ class HomeDetailFragment : Fragment() {
             this.adapter = viewPagerAdapter
             this.setPageTransformer(CubeTransformer())
             //Home Fragment's view pager have one more extra item at the start
-            //So I decreased adNumber 1
+            //So I decreased adNumber by 1
             this.setCurrentItem(adNumber - 1, false)
             autoSwipeScope = CoroutineScope(Dispatchers.Main).launch {
                 while (isActive) {

@@ -190,7 +190,7 @@ class CategoriesFragment : Fragment() {
     }
 
     private fun onAddToCartClick(position: Int, product: ProductUi) {
-        cartViewModel.addCartProduct(ProductUiToCartProductMapper().map(product))
+        cartViewModel.addCartProduct(ProductUiToCartProductMapper(0.0f).map(product))
         val button = binding.rvProducts.layoutManager?.findViewByPosition(position)
             ?.findViewById<Button>(R.id.btnBuy)
         button?.setBackgroundColor(binding.root.resources.getColor(R.color.sub2, null))

@@ -164,16 +164,40 @@
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <TextView
-            android:id="@+id/tvPrice"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="10dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textSize="36sp"
-            android:textStyle="bold"
-            tools:text="200.000" />
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/tvPriceDiscounted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                tools:text="200.00"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                tools:text="200.00"
+                app:layout_constraintTop_toTopOf="@id/tvPriceDiscounted"
+                app:layout_constraintBottom_toBottomOf="@id/tvPriceDiscounted"
+                app:layout_constraintStart_toEndOf="@id/tvPriceDiscounted" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
             android:id="@+id/btnBuy"

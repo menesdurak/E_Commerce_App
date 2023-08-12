@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.menesdurak.e_ticaret_uygulamasi.R
 import com.menesdurak.e_ticaret_uygulamasi.databinding.ViewPagerDetailItemBinding
-import com.menesdurak.e_ticaret_uygulamasi.databinding.ViewPagerItemBinding
 
 class HomeDetailViewPagerAdapter: RecyclerView.Adapter<HomeDetailViewPagerAdapter.ImageHolder>() {
 

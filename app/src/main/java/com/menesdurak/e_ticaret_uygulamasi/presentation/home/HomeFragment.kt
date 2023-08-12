@@ -22,7 +22,6 @@ import com.menesdurak.e_ticaret_uygulamasi.data.remote.dto.ProductUi
 import com.menesdurak.e_ticaret_uygulamasi.databinding.FragmentHomeBinding
 import com.menesdurak.e_ticaret_uygulamasi.presentation.cart.CartViewModel
 import com.menesdurak.e_ticaret_uygulamasi.presentation.categories.CategoriesViewModel
-import com.menesdurak.e_ticaret_uygulamasi.presentation.favorites.FavoriteProductAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -156,10 +155,12 @@ class HomeFragment : Fragment() {
                         binding.tvViewPagerPage.text =
                             "1 / ${itemCount - 2}"
                     }
+
                     0 -> {
                         binding.tvViewPagerPage.text =
                             "5 / ${itemCount - 2}"
                     }
+
                     else -> {
                         binding.tvViewPagerPage.text =
                             "${binding.viewPager.currentItem} / ${itemCount - 2}"
@@ -187,12 +188,16 @@ class HomeFragment : Fragment() {
 
     private fun onProductClick(product: ProductUi) {
         val action =
-            HomeFragmentDirections.actionHomeFragmentToProductDetailFragment(product.id)
+            HomeFragmentDirections.actionHomeFragmentToProductDetailFragment(
+                product.id,
+                isDiscounted = true,
+                discountRate = 0.20f
+            )
         findNavController().navigate(action)
     }
 
     private fun onAddToCartClick(position: Int, product: ProductUi) {
-        cartViewModel.addCartProduct(ProductUiToCartProductMapper().map(product))
+        cartViewModel.addCartProduct(ProductUiToCartProductMapper(0.0f).map(product))
         val button = binding.recyclerView.layoutManager?.findViewByPosition(position)
             ?.findViewById<Button>(R.id.btnBuy)
         button?.setBackgroundColor(binding.root.resources.getColor(R.color.sub2, null))
@@ -221,7 +226,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun onAdClick(position: Int, image : Int) {
+    private fun onAdClick(position: Int, image: Int) {
         val action = HomeFragmentDirections.actionHomeFragmentToHomeDetailFragment(position)
         findNavController().navigate(action)
     }
