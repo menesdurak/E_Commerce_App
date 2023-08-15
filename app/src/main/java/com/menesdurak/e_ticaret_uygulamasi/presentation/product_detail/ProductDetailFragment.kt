@@ -15,6 +15,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.menesdurak.e_ticaret_uygulamasi.R
 import com.menesdurak.e_ticaret_uygulamasi.common.Resource
 import com.menesdurak.e_ticaret_uygulamasi.common.addCurrencySign
+import com.menesdurak.e_ticaret_uygulamasi.common.round
 import com.menesdurak.e_ticaret_uygulamasi.data.mapper.ProductToFavoriteProductMapper
 import com.menesdurak.e_ticaret_uygulamasi.data.mapper.ProductToProductUiMapper
 import com.menesdurak.e_ticaret_uygulamasi.data.mapper.ProductUiToCartProductMapper
@@ -86,18 +87,18 @@ class ProductDetailFragment : Fragment() {
                     binding.tvRatingRate.text = it.data.rating.rate.toString()
                     if (isDiscounted) {
                         with(binding.tvPrice) {
-                            text = it.data.price.toDouble().addCurrencySign()
+                            text = (it.data.price.toDouble() round 2).addCurrencySign()
                             setTextColor(resources.getColor(R.color.red, null))
                             paintFlags = this.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
                         }
                         with(binding.tvPriceDiscounted) {
                             visibility = View.VISIBLE
-                            text = (it.data.price.toDouble() * (1 - discountRate)).addCurrencySign()
+                            text = ((it.data.price.toDouble() * discountRate) round 2) .addCurrencySign()
                             setTextColor(resources.getColor(R.color.green, null))
                         }
                     } else {
                         with(binding.tvPrice) {
-                            text = it.data.price.toDouble().addCurrencySign()
+                            text = (it.data.price.toDouble() round 2).addCurrencySign()
                             textSize = 36f
                         }
                     }

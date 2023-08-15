@@ -187,11 +187,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun onProductClick(product: ProductUi) {
+        //TODO discount rate should be deleted from here
         val action =
             HomeFragmentDirections.actionHomeFragmentToProductDetailFragment(
                 product.id,
                 isDiscounted = true,
-                discountRate = 0.20f
+                discountRate = 0.90f
             )
         findNavController().navigate(action)
     }

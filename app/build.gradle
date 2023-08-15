@@ -70,6 +70,9 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.10.1'
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
+    //Okhttp
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.7.2")
+
     // Navigation Component
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
@@ -111,10 +114,19 @@ dependencies {
     //Splash screen API
     implementation "androidx.core:core-splashscreen:1.0.1"
 
-    implementation 'com.google.android.gms:play-services-maps:18.1.0'
-    implementation 'com.google.maps:google-maps-services:0.17.0'
-    implementation 'com.google.maps.android:android-maps-utils:2.2.1'
-    implementation 'com.google.android.gms:play-services-location:21.0.1'
+    //Google Maps
+    implementation ("com.google.android.gms:play-services-maps:18.1.0")
+    implementation ("com.google.maps.android:android-maps-utils:2.2.3")
+    implementation ("com.google.maps.android:maps-ktx:3.1.0")
+    implementation ("com.google.android.gms:play-services-maps:18.1.0")
+    implementation ("com.google.android.gms:play-services-location:21.0.1")
+    implementation ("com.google.maps.android:maps-utils-ktx:3.1.0")
+
+    //SmartLocation
+    implementation ("io.nlopez.smartlocation:library:3.3.3")
+
+    //Google Places
+    implementation ("com.google.android.libraries.places:places:3.2.0")
 
 }
 // Allow references to generated code

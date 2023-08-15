@@ -212,15 +212,25 @@ class PaymentFragment : Fragment() {
         }
 
         binding.btnBuy.setOnClickListener {
-            if (binding.etUserAddressInfo.text.isNotBlank()) {
-                isInformationsOk = true
-            } else {
+            if (binding.etUserAddressInfo.text.isNullOrBlank()) {
                 isInformationsOk = false
                 Toast.makeText(
                     requireContext(),
                     getString(R.string.please_fill_your_address_information),
                     Toast.LENGTH_SHORT
                 ).show()
+            } else {
+                isInformationsOk = true
+            }
+            if (activeCreditCardNumber.isNullOrBlank()) {
+                isInformationsOk = false
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.please_select_a_credit_card),
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                isInformationsOk = true
             }
 
             if (isInformationsOk) {
@@ -258,6 +268,9 @@ class PaymentFragment : Fragment() {
                 }
             }
         }
+
+
+
 
         binding.ivSwapAddress.setOnClickListener {
             isNewAddress = !isNewAddress

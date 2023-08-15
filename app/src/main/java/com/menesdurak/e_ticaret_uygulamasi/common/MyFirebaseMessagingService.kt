@@ -22,9 +22,13 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         val fragment = remoteMessage.data["Fragment"]
         val productId = remoteMessage.data["ProductId"]
+        val discountRate = remoteMessage.data["DiscountRate"]
+        val isDiscounted = remoteMessage.data["IsDiscounted"]
         val bundle = Bundle()
         bundle.putString("Fragment", fragment)
         bundle.putString("ProductId", productId)
+        bundle.putString("DiscountRate", discountRate)
+        bundle.putString("IsDiscounted", isDiscounted)
 
         //Verify if the message contains data
         if (remoteMessage.data.isNotEmpty()) {
@@ -33,13 +37,13 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         //Verify if the message contains notification
         if (remoteMessage.notification != null) {
-            Log.d(TAG,"Message body : "+remoteMessage.notification!!.body)
+            Log.d(TAG, "Message body : " + remoteMessage.notification!!.body)
             sendNotification(remoteMessage.notification!!.body, bundle)
         }
     }
 
     private fun sendNotification(body: String?, bundle: Bundle?) {
-        val intent = Intent(this,MainActivity::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         //If set, and the activity being launched is already running in the current task,
         //then instead of launching a new instance of that activity, all of the other activities
         // on top of it will be closed and this Intent will be delivered to the (now on top)
@@ -47,17 +51,20 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         intent.putExtras(bundle!!)
 
-        val pendingIntent = PendingIntent.getActivity(this,0,intent,
-            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE/*Flag indicating that this PendingIntent can be used only once.*/)
+        val pendingIntent = PendingIntent.getActivity(
+            this, 0, intent,
+            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE/*Flag indicating that this PendingIntent can be used only once.*/
+        )
 
-        val notificationBuilder = NotificationCompat.Builder(this,"Notification")
+        val notificationBuilder = NotificationCompat.Builder(this, "Notification")
             .setSmallIcon(R.mipmap.ic_launcher)
             .setContentTitle("Push Notification FCM")
             .setContentText(body)
             .setAutoCancel(true)
             .setContentIntent(pendingIntent)
 
-        val notificationManager: NotificationManager = this.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.notify(0,notificationBuilder.build())
+        val notificationManager: NotificationManager =
+            this.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.notify(0, notificationBuilder.build())
     }
 }

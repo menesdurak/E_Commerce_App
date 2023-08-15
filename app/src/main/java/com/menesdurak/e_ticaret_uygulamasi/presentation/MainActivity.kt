@@ -61,9 +61,15 @@ class MainActivity : AppCompatActivity() {
         when (intent.getStringExtra("Fragment")) {
             "ProductDetail" -> {
                 val productId = intent.getStringExtra("ProductId")
-                if (productId != null) {
+                val discountRate = intent.getStringExtra("DiscountRate")
+                val isDiscounted = intent.getStringExtra("IsDiscounted")
+                if (productId != null && discountRate != null) {
                     val action =
-                        HomeFragmentDirections.actionHomeFragmentToProductDetailFragment(productId.toInt())
+                        HomeFragmentDirections.actionHomeFragmentToProductDetailFragment(
+                            productId.toInt(),
+                            discountRate = discountRate.toFloat(),
+                            isDiscounted = isDiscounted.toBoolean()
+                        )
                     navController.navigate(action)
                 } else {
                     navController.navigate(R.id.categoriesFragment)
