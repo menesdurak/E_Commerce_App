@@ -19,10 +19,13 @@
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPager"
-                android:layout_width="400dp"
-                android:layout_height="400dp"
-                android:paddingHorizontal="30dp"
-                android:paddingVertical="20dp"
+                android:layout_width="350dp"
+                android:layout_height="350dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/tvProductName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -83,6 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
                 android:gravity="start|top"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -177,10 +181,10 @@
                 android:layout_marginStart="10dp"
                 android:textSize="36sp"
                 android:textStyle="bold"
-                tools:text="200.00"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="200.00" />
 
             <TextView
                 android:id="@+id/tvPrice"
@@ -190,10 +194,10 @@
                 android:layout_marginStart="10dp"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                tools:text="200.00"
-                app:layout_constraintTop_toTopOf="@id/tvPriceDiscounted"
                 app:layout_constraintBottom_toBottomOf="@id/tvPriceDiscounted"
-                app:layout_constraintStart_toEndOf="@id/tvPriceDiscounted" />
+                app:layout_constraintStart_toEndOf="@id/tvPriceDiscounted"
+                app:layout_constraintTop_toTopOf="@id/tvPriceDiscounted"
+                tools:text="200.00" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -201,10 +205,10 @@
             android:id="@+id/btnBuy"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_gravity="center"
             android:layout_marginStart="40dp"
             android:layout_marginEnd="20dp"
+            android:layout_weight="1"
             android:text="@string/buy"
             android:textSize="16sp" />
 

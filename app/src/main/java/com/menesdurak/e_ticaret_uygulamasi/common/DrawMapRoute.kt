@@ -1,6 +1,7 @@
 package com.menesdurak.e_ticaret_uygulamasi.common
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
@@ -54,12 +55,15 @@ class DrawMapRoute(
                                 .replace("days", "gün").replace("secs", "saniye")
                         drawPolyline(response)
                     } catch (e: Exception) {
+                        Log.e("error", "onResponse Exception")
                         distance.value = "Tanımsız"
                         time.value = "Tanımsız"
                     }
                 }
 
-                override fun onFailure(call: Call<DirectionResponse>, t: Throwable) {}
+                override fun onFailure(call: Call<DirectionResponse>, t: Throwable) {
+                    Log.e("error", "onFailure")
+                }
             })
     }
 
