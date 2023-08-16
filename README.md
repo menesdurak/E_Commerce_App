@@ -7,18 +7,22 @@
     <td>Home</td>
     <td>Categories</td>
     <td>Cart</td>
-    <td>Favorites</td>
-    <td>User</td>
-    <td>Demo</td>
    </tr> 
   <tr>
-    <td><img src="https://github.com/menesdurak/E_Ticaret_Uygulamasi/assets/76568329/6e678594-cbbe-424b-9494-66e4fabaec10" width="200px" height="300px"></td>
-    <td><img src="https://github.com/menesdurak/E_Ticaret_Uygulamasi/assets/76568329/aba4edf8-f3ff-4882-9a66-eb8e8b20bfb8" width="200px" height="300px"></td>
-    <td><img src="https://github.com/menesdurak/E_Ticaret_Uygulamasi/assets/76568329/8fe3b215-4ea4-41b4-b64c-c20595854312" width="200px" height="300px"></td>
-    <td><img src="https://github.com/menesdurak/E_Ticaret_Uygulamasi/assets/76568329/fcbc1cce-1434-4fba-b920-50800fdb854e" width="200px" height="300px"></td>
-    <td><img src="https://github.com/menesdurak/E_Ticaret_Uygulamasi/assets/76568329/66ffed43-81e2-4f28-b7cd-721b5cc45c98" width="200px" height="300px"></td>
-    <td><img src="https://github.com/menesdurak/E_Ticaret_Uygulamasi/assets/76568329/a71f6453-f740-4e45-a638-5cf6ac3e0626" width="200px" height="300px"></td>
+    <td><img src="https://github.com/menesdurak/E_Ticaret_Uygulamasi/assets/76568329/6e678594-cbbe-424b-9494-66e4fabaec10" width="300px" height="400px"></td>
+    <td><img src="https://github.com/menesdurak/E_Ticaret_Uygulamasi/assets/76568329/aba4edf8-f3ff-4882-9a66-eb8e8b20bfb8" width="300px" height="400px"></td>
+    <td><img src="https://github.com/menesdurak/E_Ticaret_Uygulamasi/assets/76568329/8fe3b215-4ea4-41b4-b64c-c20595854312" width="300px" height="400px"></td>
    </tr>  
+    <tr>
+        <td>Favorites</td>
+    <td>User</td>
+    <td>Demo</td>
+    </tr>
+    <tr>
+    <td><img src="https://github.com/menesdurak/E_Ticaret_Uygulamasi/assets/76568329/fcbc1cce-1434-4fba-b920-50800fdb854e" width="300px" height="400px"></td>
+    <td><img src="https://github.com/menesdurak/E_Ticaret_Uygulamasi/assets/76568329/66ffed43-81e2-4f28-b7cd-721b5cc45c98" width="300px" height="400px"></td>
+    <td><img src="https://github.com/menesdurak/E_Ticaret_Uygulamasi/assets/76568329/a71f6453-f740-4e45-a638-5cf6ac3e0626" width="300px" height="400px"></td>
+    </tr>
   </tr>
 </table>
 
