@@ -64,7 +64,7 @@ class OrdersAdapter : RecyclerView.Adapter<OrdersAdapter.OrderHolder>() {
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: OrderHolder, position: Int) {
-        holder.bind(items[position])
+        holder.bind(items[items.size - position - 1])
     }
 
     fun updateList(newList: List<BoughtProduct>) {
