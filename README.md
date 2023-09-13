@@ -40,6 +40,12 @@
     - [Fragment-ktx](https://developer.android.com/kotlin/ktx#fragment) - A set of Kotlin extensions that helps with fragment lifecycle.
     - [View Binding](https://developer.android.com/topic/libraries/view-binding) - Allows you to more easily write code that interacts with views
     - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - UI related data holder, lifecycle aware.
+- [Firebase](https://firebase.google.com/)
+    - [Authentication](https://firebase.google.com/docs/auth?authuser=0&hl=en) - Firebase Authentication is used for controlling users.
+    - [Realtime Database](https://firebase.google.com/docs/database?authuser=0&hl=en) - Firebase Realtime Database is used for storing orders.
+    - [Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/?hl=en&authuser=0) - Firebase Cloud Messaging is used for sending push notifications.
+    - [Storage](https://firebase.google.com/docs/storage?authuser=0&hl=en) - Firebase Storage is used for storing profile photos.
+    - [Crashlytics](https://firebase.google.com/docs/crashlytics) - Firebase Crashlytics is used for monitoring crashes.
 - Architecture
   - MVVM Architecture (View - DataBinding - ViewModel - Model)
 - [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) is a dependency injection library for Android
